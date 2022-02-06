@@ -3,3 +3,4 @@ The team repository for CSE360 Monday section
 
 Team Members:
 Cameron Baker
+Thomas Spencer
