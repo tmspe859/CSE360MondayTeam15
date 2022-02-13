@@ -1,0 +1,123 @@
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+body, html {
+    margin: 0;
+    padding: 0;
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: white;
+    text-decoration: none;
+    padding: 0 1rem;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    z-index: 1;
+}
+
+nav > ul {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+nav > ul > li {
+    list-style: none;
+    padding: 0 1rem;
+}
+
+nav > ul > li > a {
+    color: white;
+    text-decoration: none;
+}
+
+#current-page {
+    position: relative;
+}
+
+#current-page::after {
+    content: "";
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 0.1rem;
+    background-color: white;
+    position: absolute;
+}
+
+main {
+    margin: 0 3rem;
+    margin-bottom: 2rem;
+}
+
+main > h1 {
+    width: 100%;
+    text-align: center;
+}
+
+main > div {
+    margin: 0 auto;
+    /* max-width: 60%; */
+}
+
+#menu-items {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-direction: column;
+    gap: 3rem;
+}
+
+.item:nth-child(2n) {
+    flex-direction: row-reverse;
+}
+
+
+.item > img {
+    width: 10rem;
+    display: block;
+}
+
+
+.item {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.item > div {
+    margin: 0 3rem;
+}
+
+#filters {
+    margin-bottom: 2rem;
+}
+
+#filters > div {
+    display: flex;
+    justify-content: space-between;
+}
+
+label {
+    display: flex;
+    gap: 0.5rem;
+}
+
+input[type="search"] {
+    max-width: 7rem;
+}
+
+button {
+    width: 70%;
+    display: block;
+    margin: 0 auto;
+    outline: none;
+    border: none;
+    background-color: lightgreen;
+    border-radius: 2rem;
+    padding: 0.25rem;
+}

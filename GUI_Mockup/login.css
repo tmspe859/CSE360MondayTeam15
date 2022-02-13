@@ -1,0 +1,125 @@
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+body, html {
+    margin: 0;
+    padding: 0;
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: white;
+    text-decoration: none;
+    padding: 0 1rem;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    z-index: 1;
+}
+
+nav > ul {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+nav > ul > li {
+    list-style: none;
+    padding: 0 1rem;
+}
+
+nav > ul > li > a {
+    color: white;
+    text-decoration: none;
+}
+
+#current-page {
+    position: relative;
+}
+
+#current-page::after {
+    content: "";
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 0.1rem;
+    background-color: white;
+    position: absolute;
+}
+
+header {
+    width: 100%;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(135deg, #ba0000, #6c0000);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    width: 100vw;
+}
+
+div {
+    margin: auto;
+    width: 23rem;
+    background-color: white;
+    padding: 2rem 2rem;
+    border-radius: 1rem;
+    border: 2px solid black;
+    box-shadow: 3px 10px 10px 3px rgba(0, 0, 0, 0.5);
+}
+
+div > h1 {
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+label {
+    display: flex;
+    flex-direction: column;
+}
+
+label+label {
+    margin-top: 3rem;
+}
+
+button {
+    display: block;
+    margin: 2rem auto;
+    margin-bottom: 0.2rem;
+    font-size: large;
+    width: 90%;
+    padding: 0.65rem 0.5rem;
+    border-radius: 2rem;
+    outline: none;
+    color: white;
+    border: none;
+    background-color: #008aff;
+}
+
+input {
+    padding: 0.25rem 0.5rem;
+    border: none;
+    border-bottom: 2px solid black;
+}
+
+form > a {
+    display: block;
+    text-align: right;
+    margin-top: 0.5rem;
+}
+
+a {
+    text-decoration: none;
+}
+
+p {
+    display: block;
+    width: 100%;
+    text-align: center;
+}

@@ -1,0 +1,113 @@
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+body, html {
+    margin: 0;
+    padding: 0;
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: white;
+    text-decoration: none;
+    padding: 0 1rem;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    z-index: 1;
+}
+
+nav > ul {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+nav > ul > li {
+    list-style: none;
+    padding: 0 1rem;
+}
+
+nav > ul > li > a {
+    color: white;
+    text-decoration: none;
+}
+
+#current-page {
+    position: relative;
+}
+
+#current-page::after {
+    content: "";
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 0.1rem;
+    background-color: white;
+    position: absolute;
+}
+
+main > div {
+    width: 80%;
+    margin: 0 auto;
+}
+
+main > div > h1 {
+    text-align: center;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    gap: 1rem;
+}
+label {
+    display: flex;
+    flex-direction: column;
+}
+
+#special-card-info {
+    display: flex;
+    justify-content: space-between;
+    gap: 4rem;
+}
+
+#special-card-info input {
+    width: 5rem;
+}
+
+input {
+    width: 15rem;
+}
+
+#submit-section {
+    margin: 1rem;
+}
+
+#submit-section > label {
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    text-align: center;
+    display: block;
+    margin: 0 auto;
+}
+
+input[type="checkbox"] {
+    margin: 0;
+    width: 15px;
+}
+
+#submit-section > button {
+    width: 30%;
+    display: block;
+    padding: 0.25rem;
+    border-radius: 4rem;
+    outline: none;
+    border: none;
+    background-color: lightgreen;
+    margin: 1rem auto;
+}
