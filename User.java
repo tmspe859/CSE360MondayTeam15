@@ -1,26 +1,31 @@
+
 public abstract class User {
 
-    static private Integer GLOBAL_ID = 0;
-
-    protected String firstName = "";
-    protected String lastName = "";
-    protected String userName = "";
-    protected String password = "";
-    protected String email = "";
+    protected String firstName;
+    protected String lastName;
+    protected String userName;
+    protected String password;
+    protected String email;
     protected Integer accountID;
 
-    public User() {
-        this.accountID = User.GLOBAL_ID;
-        User.GLOBAL_ID++;
-    }
+    protected Boolean isManagerBoolean = false;
     
-    public User(String firstName, String lastName, String userName, String password, String email) {
-        this();
+    public User() {
+        this.firstName = "";
+        this.lastName = "";
+        this.userName = "";
+        this.password = "";
+        this.email = "";
+        this.accountID = null;
+    }
+
+    public User(String firstName, String lastName, String userName, String password, String email, Integer accountID) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.userName = userName;
         this.password = password;
         this.email = email;
+        this.accountID = null;
     }
     
     public void updateInfo() {}
@@ -38,5 +43,15 @@ public abstract class User {
     public String getPassword() { return this.password; }
 
     public String getEmail() { return this.email; }
+
+    public void setAccountID(Integer accountID) {
+        if (this.accountID != null) return;
+        this.accountID = accountID;
+    }
+
     public Integer getAccountID() { return this.accountID; }
+
+    public Boolean isManager() {
+        return this.isManagerBoolean;
+    }
 }
