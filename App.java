@@ -5,11 +5,13 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
-
+import java.sql.*;
 
 public class App extends Application {
     public static void main(String[] args) throws Exception {
-        
+        Connection connection = Database.connect();
+        Database.checkTables();
+        System.out.println(connection);
         launch(args);
     }
 
