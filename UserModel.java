@@ -9,6 +9,7 @@ public class UserModel {
     private static final String userNameColumn = "username";
     private static final String emailColumn = "email";
     private static final String passwordColumn = "password";
+    private static final String isManagerColumn = "isManager";
 
     public static void createTable(){
 
@@ -17,11 +18,12 @@ public class UserModel {
             Statement stmt = connection.createStatement();
             String sql = "CREATE TABLE IF NOT EXISTS users " +
                            "(id INTEGER PRIMARY KEY     NOT NULL," +
-                           " firstname      CHAR(25)    NOT NULL, " + 
-                           " lastname       CHAR(25)    NOT NULL, " + 
-                           " username       CHAR(25)    NOT NULL, " + 
-                           " password       CHAR(50)    NOT NULL, " +
-                           " email          CHAR(50)    NOT NULL )"; 
+                           " firstname      CHAR(255)    NOT NULL, " + 
+                           " lastname       CHAR(255)    NOT NULL, " + 
+                           " username       CHAR(255)    NOT NULL, " + 
+                           " password       CHAR(255)    NOT NULL, " +
+                           " email          CHAR(255)    NOT NULL, " +
+                           " isManager      BOOLEAN      NOT NULL )"; 
             stmt.executeUpdate(sql);
             stmt.close();
             connection.close();
@@ -47,10 +49,14 @@ public class UserModel {
             String sql = "SELECT * FROM " + tableName + " WHERE " + condition; 
             ResultSet rs = stmt.executeQuery(sql);
 
-            user = new Customer(rs.getString(firstNameColumn), rs.getString(lastNameColumn),
-                rs.getString(userNameColumn), rs.getString(passwordColumn),
-                 rs.getString(emailColumn),
-                 rs.getInt(idColumn));
+            if(rs.getBoolean(isManagerColumn)){
+                //user = new Manager();
+            } else {
+                user = new Customer(rs.getString(firstNameColumn), rs.getString(lastNameColumn),
+                        rs.getString(userNameColumn), rs.getString(passwordColumn),
+                        rs.getString(emailColumn),
+                        rs.getInt(idColumn));
+            }
 
             rs.close();
             stmt.close();
@@ -65,17 +71,17 @@ public class UserModel {
     }
 
     public static int createUser(String firstName, String lastName, 
-            String userName, String email, String password) {
+            String userName, String email, String password, boolean isManager) {
 
         //update database
         int id = (int) CRUDHelper.create(
             tableName,
             new String[]{firstNameColumn, lastNameColumn, 
-                userNameColumn, emailColumn, passwordColumn},
+                userNameColumn, emailColumn, passwordColumn, isManagerColumn},
             new Object[]{firstName, lastName, 
-                userName, email, password},
+                userName, email, password, isManager},
             new int[]{Types.VARCHAR, Types.VARCHAR, 
-                Types.VARCHAR, Types.VARCHAR, Types.VARCHAR}
+                Types.VARCHAR, Types.VARCHAR, Types.VARCHAR, Types.BOOLEAN}
         );
 
         return id;

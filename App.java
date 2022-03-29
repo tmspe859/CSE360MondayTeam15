@@ -7,19 +7,11 @@ import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import java.sql.*;
 
-
 public class App extends Application {
     public static void main(String[] args) throws Exception {
-        Connection connection;
-        try {
-            Class.forName("org.sqlite.JDBC");
-            connection = DriverManager.getConnection("jdbc:sqlite:database.db");
-            System.out.println("Connected!");
-        } catch (ClassNotFoundException | SQLException exception) {
-            System.out.println(exception.getMessage());
-            System.out.println(exception.toString());
-            System.out.println("Could not connect to Database");
-        }
+        Connection connection = Database.connect();
+        Database.checkTables();
+        System.out.println(connection);  //debug print
         launch(args);
     }
 

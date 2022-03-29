@@ -1,8 +1,5 @@
 
 import java.sql.*;
-import java.time.LocalDateTime;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 class CRUDHelper{
 
@@ -25,6 +22,9 @@ class CRUDHelper{
                     break;
                 case Types.INTEGER:
                     queryBuilder.append((int) values[i]);
+                    break;
+                case Types.BOOLEAN:
+                    queryBuilder.append((boolean) values[i]);
             }
             if (i < number - 1) queryBuilder.append(", ");
         }
@@ -45,6 +45,7 @@ class CRUDHelper{
             }
         } catch (SQLException ex) {
             System.out.println("Could not add record to database");
+            System.err.println(ex.getMessage());
         }
         return -1;
     }
