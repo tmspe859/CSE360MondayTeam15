@@ -2,6 +2,7 @@ import java.util.ArrayList;
 
 public class Order {
     private ArrayList<MenuItem> items;
+    private DeliveryInfo deliveryInfo;
     private Double totalCost;
 
     public Order() {
@@ -21,6 +22,9 @@ public class Order {
             this.totalCost -= item.getPrice();
     }
 
+    public void setDeliveryInfo(DeliveryInfo deliveryInfo) { this.deliveryInfo = deliveryInfo; }
+
     public ArrayList<MenuItem> getItems() { return this.items; }
     public Double getTotalCost() { return this.totalCost; }
+    public DeliveryInfo getDeliveryInfo() { return this.deliveryInfo; }
 }
