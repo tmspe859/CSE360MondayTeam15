@@ -1,6 +1,8 @@
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.StackPane;
@@ -8,15 +10,21 @@ import javafx.stage.Stage;
 import java.sql.*;
 
 public class App extends Application {
-    public static void main(String[] args) throws Exception {
-        Connection connection = Database.connect();
-        Database.checkTables();
-        System.out.println(connection);  //debug print
-        launch(args);
-    }
+    
 
     @Override
     public void start(Stage primaryStage) {
+        try {
+        Parent root = FXMLLoader.load(getClass().getResource("/LoginPage.fxml"));
+        Scene loginScene = new Scene(root);
+        primaryStage.setScene(loginScene);
+        primaryStage.show();
+        } catch(Exception e) {
+            e.printStackTrace();
+        }
+
+
+        /*
         Button btn = new Button();
         btn.setText("Say 'Hello World'");
         btn.setOnAction(new EventHandler<ActionEvent>() {
@@ -25,6 +33,7 @@ public class App extends Application {
                 System.out.println("Hello World!");
             }
         });
+        
 
         StackPane root = new StackPane();
         root.getChildren().add(btn);
@@ -34,6 +43,12 @@ public class App extends Application {
         primaryStage.setTitle("Hello World!");
         primaryStage.setScene(scene);
         primaryStage.show();
+        */
     }
-
+    public static void main(String[] args) throws Exception {
+        Connection connection = Database.connect();
+        Database.checkTables();
+        System.out.println(connection);  //debug print
+        launch(args);
+    }
 }
