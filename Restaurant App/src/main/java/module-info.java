@@ -1,4 +1,4 @@
-module com.team15 {
+module com.restaurantapp {
     requires javafx.controls;
     requires javafx.fxml;
 

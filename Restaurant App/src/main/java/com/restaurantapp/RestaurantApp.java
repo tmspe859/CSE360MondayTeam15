@@ -1,4 +1,4 @@
-package com.team15;
+package com.restaurantapp;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
