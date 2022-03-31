@@ -1,8 +1,6 @@
-package com;
+
 
 import java.sql.Connection;
-
-import com.Models.Database;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
