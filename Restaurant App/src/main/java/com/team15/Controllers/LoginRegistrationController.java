@@ -1,5 +1,6 @@
 package com;
 
+import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
@@ -57,12 +58,12 @@ public class LoginRegistrationController {
 
     @FXML
     void registerFromLoginClicked(ActionEvent event) throws IOException {
-        Application.changeScene("register.fxml", "Register!", 1000, 800);
+        // Application.changeScene("register.fxml", "Register!", 1000, 800);
     }
 
     @FXML
     void alreadyHaveAccountClicked(ActionEvent event)  throws IOException {
-        Application.changeScene("login.fxml", "Login!", 1000, 800);
+        // Application.changeScene("login.fxml", "Login!", 1000, 800);
     }
 
 }
