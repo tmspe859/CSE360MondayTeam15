@@ -1,4 +1,4 @@
-package src.main.java;
+package com.team15;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -12,7 +12,7 @@ public class RestaurantApp extends Application {
     @Override
     public void start(Stage primaryStage) {
         try {
-            Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("/login.fxml"));
+            Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("login.fxml"));
             primaryStage.setTitle("RestaurantApp - Login");
             primaryStage.setScene(new Scene(root));
             primaryStage.show();

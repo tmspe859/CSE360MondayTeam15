@@ -1,0 +1,106 @@
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+body, html {
+    margin: 0;
+    padding: 0;
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: white;
+    text-decoration: none;
+    padding: 0 1rem;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    z-index: 1;
+}
+
+nav > ul {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+nav > ul > li {
+    list-style: none;
+    padding: 0 1rem;
+}
+
+nav > ul > li > a {
+    color: white;
+    text-decoration: none;
+}
+
+#current-page {
+    position: relative;
+}
+
+#current-page::after {
+    content: "";
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 0.1rem;
+    background-color: white;
+    position: absolute;
+}
+
+main {
+    width: 80%;
+    margin: 0 auto;
+}
+
+main > h1 {
+    text-align: center;
+}
+
+#items {
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+}
+
+.item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 3rem;
+}
+
+.item > img {
+    width: 6rem;
+    height: 6rem;
+}
+
+button {
+    width: 80%;
+    margin: 3rem auto;
+    display: block;
+    padding: 1rem;
+    font-size: large;
+    border-radius: 4rem;
+    background-color: lightgreen;
+    outline: none;
+    border: none;
+}
+
+button[type="submit"] {
+    width: 5rem;
+    border-radius: 0.25rem;
+    margin: 0;
+    display: inline-block;
+    font-size: medium;
+    padding: 0.15rem;
+    background-color: lightgrey;
+}
+
+.remove {
+    background-color: red;
+    margin: 0 auto;
+    font-size: medium;
+    padding: 0.25rem;
+    width: 10rem;
+}
