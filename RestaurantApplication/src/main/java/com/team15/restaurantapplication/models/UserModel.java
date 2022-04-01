@@ -25,9 +25,9 @@ public class UserModel {
                            "(id INTEGER PRIMARY KEY AUTOINCREMENT," +
                            " firstname      CHAR(255)    NOT NULL, " + 
                            " lastname       CHAR(255)    NOT NULL, " + 
-                           " username       CHAR(255)    NOT NULL, " + 
+                           " username       CHAR(255)   UNIQUE    NOT NULL, " + 
                            " password       CHAR(255)    NOT NULL, " +
-                           " email          CHAR(255)    NOT NULL, " +
+                           " email          CHAR(255)   UNIQUE    NOT NULL, " +
                            " isManager      BOOLEAN      NOT NULL )"; 
             stmt.executeUpdate(sql);
             stmt.close();
