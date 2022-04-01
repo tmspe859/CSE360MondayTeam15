@@ -8,8 +8,11 @@ public class Database {
 
     private static final String location = RestaurantApplication.class.getResource("database/database.db").toExternalForm();
 
-    public static void checkTables(){
-        UserModel.createTable();
+    public static void checkTables(Connection connection){
+        //Create tables if not exists
+        UserModel.createTable(connection);
+        OrderModel.createTable(connection);
+        CouponModel.createTable(connection);
     }
 
     public static Connection connect() {

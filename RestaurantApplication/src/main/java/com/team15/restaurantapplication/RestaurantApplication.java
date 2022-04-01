@@ -27,6 +27,7 @@ public class RestaurantApplication extends Application {
 
     public static void main(String[] args) {
         Connection connection = Database.connect();
+        Database.checkTables(connection);
         launch();
     }
 }
