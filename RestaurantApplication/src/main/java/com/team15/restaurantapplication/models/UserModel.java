@@ -1,4 +1,9 @@
+package com.team15.restaurantapplication.models;
+
 import java.sql.*;
+
+import com.team15.restaurantapplication.classes.User;
+import com.team15.restaurantapplication.classes.Customer;
 
 public class UserModel {
 

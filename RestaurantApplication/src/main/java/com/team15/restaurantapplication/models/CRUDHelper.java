@@ -1,3 +1,4 @@
+package com.team15.restaurantapplication.models;
 
 import java.sql.*;
 
