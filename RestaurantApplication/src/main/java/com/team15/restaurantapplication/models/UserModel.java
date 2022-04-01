@@ -16,13 +16,13 @@ public class UserModel {
     private static final String passwordColumn = "password";
     private static final String isManagerColumn = "isManager";
 
-    public static void createTable(){
+    public static void createTable(Connection connection){
 
-        try(Connection connection = Database.connect()) {
+        try {
    
             Statement stmt = connection.createStatement();
             String sql = "CREATE TABLE IF NOT EXISTS users " +
-                           "(id INTEGER PRIMARY KEY     NOT NULL," +
+                           "(id INTEGER PRIMARY KEY AUTOINCREMENT," +
                            " firstname      CHAR(255)    NOT NULL, " + 
                            " lastname       CHAR(255)    NOT NULL, " + 
                            " username       CHAR(255)    NOT NULL, " + 
@@ -31,7 +31,6 @@ public class UserModel {
                            " isManager      BOOLEAN      NOT NULL )"; 
             stmt.executeUpdate(sql);
             stmt.close();
-            connection.close();
 
          } catch ( Exception e ) {
             System.err.println( e.getClass().getName() + ": " + e.getMessage() );
@@ -69,7 +68,7 @@ public class UserModel {
 
          } catch ( Exception e ) {
             System.err.println( e.getClass().getName() + ": " + e.getMessage() );
-            System.exit(0);
+            return null;
          }
         return user;
 

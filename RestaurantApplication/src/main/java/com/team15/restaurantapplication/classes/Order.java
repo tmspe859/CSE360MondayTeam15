@@ -7,6 +7,11 @@ public class Order {
     private DeliveryInfo deliveryInfo;
     private Double totalCost;
 
+    public enum Status {
+        open,
+        complete
+    }
+
     public Order() {
         this.items = new ArrayList<MenuItem>();
         this.totalCost = 0.0;

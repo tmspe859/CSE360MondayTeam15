@@ -24,6 +24,9 @@ class CRUDHelper{
                 case Types.INTEGER:
                     queryBuilder.append((int) values[i]);
                     break;
+                case Types.DOUBLE:
+                    queryBuilder.append((double) values[i]);
+                    break;
                 case Types.BOOLEAN:
                     queryBuilder.append((boolean) values[i]);
             }
