@@ -3,6 +3,8 @@ package com.team15.restaurantapplication.models;
 import java.sql.*;
 
 import com.team15.restaurantapplication.classes.Order;
+import com.team15.restaurantapplication.exceptions.emailExistsException;
+import com.team15.restaurantapplication.exceptions.usernameTakenException;
 
 public class OrderModel {
 
@@ -80,7 +82,7 @@ public class OrderModel {
 
     }
 
-    public static int createOrder(String menuItems, int totalCost, int customerId) {
+    public static int createOrder(String menuItems, int totalCost, int customerId) throws emailExistsException, usernameTakenException {
 
         //update database
         int id = (int) CRUDHelper.create(

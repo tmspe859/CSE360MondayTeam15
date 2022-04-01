@@ -3,6 +3,8 @@ package com.team15.restaurantapplication.models;
 import java.sql.*;
 
 import com.team15.restaurantapplication.classes.User;
+import com.team15.restaurantapplication.exceptions.emailExistsException;
+import com.team15.restaurantapplication.exceptions.usernameTakenException;
 import com.team15.restaurantapplication.classes.Customer;
 
 public class UserModel {
@@ -74,8 +76,8 @@ public class UserModel {
 
     }
 
-    public static int createUser(String firstName, String lastName, 
-            String userName, String email, String password, boolean isManager) {
+    public static User createUser(String firstName, String lastName, 
+            String userName, String email, String password, boolean isManager) throws emailExistsException, usernameTakenException {
 
         //update database
         int id = (int) CRUDHelper.create(
@@ -88,9 +90,14 @@ public class UserModel {
                 Types.VARCHAR, Types.VARCHAR, Types.VARCHAR, Types.BOOLEAN}
         );
 
-        return id;
+        System.out.println("create user: " + id);
 
-        //update cache
-        
+        if(id == -1){
+            return null;
+        } else {
+            //update cache
+            return new Customer(firstName, lastName, userName, password, email, id);
+        }  
+
     }
 }

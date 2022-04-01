@@ -51,8 +51,13 @@
                         <Font name="Bell MT" size="26.0" />
                      </font>
                   </Text>
-                  <TextField fx:id="username" layoutX="60.0" layoutY="109.0" prefHeight="25.0" prefWidth="180.0" promptText="Username" style="-fx-border-color: black; -fx-border-width: 0 0 1 0; -fx-background-color: transparent;" />
-                  <TextField fx:id="password" layoutX="61.0" layoutY="236.0" prefHeight="25.0" prefWidth="180.0" promptText="Password" style="-fx-border-color: black; -fx-border-width: 0 0 1 0; -fx-background-color: transparent;" />
+                  <TextField fx:id="firstname" layoutX="60.0" layoutY="80.0" prefHeight="25.0" prefWidth="180.0" promptText="First Name" style="-fx-border-color: black; -fx-border-width: 0 0 1 0; -fx-background-color: transparent;" />
+                  <TextField fx:id="lastname" layoutX="60.0" layoutY="135.0" prefHeight="25.0" prefWidth="180.0" promptText="Last Name" style="-fx-border-color: black; -fx-border-width: 0 0 1 0; -fx-background-color: transparent;" />
+                  <TextField fx:id="username" layoutX="60.0" layoutY="185.0" prefHeight="25.0" prefWidth="180.0" promptText="Username" style="-fx-border-color: black; -fx-border-width: 0 0 1 0; -fx-background-color: transparent;" />
+                  <TextField fx:id="email" layoutX="61.0" layoutY="235.0" prefHeight="25.0" prefWidth="180.0" promptText="Email" style="-fx-border-color: black; -fx-border-width: 0 0 1 0; -fx-background-color: transparent;" />
+                  <TextField fx:id="password" layoutX="61.0" layoutY="285.0" prefHeight="25.0" prefWidth="180.0" promptText="Password" style="-fx-border-color: black; -fx-border-width: 0 0 1 0; -fx-background-color: transparent;" />
+                  <TextField fx:id="confirm_password" layoutX="60.0" layoutY="344.0" prefHeight="25.0" prefWidth="180.0" promptText="Confirm Password" style="-fx-border-color: black; -fx-border-width: 0 0 1 0; -fx-background-color: transparent;" />
+                  <Text fx:id="message" layoutX="60.0" layoutY="385.0" strokeType="OUTSIDE" strokeWidth="0.0" text="" />
                   <Button layoutX="74.0" layoutY="393.0" mnemonicParsing="false" onAction="#registerClicked" prefHeight="34.0" prefWidth="153.0" style="-fx-background-color: #4B9CD3; -fx-border-radius: 50px; -fx-background-radius: 50px;" text="Register" textFill="WHITE">
                      <font>
                         <Font name="Bell MT" size="18.0" />
@@ -60,8 +65,6 @@
                   </Button>
                   <Text layoutX="60.0" layoutY="447.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Already have an account?" />
                   <Hyperlink layoutX="195.0" layoutY="431.0" onAction="#alreadyHaveAccountClicked" text="Login!" />
-                  <TextField fx:id="confirm_password" layoutX="60.0" layoutY="292.0" prefHeight="25.0" prefWidth="180.0" promptText="Confirm Password" style="-fx-border-color: black; -fx-border-width: 0 0 1 0; -fx-background-color: transparent;" />
-                  <TextField fx:id="email" layoutX="61.0" layoutY="174.0" prefHeight="25.0" prefWidth="180.0" promptText="Email" style="-fx-border-color: black; -fx-border-width: 0 0 1 0; -fx-background-color: transparent;" />
                </children>
             </AnchorPane>
          </children>

@@ -2,9 +2,12 @@ package com.team15.restaurantapplication.models;
 
 import java.sql.*;
 
+import com.team15.restaurantapplication.exceptions.emailExistsException;
+import com.team15.restaurantapplication.exceptions.usernameTakenException;
+
 class CRUDHelper{
 
-    public static long create(String tableName, String[] columns, Object[] values, int[] types) {
+    public static long create(String tableName, String[] columns, Object[] values, int[] types) throws emailExistsException, usernameTakenException {
         int number = Math.min(Math.min(columns.length, values.length), types.length);
 
         StringBuilder queryBuilder = new StringBuilder("INSERT INTO " + tableName + " (");
@@ -49,7 +52,14 @@ class CRUDHelper{
             }
         } catch (SQLException ex) {
             System.out.println("Could not add record to database");
-            System.err.println(ex.getMessage());
+            System.err.println(ex.getClass() + " : " +ex.getMessage());
+            if(ex.getMessage().contains("users.email")){
+                throw new emailExistsException();
+            } 
+            if(ex.getMessage().contains("users.username")){
+                throw new usernameTakenException();
+            }
+            
         }
         return -1;
     }

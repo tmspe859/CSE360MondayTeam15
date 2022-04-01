@@ -3,6 +3,8 @@ package com.team15.restaurantapplication.models;
 import java.sql.*;
 
 import com.team15.restaurantapplication.classes.Coupon;
+import com.team15.restaurantapplication.exceptions.emailExistsException;
+import com.team15.restaurantapplication.exceptions.usernameTakenException;
 
 public class CouponModel {
     
@@ -77,7 +79,7 @@ public class CouponModel {
     }
 
 
-    public static int createCoupon(String title, double percentOff, int customerId) {
+    public static int createCoupon(String title, double percentOff, int customerId) throws emailExistsException, usernameTakenException {
 
         //update database
         int id = (int) CRUDHelper.create(

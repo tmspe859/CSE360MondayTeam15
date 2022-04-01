@@ -8,6 +8,7 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.sql.Connection;
 
+import com.team15.restaurantapplication.classes.UserSession;
 import com.team15.restaurantapplication.models.Database;
 
 public class RestaurantApplication extends Application {
