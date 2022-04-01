@@ -64,7 +64,7 @@ public class LoginRegistrationController {
             UserSession.getInstace(user);
 
             //switch scene
-            //RestaurantApplication.changeScene("home.fxml","RestaurantApp - Home");
+            RestaurantApplication.changeScene("home.fxml","RestaurantApp - Home");
 
         } else {
             //display 'incorrect username or password' message
@@ -98,7 +98,7 @@ public class LoginRegistrationController {
                 UserSession.getInstace(newCustomer);
     
                 //switch scene
-                //RestaurantApplication.changeScene("home.fxml","RestaurantApp - Home");
+                RestaurantApplication.changeScene("home.fxml","RestaurantApp - Home");
             
             } else {
                 message.setText("username or email already exist");
