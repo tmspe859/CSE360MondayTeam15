@@ -18,6 +18,7 @@ public class RestaurantApplication extends Application {
     public void start(Stage stage) throws IOException {
         primaryStage = stage;
         FXMLLoader root = new FXMLLoader(RestaurantApplication.class.getResource("login.fxml"));
+        primaryStage.setResizable(false);
         primaryStage.setTitle("RestaurantApp - Login");
         primaryStage.setScene(new Scene(root.load()));
         primaryStage.show();
