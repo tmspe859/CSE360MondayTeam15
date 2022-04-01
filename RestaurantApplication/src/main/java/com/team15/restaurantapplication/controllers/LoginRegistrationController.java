@@ -1,4 +1,4 @@
-package com.team15.restaurantapplication;
+package com.team15.restaurantapplication.controllers;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
