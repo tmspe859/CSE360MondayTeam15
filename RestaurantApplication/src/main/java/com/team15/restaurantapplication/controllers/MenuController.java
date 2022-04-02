@@ -4,6 +4,7 @@ import com.team15.restaurantapplication.RestaurantApplication;
 import com.team15.restaurantapplication.classes.MenuItem;
 
 import javafx.application.Platform;
+import com.team15.restaurantapplication.classes.UserSession;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -115,7 +116,7 @@ public class MenuController implements Initializable {
 
     @FXML
     void checkoutClicked(ActionEvent event) {
-
+        // CHANGE SCENE
     }
 
     @FXML
@@ -130,12 +131,16 @@ public class MenuController implements Initializable {
 
     @FXML
     void profileClicked(ActionEvent event) throws IOException {
-        RestaurantApplication.changeScene("login.fxml","RestaurantApp - Home");  // NEEDS LOGIC FOR ALREADY LOGGED IN INDIVIDUALS
+        if (UserSession.getCurrentUser() != null) {// If already logged in
+            RestaurantApplication.changeScene("profile.fxml","RestaurantApp - Profile"); // Change scene
+        } else { // Otherwise
+            RestaurantApplication.changeScene("login.fxml", "RestaurantApp - Home");  // Display login page
+        }
     }
 
     @FXML
     void refreshClicked(ActionEvent event) {
-
+        // RELOAD MENU WITH NON-MATCHING ITEMS FILTERED OUT
     }
 
 }

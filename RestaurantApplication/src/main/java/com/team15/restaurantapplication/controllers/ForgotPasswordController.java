@@ -39,9 +39,9 @@ public class ForgotPasswordController {
         noUsernameErrorMsg.setVisible(false);
 
         if (!username.getText().isEmpty()) { // If any username was input
-            // Search for the user in the database
-            // If they exist, update their password
-            // Otherwise, output error
+            // SEARCH FOR THE USER IN THE DATABASE
+            // IF THEY EXIST, UPDATE THEIR PASSWORD
+            // OTHERWISE, OUTPUT ERROR
         } else { // If there was no username input
             noUsernameErrorMsg.setVisible(true); // Display error message
         }
