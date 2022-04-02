@@ -1,5 +1,7 @@
 package com.team15.restaurantapplication.controllers;
 
+import java.io.IOException;
+
 import com.team15.restaurantapplication.RestaurantApplication;
 import com.team15.restaurantapplication.classes.Customer;
 import com.team15.restaurantapplication.classes.MenuItem;
@@ -11,6 +13,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
 
 public class MenuItemController {
@@ -57,6 +60,12 @@ public class MenuItemController {
             currentUser.getCurrentOrder().addItem(this.item);
         }
         
+    }
+
+    @FXML 
+    void itemClicked(MouseEvent event) throws IOException {
+        
+        RestaurantApplication.changeScene("itemPage.fxml", "RestaurantApp - Home", this.item);
     }
 
 }

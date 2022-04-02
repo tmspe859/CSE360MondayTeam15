@@ -2,6 +2,7 @@ package com.team15.restaurantapplication;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
@@ -10,6 +11,7 @@ import java.sql.Connection;
 
 import com.team15.restaurantapplication.classes.Customer;
 import com.team15.restaurantapplication.classes.UserSession;
+import com.team15.restaurantapplication.controllers.Controller;
 import com.team15.restaurantapplication.models.Database;
 
 public class RestaurantApplication extends Application {
@@ -31,10 +33,16 @@ public class RestaurantApplication extends Application {
          */
     }
 
-    public static void changeScene(String fxml, String title) throws IOException {
+    public static void changeScene(String fxml, String title, Object props) throws IOException {
         FXMLLoader root = new FXMLLoader(RestaurantApplication.class.getResource(fxml));
         primaryStage.setTitle(title);
         primaryStage.setScene(new Scene(root.load()));
+
+        if(props != null){
+            Controller controller = root.getController();
+            controller.setProps(props);
+        }
+
         primaryStage.show();
     }
 

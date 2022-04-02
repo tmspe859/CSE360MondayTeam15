@@ -45,7 +45,7 @@ public class LoginRegistrationController {
 
     @FXML
     void checkoutClicked(ActionEvent event) throws IOException {
-        RestaurantApplication.changeScene("checkout.fxml","RestaurantApp - Checkout"); // Change scene
+        RestaurantApplication.changeScene("checkout.fxml","RestaurantApp - Checkout", null); // Change scene
     }
 
     @FXML
@@ -55,7 +55,7 @@ public class LoginRegistrationController {
 
     @FXML
     void homeClicked(ActionEvent event) throws IOException {
-        RestaurantApplication.changeScene("home.fxml","RestaurantApp - Home"); // Change scene
+        RestaurantApplication.changeScene("home.fxml","RestaurantApp - Home", null); // Change scene
     }
 
     @FXML
@@ -67,7 +67,7 @@ public class LoginRegistrationController {
             UserSession.setCurrentUser(user);
 
             //switch scene
-            RestaurantApplication.changeScene("home.fxml","RestaurantApp - Home");
+            RestaurantApplication.changeScene("home.fxml","RestaurantApp - Home", null);
 
         } else {
             //display 'incorrect username or password' message
@@ -78,15 +78,15 @@ public class LoginRegistrationController {
 
     @FXML
     void menuClicked(ActionEvent event) throws IOException {
-        RestaurantApplication.changeScene("menu.fxml","RestaurantApp - Menu"); // Change scene
+        RestaurantApplication.changeScene("menu.fxml","RestaurantApp - Menu", null); // Change scene
     }
 
     @FXML
     void profileClicked(ActionEvent event) throws IOException {
         if (UserSession.getCurrentUser() != null) {// If already logged in
-            RestaurantApplication.changeScene("profile.fxml","RestaurantApp - Profile"); // Change scene
+            RestaurantApplication.changeScene("profile.fxml","RestaurantApp - Profile", null); // Change scene
         } else { // Otherwise
-            RestaurantApplication.changeScene("login.fxml", "RestaurantApp - Home");  // Display login page
+            RestaurantApplication.changeScene("login.fxml", "RestaurantApp - Home", null);  // Display login page
         }
     }
 
@@ -108,7 +108,7 @@ public class LoginRegistrationController {
                     UserSession.setCurrentUser(newCustomer);
 
                     //switch scene
-                    RestaurantApplication.changeScene("home.fxml", "RestaurantApp - Home");
+                    RestaurantApplication.changeScene("home.fxml", "RestaurantApp - Home", null);
 
                 } else {
                     message.setText("username or email already exist");
@@ -130,12 +130,12 @@ public class LoginRegistrationController {
 
     @FXML
     void alreadyHaveAccountClicked(ActionEvent event) throws IOException {
-        RestaurantApplication.changeScene("login.fxml","RestaurantApp - Login"); // Change scene
+        RestaurantApplication.changeScene("login.fxml","RestaurantApp - Login", null); // Change scene
     }
 
     @FXML
     void registerFromLoginClicked(ActionEvent event) throws IOException {
-        RestaurantApplication.changeScene("register.fxml","RestaurantApp - Register"); // Change scene
+        RestaurantApplication.changeScene("register.fxml","RestaurantApp - Register", null); // Change scene
     }
 
 }

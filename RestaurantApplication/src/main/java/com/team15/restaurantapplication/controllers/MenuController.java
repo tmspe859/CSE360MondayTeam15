@@ -25,6 +25,7 @@ import javafx.scene.text.Text;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 public class MenuController implements Initializable {
@@ -92,8 +93,13 @@ public class MenuController implements Initializable {
                     Pane menuItem = fxmlloader.load();
                     
                     MenuItemController itemController = fxmlloader.getController();
+
+                    ArrayList<String> ings = new ArrayList<>();
+                    ings.add("ingredient 1");
+                    ings.add("ingredient 2");
+
                     itemController.setData(new MenuItem("Banana", 3.99, "Banana description",
-                            null, null, RestaurantApplication.class.getResource("images.jpg").toExternalForm()));
+                            ings , null, RestaurantApplication.class.getResource("images.jpg").toExternalForm()));
                 
                 
                     if(column == 5){
@@ -117,25 +123,25 @@ public class MenuController implements Initializable {
 
     @FXML
     void checkoutClicked(ActionEvent event) throws IOException {
-        RestaurantApplication.changeScene("checkout.fxml","RestaurantApp - Checkout"); // Change scene
+        RestaurantApplication.changeScene("checkout.fxml","RestaurantApp - Checkout", null); // Change scene
     }
 
     @FXML
     void homeClicked(ActionEvent event) throws IOException {
-        RestaurantApplication.changeScene("home.fxml","RestaurantApp - Home");
+        RestaurantApplication.changeScene("home.fxml","RestaurantApp - Home", null);
     }
 
     @FXML
     void menuClicked(ActionEvent event) throws IOException {
-        RestaurantApplication.changeScene("menu.fxml","RestaurantApp - Menu");
+        RestaurantApplication.changeScene("menu.fxml","RestaurantApp - Menu", null);
     }
 
     @FXML
     void profileClicked(ActionEvent event) throws IOException {
         if (UserSession.getCurrentUser() != null) {// If already logged in
-            RestaurantApplication.changeScene("profile.fxml","RestaurantApp - Profile"); // Change scene
+            RestaurantApplication.changeScene("profile.fxml","RestaurantApp - Profile", null); // Change scene
         } else { // Otherwise
-            RestaurantApplication.changeScene("login.fxml", "RestaurantApp - Home");  // Display login page
+            RestaurantApplication.changeScene("login.fxml", "RestaurantApp - Home", null);  // Display login page
         }
     }
 

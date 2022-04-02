@@ -32,22 +32,22 @@ public class ProfileController {
 
     @FXML
     void checkoutClicked(ActionEvent event) throws IOException {
-        RestaurantApplication.changeScene("checkout.fxml","RestaurantApp - Checkout"); // Change scene
+        RestaurantApplication.changeScene("checkout.fxml","RestaurantApp - Checkout", null); // Change scene
     }
 
     @FXML
     void homeClicked(ActionEvent event) throws IOException {
-        RestaurantApplication.changeScene("home.fxml","RestaurantApp - Home"); // Change scene
+        RestaurantApplication.changeScene("home.fxml","RestaurantApp - Home", null); // Change scene
     }
 
     @FXML
     void menuClicked(ActionEvent event) throws IOException {
-        RestaurantApplication.changeScene("menu.fxml","RestaurantApp - Menu"); // Change scene
+        RestaurantApplication.changeScene("menu.fxml","RestaurantApp - Menu", null); // Change scene
     }
 
     @FXML
     void profileClicked(ActionEvent event) throws IOException {
-        RestaurantApplication.changeScene("profile.fxml","RestaurantApp - Profile"); // Change scene
+        RestaurantApplication.changeScene("profile.fxml","RestaurantApp - Profile", null); // Change scene
     }
 
     @FXML
