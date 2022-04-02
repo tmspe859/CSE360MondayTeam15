@@ -116,4 +116,16 @@ public class UserModel {
         }
             return false;
     }
+
+    public static void updatePassword(String username, String password) {
+        String query = "UPDATE users SET password=\"" + password + "\" WHERE username=\"" + username + "\"";
+        try (Connection conn = Database.connect()) {
+            PreparedStatement statement = conn.prepareStatement(query);
+            statement.execute();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 }
+
+

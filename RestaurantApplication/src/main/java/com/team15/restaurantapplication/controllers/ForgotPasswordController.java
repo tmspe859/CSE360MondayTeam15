@@ -1,5 +1,6 @@
 package com.team15.restaurantapplication.controllers;
 
+import com.team15.restaurantapplication.models.UserModel;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -39,9 +40,13 @@ public class ForgotPasswordController {
         noUsernameErrorMsg.setVisible(false);
 
         if (!username.getText().isEmpty()) { // If any username was input
-            // SEARCH FOR THE USER IN THE DATABASE
-            // IF THEY EXIST, UPDATE THEIR PASSWORD
-            // OTHERWISE, OUTPUT ERROR
+            if (UserModel.usernameExists(username.getText())) {
+                UserModel.updatePassword(username.getText(), password.getText());
+                Stage stage = (Stage) cancelButton.getScene().getWindow(); // Set stage to this window
+                stage.close(); // Close the stage
+            } else {
+                noUsernameErrorMsg.setVisible(true); // Display error message
+            }
         } else { // If there was no username input
             noUsernameErrorMsg.setVisible(true); // Display error message
         }
