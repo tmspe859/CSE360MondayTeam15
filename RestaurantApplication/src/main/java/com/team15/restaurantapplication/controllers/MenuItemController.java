@@ -14,10 +14,14 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
 
 public class MenuItemController {
     
+    @FXML
+    private Pane pane;
+
     @FXML
     private Label name;
 
@@ -39,6 +43,8 @@ public class MenuItemController {
         this.item = item;
         name.setText(item.getName());
         price.setText("$" + item.getPrice());
+        description.setWrapText(true);
+        description.prefWidthProperty().bind(pane.widthProperty());
         description.setText(item.getDesc());
         Image img = new Image(item.getImgPath());
         
@@ -66,6 +72,16 @@ public class MenuItemController {
     void itemClicked(MouseEvent event) throws IOException {
         
         RestaurantApplication.changeScene("itemPage.fxml", "RestaurantApp - Home", this.item);
+    }
+
+    @FXML
+    void onHoverIn(MouseEvent event) {
+        pane.setStyle("-fx-background-color:#dae7f3;");
+    }
+
+    @FXML
+    void onHoverOut(MouseEvent event) {
+        pane.setStyle("-fx-background-color:#FFFFFF;");
     }
 
 }

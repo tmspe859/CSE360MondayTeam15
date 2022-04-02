@@ -26,7 +26,7 @@ public abstract class User {
         this.userName = userName;
         this.password = password;
         this.email = email;
-        this.accountID = null;
+        this.accountID = accountID;
     }
     
     public void updateInfo() {}

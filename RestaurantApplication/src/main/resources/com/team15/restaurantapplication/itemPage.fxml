@@ -59,7 +59,7 @@
                                     <Font size="24.0" />
                                  </font>
                               </Label>
-                              <Label fx:id="description" prefHeight="26.0" prefWidth="274.0" text="Description" VBox.vgrow="SOMETIMES">
+                              <Label fx:id="description" prefHeight="26.0" prefWidth="274.0" text="Description" wrapText="true" VBox.vgrow="SOMETIMES">
                                  <font>
                                     <Font size="14.0" />
                                  </font>
