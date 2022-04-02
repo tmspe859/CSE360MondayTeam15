@@ -46,8 +46,8 @@ public class LoginRegistrationController {
     }
 
     @FXML
-    void forgotPasswordClicked(ActionEvent event) {
-
+    void forgotPasswordClicked(ActionEvent event) throws IOException {
+        RestaurantApplication.popUp("forgotPassword.fxml", "RestaurantApp - Reset Password");
     }
 
     @FXML
