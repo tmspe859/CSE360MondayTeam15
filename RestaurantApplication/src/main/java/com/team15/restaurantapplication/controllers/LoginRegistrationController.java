@@ -42,17 +42,17 @@ public class LoginRegistrationController {
 
     @FXML
     void checkoutClicked(ActionEvent event) {
-
+        // Change scene
     }
 
     @FXML
     void forgotPasswordClicked(ActionEvent event) throws IOException {
-        RestaurantApplication.popUp("forgotPassword.fxml", "RestaurantApp - Reset Password");
+        RestaurantApplication.popUp("forgotPassword.fxml", "RestaurantApp - Reset Password"); // Display pop up
     }
 
     @FXML
     void homeClicked(ActionEvent event) throws IOException {
-        RestaurantApplication.changeScene("home.fxml","RestaurantApp - Home");
+        RestaurantApplication.changeScene("home.fxml","RestaurantApp - Home"); // Change scene
     }
 
     @FXML
@@ -74,56 +74,64 @@ public class LoginRegistrationController {
 
     @FXML
     void menuClicked(ActionEvent event) throws IOException {
-        RestaurantApplication.changeScene("menu.fxml","RestaurantApp - Menu");
+        RestaurantApplication.changeScene("menu.fxml","RestaurantApp - Menu"); // Change scene
     }
 
     @FXML
     void profileClicked(ActionEvent event) throws IOException {
-        RestaurantApplication.changeScene("login.fxml","RestaurantApp - Home");  // NEEDS LOGIC FOR ALREADY LOGGED IN INDIVIDUALS
+        if (UserSession.getCurrentUser() != null) {// If already logged in
+            // DISPLAY USER PROFILE PAGE
+        } else { // Otherwise
+            RestaurantApplication.changeScene("login.fxml", "RestaurantApp - Home");  // Display login page
+        }
     }
 
     @FXML
     void registerClicked(ActionEvent event) throws IOException {
 
-        //Create new user in database
-        Customer newCustomer;
+        if (password.getText().equals(confirm_password.getText())) {
 
-        try {
-            newCustomer = (Customer) UserModel.createUser(firstname.getText(), lastname.getText(),
-                                username.getText(), email.getText(), password.getText(), false);
-            
-            if(newCustomer != null){
+            //Create new user in database
+            Customer newCustomer;
 
-                //set user session
-                UserSession.getInstance(newCustomer);
-    
-                //switch scene
-                RestaurantApplication.changeScene("home.fxml","RestaurantApp - Home");
-            
-            } else {
-                message.setText("username or email already exist");
+            try {
+                newCustomer = (Customer) UserModel.createUser(firstname.getText(), lastname.getText(),
+                        username.getText(), email.getText(), password.getText(), false);
+
+                if (newCustomer != null) {
+
+                    //set user session
+                    UserSession.getInstance(newCustomer);
+
+                    //switch scene
+                    RestaurantApplication.changeScene("home.fxml", "RestaurantApp - Home");
+
+                } else {
+                    message.setText("username or email already exist");
+                }
+
+            } catch (emailExistsException e) {
+                message.setFill(Color.RED);
+                message.setText("email already exist");
+            } catch (usernameTakenException e) {
+                message.setFill(Color.RED);
+                message.setText("username is taken");
             }
-        
-        } catch (emailExistsException e) {
-            message.setFill(Color.RED);
-            message.setText("email already exist");
-        } catch (usernameTakenException e) {
-            message.setFill(Color.RED);
-            message.setText("username is taken");
+        } else {
+            // DISPLAY PASSWORDS DO NOT MATCH ERROR
         }
-        
         
 
     }
 
     @FXML
     void alreadyHaveAccountClicked(ActionEvent event) throws IOException {
-        RestaurantApplication.changeScene("login.fxml","RestaurantApp - Login");
+        RestaurantApplication.changeScene("login.fxml","RestaurantApp - Login"); // Change scene
     }
 
     @FXML
     void registerFromLoginClicked(ActionEvent event) throws IOException {
-        RestaurantApplication.changeScene("register.fxml","RestaurantApp - Register");
+        RestaurantApplication.changeScene("register.fxml","RestaurantApp - Register"); // Change scene
     }
 
 }
