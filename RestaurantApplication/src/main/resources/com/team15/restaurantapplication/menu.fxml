@@ -17,7 +17,7 @@
    <content>
       <AnchorPane prefHeight="817.0" prefWidth="985.0" style="-fx-background-color: brown;">
          <children>
-            <AnchorPane prefHeight="57.0" prefWidth="983.0" style="-fx-background-color: #3d2b1f;">
+            <AnchorPane prefHeight="57.0" prefWidth="985.0" style="-fx-background-color: #3d2b1f;">
                <children>
                   <Text fill="WHITE" layoutX="14.0" layoutY="35.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Restaurant Name">
                      <font>

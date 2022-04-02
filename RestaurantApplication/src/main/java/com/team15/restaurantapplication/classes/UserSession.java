@@ -4,20 +4,20 @@ public final class UserSession {
     
     private static UserSession instance;
 
-    private User currentUser;
+    private static User currentUser;
 
     private UserSession(User user){
         this.currentUser = user;
     }
 
-    public static UserSession getInstace(User user) {
+    public static UserSession getInstance(User user) {
         if(instance == null) {
             instance = new UserSession(user);
         }
         return instance;
     }
 
-    public User getCurrentUser(){
+    public static User getCurrentUser(){
         return currentUser;
     }
 
