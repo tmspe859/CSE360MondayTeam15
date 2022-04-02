@@ -80,7 +80,7 @@
                   <Font size="24.0" />
                </font>
             </Text>
-            <Button fx:id="purchaseButton" layoutX="733.0" layoutY="96.0" mnemonicParsing="false" onAction="#purchaseClicked" prefHeight="25.0" prefWidth="141.0" style="-fx-background-color: lightgreen;" text="Purchase" />
+            <Button fx:id="finalizeButton" layoutX="733.0" layoutY="96.0" mnemonicParsing="false" onAction="#finalizeClicked" prefHeight="25.0" prefWidth="141.0" style="-fx-background-color: lightgreen;" text="Finalize Order" />
          </children>
       </AnchorPane>
    </children>

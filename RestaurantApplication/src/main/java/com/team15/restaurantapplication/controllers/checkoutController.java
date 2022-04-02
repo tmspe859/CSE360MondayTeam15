@@ -18,7 +18,7 @@ public class checkoutController {
     private TextField couponText;
 
     @FXML
-    private Button purchaseButton;
+    private Button finalizeButton;
 
     @FXML
     private Button submitCouponButton;
@@ -54,7 +54,7 @@ public class checkoutController {
     }
 
     @FXML
-    void purchaseClicked(ActionEvent event) {
+    void finalizeClicked(ActionEvent event) {
 
     }
 
