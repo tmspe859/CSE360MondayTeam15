@@ -1,34 +1,34 @@
 package com.team15.restaurantapplication.controllers;
 
 import com.team15.restaurantapplication.RestaurantApplication;
+import com.team15.restaurantapplication.classes.UserSession;
+import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 
 import java.io.IOException;
 
-public class ProfileController {
+public class checkoutController {
 
     @FXML
-    private TextField deliveryAddress;
+    private TextField costText;
 
     @FXML
-    private TextField emailAddress;
+    private TextField couponText;
 
     @FXML
-    private TextField firstName;
+    private Button finalizeButton;
 
     @FXML
-    private TextField lastName;
+    private Button submitCouponButton;
 
     @FXML
-    private TextField password;
+    private TextField taxText;
 
     @FXML
-    private TextField phoneNumber;
-
-    @FXML
-    private TextField username;
+    private TextField totalText;
 
     @FXML
     void checkoutClicked(ActionEvent event) throws IOException {
@@ -47,12 +47,21 @@ public class ProfileController {
 
     @FXML
     void profileClicked(ActionEvent event) throws IOException {
-        RestaurantApplication.changeScene("profile.fxml","RestaurantApp - Profile"); // Change scene
+        if (UserSession.getCurrentUser() != null) {// If already logged in
+            RestaurantApplication.changeScene("profile.fxml","RestaurantApp - Profile"); // Change scene
+        } else { // Otherwise
+            RestaurantApplication.changeScene("login.fxml", "RestaurantApp - Home");  // Display login page
+        }
     }
 
     @FXML
-    void saveClicked(ActionEvent event) {
-        // UPDATE ALL USER INFORMATION
+    void finalizeClicked(ActionEvent event) throws IOException {
+        RestaurantApplication.popUp("finalizeOrder.fxml","RestaurantApp - Finalize Order");
+    }
+
+    @FXML
+    void submitCouponClicked(ActionEvent event) {
+
     }
 
 }

@@ -39,10 +39,13 @@ public class LoginRegistrationController {
     @FXML
     private Text message;
 
+    @FXML
+    private Text noMatchError;
+
 
     @FXML
-    void checkoutClicked(ActionEvent event) {
-        // CHANGE SCENE
+    void checkoutClicked(ActionEvent event) throws IOException {
+        RestaurantApplication.changeScene("checkout.fxml","RestaurantApp - Checkout"); // Change scene
     }
 
     @FXML
@@ -89,7 +92,7 @@ public class LoginRegistrationController {
 
     @FXML
     void registerClicked(ActionEvent event) throws IOException {
-
+        noMatchError.setVisible(false); // Clear any previous error messages
         if (password.getText().equals(confirm_password.getText())) {
 
             //Create new user in database
@@ -119,7 +122,7 @@ public class LoginRegistrationController {
                 message.setText("username is taken");
             }
         } else {
-            // DISPLAY PASSWORDS DO NOT MATCH ERROR
+            noMatchError.setVisible(true); // Display error for non-matching passwords
         }
         
 
