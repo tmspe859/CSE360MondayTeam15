@@ -61,7 +61,7 @@ public class LoginRegistrationController {
         if(user != null){
             System.out.println(user.getFirstName());
             //set user session
-            UserSession.getInstace(user);
+            UserSession.getInstance(user);
 
             //switch scene
             RestaurantApplication.changeScene("home.fxml","RestaurantApp - Home");
@@ -95,7 +95,7 @@ public class LoginRegistrationController {
             if(newCustomer != null){
 
                 //set user session
-                UserSession.getInstace(newCustomer);
+                UserSession.getInstance(newCustomer);
     
                 //switch scene
                 RestaurantApplication.changeScene("home.fxml","RestaurantApp - Home");
