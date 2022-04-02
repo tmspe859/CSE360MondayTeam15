@@ -64,4 +64,65 @@ class CRUDHelper{
         return -1;
     }
 
+    public static long update(String tableName, String[] columns, Object[] searchVals, Object[] updatedVals) {
+        int number = Math.min(Math.min(columns.length, searchVals.length), updatedVals.length);
+        Boolean isFirst = true;
+
+        StringBuilder strBuilder = new StringBuilder("UPDATE " + tableName+ " ");
+        StringBuilder updateValues = new StringBuilder("SET ");
+        StringBuilder conditional = new StringBuilder("WHERE (");
+
+        for (int i = 0; i < number; i++) {
+            if (!isFirst) {
+                updateValues.append(", ");
+                conditional.append(" AND ");
+            }
+
+            if (searchVals[i] instanceof String) {
+                updateValues.append(
+                    String.format("%s=\"%s\"", columns[i], updatedVals[i])
+                );
+                conditional.append(
+                    String.format("%s=\"%s\"", columns[i], searchVals[i])
+                );
+            } else {
+                updateValues.append(
+                    String.format("%s=%s", columns[i], updatedVals[i])
+                );
+                conditional.append(
+                    String.format("%s=%s", columns[i], searchVals[i])
+                );
+            }
+
+            isFirst = false;
+        }
+
+        strBuilder.append(updateValues.toString());
+        strBuilder.append(" ");
+        strBuilder.append(conditional.toString());
+        strBuilder.append(");");
+
+        System.out.println(strBuilder.toString());
+        
+        try (Connection conn = Database.connect()) {
+            PreparedStatement pstmt = conn.prepareStatement(strBuilder.toString());
+
+            int affectedRows = pstmt.executeUpdate();
+            // check the affected rows
+            if (affectedRows > 0) {
+                // get the ID back
+                try (ResultSet rs = pstmt.getGeneratedKeys()) {
+                    if (rs.next()) {
+                        return rs.getLong(1);
+                    }
+                }
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+            System.out.println("Could not update record in database");
+        }
+
+        return -1;
+    }
+
 }
