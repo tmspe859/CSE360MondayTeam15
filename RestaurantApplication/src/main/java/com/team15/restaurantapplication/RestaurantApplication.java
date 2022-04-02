@@ -37,6 +37,16 @@ public class RestaurantApplication extends Application {
         primaryStage.show();
     }
 
+    public static void popUp(String fxml, String title) throws IOException {
+        Stage popUpStage = new Stage();
+        FXMLLoader root = new FXMLLoader(RestaurantApplication.class.getResource(fxml));
+        popUpStage.setTitle(title);
+        popUpStage.setScene(new Scene(root.load()));
+        popUpStage.show();
+    }
+
+
+
     public static void main(String[] args) {
         Connection connection = Database.connect();
         Database.checkTables(connection);
