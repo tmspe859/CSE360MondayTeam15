@@ -17,7 +17,7 @@ public class MenuItemController {
     private Label name;
 
     @FXML
-    private Text description;
+    private Label description;
 
     @FXML
     private Label price;
@@ -34,9 +34,10 @@ public class MenuItemController {
         this.item = item;
         name.setText(item.getName());
         price.setText("$" + item.getPrice());
-        //Image img = new Image(item.getImgPath());
+        description.setText(item.getDesc());
+        Image img = new Image(item.getImgPath());
         
-        //image.setImage(img);
+        image.setImage(img);
 
 
     }

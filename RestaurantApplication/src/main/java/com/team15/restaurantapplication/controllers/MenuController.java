@@ -17,6 +17,7 @@ import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.RowConstraints;
@@ -67,14 +68,14 @@ public class MenuController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         
-
+        /*
         menu.setMinWidth(Region.USE_COMPUTED_SIZE);
         menu.setPrefWidth(Region.USE_COMPUTED_SIZE);
         menu.setMaxWidth(Region.USE_PREF_SIZE);
 
         menu.setMinHeight(Region.USE_COMPUTED_SIZE);
         menu.setPrefHeight(Region.USE_COMPUTED_SIZE);
-        menu.setMaxHeight(Region.USE_PREF_SIZE);
+        menu.setMaxHeight(Region.USE_PREF_SIZE);*/
 
 
         new Thread(() -> {
@@ -84,18 +85,18 @@ public class MenuController implements Initializable {
             int row = 1;
             try {
             
-                for(int i=0; i < 10; i++){
+                for(int i=0; i < 30; i++){
                     FXMLLoader fxmlloader = new FXMLLoader();
                     fxmlloader.setLocation(RestaurantApplication.class.getResource("menuitem.fxml"));
     
-                    AnchorPane menuItem = fxmlloader.load();
+                    Pane menuItem = fxmlloader.load();
                     
                     MenuItemController itemController = fxmlloader.getController();
                     itemController.setData(new MenuItem("Banana", 3.99, "Banana description",
-                            null, null, ""));
+                            null, null, RestaurantApplication.class.getResource("images.jpg").toExternalForm()));
                 
                 
-                    if(column == 4){
+                    if(column == 5){
                         column = 0;
                         row++;
                     }

@@ -13,11 +13,12 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<ScrollPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.team15.restaurantapplication.controllers.MenuController">
-   <content>
-      <AnchorPane prefHeight="817.0" prefWidth="985.0" style="-fx-background-color: brown;">
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.team15.restaurantapplication.controllers.MenuController">
+   <children>
+      <AnchorPane prefHeight="817.0" prefWidth="985.0" style="-fx-background-color: brown;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <AnchorPane prefHeight="57.0" prefWidth="985.0" style="-fx-background-color: #3d2b1f;">
+            <AnchorPane prefHeight="57.0" prefWidth="985.0" style="-fx-background-color: #3d2b1f;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <children>
                   <Text fill="WHITE" layoutX="14.0" layoutY="35.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Restaurant Name">
                      <font>
@@ -109,5 +110,5 @@
             </VBox>
          </children>
       </AnchorPane>
-   </content>
-</ScrollPane>
+   </children>
+</AnchorPane>
