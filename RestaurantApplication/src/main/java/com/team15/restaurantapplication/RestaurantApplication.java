@@ -35,6 +35,7 @@ public class RestaurantApplication extends Application {
 
     public static void changeScene(String fxml, String title, Object props) throws IOException {
         FXMLLoader root = new FXMLLoader(RestaurantApplication.class.getResource(fxml));
+        primaryStage.setResizable(false);
         primaryStage.setTitle(title);
         primaryStage.setScene(new Scene(root.load()));
 
@@ -49,6 +50,7 @@ public class RestaurantApplication extends Application {
     public static void popUp(String fxml, String title) throws IOException {
         Stage popUpStage = new Stage();
         FXMLLoader root = new FXMLLoader(RestaurantApplication.class.getResource(fxml));
+        popUpStage.setResizable(false);
         popUpStage.setTitle(title);
         popUpStage.setScene(new Scene(root.load()));
         popUpStage.show();
