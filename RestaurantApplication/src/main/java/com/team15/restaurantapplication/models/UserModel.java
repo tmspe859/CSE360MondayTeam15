@@ -102,11 +102,18 @@ public class UserModel {
     }
 
     public static boolean usernameExists(String username) {
-        // TRY
-            // QUERY DATABASE FOR USER
-            // IF FOUND
-            return true;
-        // CATCH - USER DOESN'T EXISTS
-            // return false;
+        String query = "SELECT COUNT(*) FROM users WHERE username IN (\"" + username + "\")";
+        try (Connection conn = Database.connect()) {
+            PreparedStatement statement = conn.prepareStatement(query);
+            ResultSet rs = statement.executeQuery();
+            if (rs.getInt(1) == 1) {
+                return true;
+            } else {
+                return false;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+            return false;
     }
 }
