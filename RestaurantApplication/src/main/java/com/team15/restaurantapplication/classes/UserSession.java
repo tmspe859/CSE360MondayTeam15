@@ -4,7 +4,7 @@ public final class UserSession {
     
     private static UserSession instance;
 
-    private User currentUser;
+    private static User currentUser;
 
     private UserSession(User user){
         this.currentUser = user;
