@@ -42,7 +42,7 @@ public class LoginRegistrationController {
 
     @FXML
     void checkoutClicked(ActionEvent event) {
-        // Change scene
+        // CHANGE SCENE
     }
 
     @FXML

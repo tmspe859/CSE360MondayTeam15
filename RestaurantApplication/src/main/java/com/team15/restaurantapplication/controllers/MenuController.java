@@ -106,7 +106,7 @@ public class MenuController implements Initializable {
 
     @FXML
     void checkoutClicked(ActionEvent event) {
-
+        // CHANGE SCENE
     }
 
     @FXML
@@ -126,7 +126,7 @@ public class MenuController implements Initializable {
 
     @FXML
     void refreshClicked(ActionEvent event) {
-
+        // RELOAD MENU WITH NON-MATCHING ITEMS FILTERED OUT
     }
 
 }

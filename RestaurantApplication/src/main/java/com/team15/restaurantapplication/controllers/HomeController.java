@@ -23,7 +23,7 @@ public class HomeController {
 
     @FXML
     void checkoutClicked(ActionEvent event) {
-        // Change scene
+        // CHANGE SCENE
     }
 
     @FXML
@@ -39,7 +39,7 @@ public class HomeController {
     @FXML
     void profileClicked(ActionEvent event) throws IOException {
         if (UserSession.getCurrentUser() != null) {// If already logged in
-            // Display user profile page
+            // DISPLAY USER PROFILE PAGE
         } else { // Otherwise
             RestaurantApplication.changeScene("login.fxml", "RestaurantApp - Home");  // Display login page
         }
