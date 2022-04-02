@@ -1,8 +1,11 @@
 package com.team15.restaurantapplication.controllers;
 
+import com.team15.restaurantapplication.RestaurantApplication;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+
+import java.io.IOException;
 
 public class HomeController {
     @FXML
@@ -23,17 +26,17 @@ public class HomeController {
     }
 
     @FXML
-    void homeClicked(ActionEvent event) {
-
+    void homeClicked(ActionEvent event) throws IOException {
+        RestaurantApplication.changeScene("home.fxml","RestaurantApp - Home");
     }
 
     @FXML
-    void menuClicked(ActionEvent event) {
-
+    void menuClicked(ActionEvent event) throws IOException {
+        RestaurantApplication.changeScene("menu.fxml","RestaurantApp - Menu");
     }
 
     @FXML
-    void profileClicked(ActionEvent event) {
-
+    void profileClicked(ActionEvent event) throws IOException {
+        RestaurantApplication.changeScene("login.fxml","RestaurantApp - Home");  // NEEDS LOGIC FOR ALREADY LOGGED IN INDIVIDUALS
     }
 }
