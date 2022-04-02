@@ -2,6 +2,7 @@ module com.team15.restaurantapplication {
     requires javafx.controls;
     requires javafx.fxml;
     requires java.sql;
+    requires org.xerial.sqlitejdbc;
 
     opens com.team15.restaurantapplication to javafx.fxml;
     exports com.team15.restaurantapplication;
