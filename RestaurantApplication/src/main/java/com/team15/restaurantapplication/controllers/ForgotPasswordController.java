@@ -16,7 +16,7 @@ public class ForgotPasswordController {
     private TextField password;
 
     @FXML
-    private Button submitButton;
+    private Button submitButton; // Possibly unneeded fx:id
 
     @FXML
     private TextField username;
@@ -25,21 +25,25 @@ public class ForgotPasswordController {
     private Text noUsernameErrorMsg;
 
     @FXML
+    // Closes this popUp window when clicked
     void cancelClicked(ActionEvent event) {
-        Stage stage = (Stage) cancelButton.getScene().getWindow();
-        stage.close();
+        Stage stage = (Stage) cancelButton.getScene().getWindow(); // Set stage to this window
+        stage.close(); // Close the stage
     }
 
     @FXML
+    // When clicked it will update the password for the given user or output an error
     void submitClicked(ActionEvent event) { // Need to search for
+
+        // Clear any previously displayed errors
         noUsernameErrorMsg.setVisible(false);
-        if (!username.getText().isEmpty()) { // If a username was input
-            // Search for the user
-            // If they exist, update password
+
+        if (!username.getText().isEmpty()) { // If any username was input
+            // Search for the user in the database
+            // If they exist, update their password
             // Otherwise, output error
         } else { // If there was no username input
-            System.out.println("\"" + username.getText() + "\"");
-            noUsernameErrorMsg.setVisible(true);
+            noUsernameErrorMsg.setVisible(true); // Display error message
         }
     }
 
