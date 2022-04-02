@@ -1,7 +1,9 @@
 package com.team15.restaurantapplication.controllers;
 
 import com.team15.restaurantapplication.RestaurantApplication;
+import com.team15.restaurantapplication.classes.Customer;
 import com.team15.restaurantapplication.classes.MenuItem;
+import com.team15.restaurantapplication.classes.Order;
 
 import javafx.application.Platform;
 import com.team15.restaurantapplication.classes.UserSession;
@@ -123,7 +125,9 @@ public class MenuController implements Initializable {
 
     @FXML
     void checkoutClicked(ActionEvent event) throws IOException {
-        RestaurantApplication.changeScene("checkout.fxml","RestaurantApp - Checkout", null); // Change scene
+        Customer currentUser = (Customer) UserSession.getCurrentUser();
+        Order currentOrder = currentUser.getCurrentOrder();
+        RestaurantApplication.changeScene("checkout.fxml","RestaurantApp - Checkout", currentOrder); // Change scene
     }
 
     @FXML

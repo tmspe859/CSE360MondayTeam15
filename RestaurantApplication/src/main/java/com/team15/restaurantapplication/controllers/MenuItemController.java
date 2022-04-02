@@ -43,9 +43,13 @@ public class MenuItemController {
         this.item = item;
         name.setText(item.getName());
         price.setText("$" + item.getPrice());
-        description.setWrapText(true);
-        description.prefWidthProperty().bind(pane.widthProperty());
-        description.setText(item.getDesc());
+
+        if(description != null){
+            description.setWrapText(true);
+            description.prefWidthProperty().bind(pane.widthProperty());
+            description.setText(item.getDesc());
+        }
+        
         Image img = new Image(item.getImgPath());
         
         image.setImage(img);
@@ -60,12 +64,17 @@ public class MenuItemController {
         // IF IT DOES, INCREASE THE QUANTITY TO BE ORDERED BY 1
         // IF IT DOESN'T, ADD THE ITEM TO THE ORDER WITH QUANTITY SET TO 1
 
-        //Check if user is not a manager (returns false)
+        //Check if user is not a manager (returns false)\
         if(!UserSession.getCurrentUserType()){
             Customer currentUser = (Customer) UserSession.getCurrentUser();
             currentUser.getCurrentOrder().addItem(this.item);
         }
         
+    }
+
+    @FXML 
+    void removeFromCart(ActionEvent event){
+        System.out.println("Item remove");
     }
 
     @FXML 

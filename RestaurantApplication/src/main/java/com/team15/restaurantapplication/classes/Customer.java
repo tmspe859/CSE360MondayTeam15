@@ -17,6 +17,7 @@ public class Customer extends User {
         this.coupons = new ArrayList<Coupon>();
         this.pastOrders = new ArrayList<Order>();
         this.currentOrder = new Order();
+        this.isManagerBoolean = false;
     }
 
     public Customer(String firstName, String lastName, String userName, String password, String email, Integer accountID) {
@@ -26,6 +27,7 @@ public class Customer extends User {
         this.coupons = new ArrayList<Coupon>();
         this.pastOrders = new ArrayList<Order>();
         this.currentOrder = new Order();
+        this.isManagerBoolean = false;
     }
 
     public void setDeliveryInfo(DeliveryInfo deliveryInfo) { this.deliveryInfo = deliveryInfo; }

@@ -8,6 +8,7 @@ import java.util.ResourceBundle;
 import com.team15.restaurantapplication.RestaurantApplication;
 import com.team15.restaurantapplication.classes.Customer;
 import com.team15.restaurantapplication.classes.MenuItem;
+import com.team15.restaurantapplication.classes.Order;
 import com.team15.restaurantapplication.classes.UserSession;
 
 import javafx.beans.value.ChangeListener;
@@ -54,7 +55,11 @@ public class ItemPageController extends Controller implements Initializable {
 
         if(this.item != null){
             name.setText(this.item.getName());
-            description.setText(this.item.getDesc());
+
+            if(description != null){
+                description.setText(this.item.getDesc());
+            }
+            
             price.setText("$" + this.item.getPrice());
 
             Image img = new Image(item.getImgPath());
@@ -107,9 +112,20 @@ public class ItemPageController extends Controller implements Initializable {
         }
     }
 
+    @FXML 
+    void removeClicked(ActionEvent event){
+        System.out.println("Item remove");
+        if(!UserSession.getCurrentUserType()){
+            Customer currentUser = (Customer) UserSession.getCurrentUser();
+            currentUser.getCurrentOrder().removeItem(this.item);
+        }
+    }
+
     @FXML
     void checkoutClicked(ActionEvent event) throws IOException {
-        RestaurantApplication.changeScene("checkout.fxml","RestaurantApp - Checkout", null); // Change scene
+        Customer currentUser = (Customer) UserSession.getCurrentUser();
+        Order currentOrder = currentUser.getCurrentOrder();
+        RestaurantApplication.changeScene("checkout.fxml","RestaurantApp - Checkout", currentOrder); // Change scene
     }
 
     @FXML
