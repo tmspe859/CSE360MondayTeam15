@@ -61,13 +61,14 @@ public class LoginRegistrationController {
         if(user != null){
             System.out.println(user.getFirstName());
             //set user session
-            UserSession.getInstance(user);
+            UserSession.setCurrentUser(user);
 
             //switch scene
             RestaurantApplication.changeScene("home.fxml","RestaurantApp - Home");
 
         } else {
             //display 'incorrect username or password' message
+            message.setFill(Color.RED);
             message.setText("Incorrect username or password");
         }
     }
@@ -101,7 +102,7 @@ public class LoginRegistrationController {
                 if (newCustomer != null) {
 
                     //set user session
-                    UserSession.getInstance(newCustomer);
+                    UserSession.setCurrentUser(newCustomer);
 
                     //switch scene
                     RestaurantApplication.changeScene("home.fxml", "RestaurantApp - Home");

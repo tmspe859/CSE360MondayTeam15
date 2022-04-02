@@ -1,7 +1,9 @@
 package com.team15.restaurantapplication.controllers;
 
 import com.team15.restaurantapplication.RestaurantApplication;
+import com.team15.restaurantapplication.classes.Customer;
 import com.team15.restaurantapplication.classes.MenuItem;
+import com.team15.restaurantapplication.classes.UserSession;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -43,10 +45,18 @@ public class MenuItemController {
     }
 
     @FXML
-    void addToCartClicked(ActionEvent event) { // Add associated item to the pending order
+    void addToCartClicked(ActionEvent event) { 
+        // Add associated item to the pending order
         // CHECK IF THE ITEM ALREADY EXISTS IN THE ORDER
         // IF IT DOES, INCREASE THE QUANTITY TO BE ORDERED BY 1
         // IF IT DOESN'T, ADD THE ITEM TO THE ORDER WITH QUANTITY SET TO 1
+
+        //Check if user is not a manager (returns false)
+        if(!UserSession.getCurrentUserType()){
+            Customer currentUser = (Customer) UserSession.getCurrentUser();
+            currentUser.getCurrentOrder().addItem(this.item);
+        }
+        
     }
 
 }

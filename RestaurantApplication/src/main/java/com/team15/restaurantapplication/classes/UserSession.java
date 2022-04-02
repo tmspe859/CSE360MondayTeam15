@@ -17,8 +17,16 @@ public final class UserSession {
         return instance;
     }
 
+    public static void setCurrentUser(User user){
+        currentUser = user;
+    }
+
     public static User getCurrentUser(){
         return currentUser;
+    }
+
+    public static boolean getCurrentUserType(){
+        return currentUser.isManagerBoolean;
     }
 
     public void cleanUserSession() {

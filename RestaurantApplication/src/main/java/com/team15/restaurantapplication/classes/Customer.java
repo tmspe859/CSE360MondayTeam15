@@ -16,7 +16,7 @@ public class Customer extends User {
         this.cardInfo = null;
         this.coupons = new ArrayList<Coupon>();
         this.pastOrders = new ArrayList<Order>();
-        this.currentOrder = null;
+        this.currentOrder = new Order();
     }
 
     public Customer(String firstName, String lastName, String userName, String password, String email, Integer accountID) {
@@ -25,7 +25,7 @@ public class Customer extends User {
         this.cardInfo = null;
         this.coupons = new ArrayList<Coupon>();
         this.pastOrders = new ArrayList<Order>();
-        this.currentOrder = null;
+        this.currentOrder = new Order();
     }
 
     public void setDeliveryInfo(DeliveryInfo deliveryInfo) { this.deliveryInfo = deliveryInfo; }
@@ -34,5 +34,6 @@ public class Customer extends User {
     public void setPaymentInfo(CardInfo cardInfo) { this.cardInfo = cardInfo; }
     public CardInfo getPaymentInfo() { return this.cardInfo; }
     
-    
+    public void setCurrentOrder(Order order) { this.currentOrder = order; }
+    public Order getCurrentOrder() { return this.currentOrder; }
 }

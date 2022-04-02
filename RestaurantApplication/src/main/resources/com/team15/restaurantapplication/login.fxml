@@ -54,6 +54,7 @@
                   <TextField fx:id="username" layoutX="60.0" layoutY="109.0" prefHeight="25.0" prefWidth="180.0" promptText="Username" style="-fx-border-color: black; -fx-border-width: 0 0 1 0; -fx-background-color: transparent;" />
                   <TextField fx:id="password" layoutX="60.0" layoutY="187.0" prefHeight="25.0" prefWidth="180.0" promptText="Password" style="-fx-border-color: black; -fx-border-width: 0 0 1 0; -fx-background-color: transparent;" />
                   <Hyperlink layoutX="126.0" layoutY="230.0" onAction="#forgotPasswordClicked" text="Forgot your password?" />
+                  <Text fx:id="message" layoutX="60.0" layoutY="272.0" strokeType="OUTSIDE" strokeWidth="0.0" text="" />
                   <Button layoutX="73.0" layoutY="291.0" mnemonicParsing="false" onAction="#loginClicked" prefHeight="34.0" prefWidth="153.0" style="-fx-background-color: #4B9CD3; -fx-border-radius: 50px; -fx-background-radius: 50px;" text="Login" textFill="WHITE">
                      <font>
                         <Font name="Bell MT" size="18.0" />
