@@ -2,6 +2,7 @@ package com.team15.restaurantapplication.controllers;
 
 import com.team15.restaurantapplication.RestaurantApplication;
 import com.team15.restaurantapplication.classes.UserSession;
+import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -54,8 +55,8 @@ public class checkoutController {
     }
 
     @FXML
-    void finalizeClicked(ActionEvent event) {
-
+    void finalizeClicked(ActionEvent event) throws IOException {
+        RestaurantApplication.popUp("finalizeOrder.fxml","RestaurantApp - Finalize Order");
     }
 
     @FXML
