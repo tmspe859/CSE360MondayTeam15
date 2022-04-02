@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<ScrollPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.team15.restaurantapplication.controllers.MenuController">
+   <content>
+      <AnchorPane prefHeight="817.0" prefWidth="985.0" style="-fx-background-color: brown;">
+         <children>
+            <AnchorPane prefHeight="57.0" prefWidth="983.0" style="-fx-background-color: #3d2b1f;">
+               <children>
+                  <Text fill="WHITE" layoutX="14.0" layoutY="35.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Restaurant Name">
+                     <font>
+                        <Font name="Bell MT" size="26.0" />
+                     </font>
+                  </Text>
+                  <Button fx:id="checkoutButton" layoutX="750.0" layoutY="11.0" mnemonicParsing="false" onAction="#checkoutClicked" style="-fx-background-color: #3d2b1f;" text="Checkout" textFill="WHITE">
+                     <font>
+                        <Font name="Bell MT" size="18.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="profileButton" layoutX="866.0" layoutY="11.0" mnemonicParsing="false" onAction="#profileClicked" style="-fx-background-color: #3d2b1f;" text="Profile" textFill="WHITE">
+                     <font>
+                        <Font name="Bell MT" size="18.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="menuButton" layoutX="606.0" layoutY="11.0" mnemonicParsing="false" onAction="#menuClicked" style="-fx-background-color: #3d2b1f;" text="Menu/Order" textFill="WHITE">
+                     <font>
+                        <Font name="Bell MT" size="18.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="homeButton" layoutX="524.0" layoutY="11.0" mnemonicParsing="false" onAction="#homeClicked" style="-fx-background-color: #3d2b1f;" text="Home" textFill="WHITE">
+                     <font>
+                        <Font name="Bell MT" size="18.0" />
+                     </font>
+                  </Button>
+               </children>
+            </AnchorPane>
+            <AnchorPane layoutY="57.0" prefHeight="187.0" prefWidth="985.0">
+               <children>
+                  <Text fill="WHITE" layoutX="407.0" layoutY="53.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Our Menu">
+                     <font>
+                        <Font name="System Bold" size="36.0" />
+                     </font>
+                  </Text>
+                  <Text fill="WHITE" layoutX="15.0" layoutY="80.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Looking for something specific?">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Text>
+                  <Text fill="WHITE" layoutX="15.0" layoutY="120.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Search by name:" wrappingWidth="254.77215576171875">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Text>
+                  <TextField fx:id="searchText" layoutX="150.0" layoutY="97.0" prefHeight="31.0" prefWidth="209.0" promptText="Enter a name" />
+                  <CheckBox fx:id="vegetarianCheckbox" layoutX="386.0" layoutY="98.0" mnemonicParsing="false" text="Vegetarian" textFill="WHITE">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </CheckBox>
+                  <CheckBox fx:id="veganCheckbox" layoutX="545.0" layoutY="97.0" mnemonicParsing="false" text="Vegan" textFill="WHITE">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </CheckBox>
+                  <CheckBox fx:id="calorieCheckbox" layoutX="670.0" layoutY="99.0" mnemonicParsing="false" text="Low Calorie" textFill="WHITE">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </CheckBox>
+                  <CheckBox fx:id="spicyCheckbox" layoutX="825.0" layoutY="98.0" mnemonicParsing="false" text="Spicy" textFill="WHITE">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </CheckBox>
+                  <Button fx:id="refreshButton" layoutX="424.0" layoutY="140.0" mnemonicParsing="false" onAction="#refreshClicked" prefHeight="30.0" prefWidth="121.0" text="Refresh" />
+               </children>
+            </AnchorPane>
+         </children>
+      </AnchorPane>
+   </content>
+</ScrollPane>
