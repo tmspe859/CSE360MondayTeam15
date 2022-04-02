@@ -34,9 +34,9 @@ public class MenuItemController {
         this.item = item;
         name.setText(item.getName());
         price.setText("$" + item.getPrice());
-        Image img = new Image(item.getImgPath());
+        //Image img = new Image(item.getImgPath());
         
-        image.setImage(img);
+        //image.setImage(img);
 
 
     }
