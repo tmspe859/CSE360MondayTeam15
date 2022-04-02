@@ -100,4 +100,13 @@ public class UserModel {
         }  
 
     }
+
+    public static boolean usernameExists(String username) {
+        // TRY
+            // QUERY DATABASE FOR USER
+            // IF FOUND
+            return true;
+        // CATCH - USER DOESN'T EXISTS
+            // return false;
+    }
 }
