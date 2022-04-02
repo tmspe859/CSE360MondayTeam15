@@ -47,7 +47,7 @@ public class checkoutController {
 
     @FXML
     void profileClicked(ActionEvent event) throws IOException {
-        if (UserSession.getCurrentUser() != null) {// If already logged in
+        if (UserSession.getCurrentUser().getAccountID() != null) {// If already logged in
             RestaurantApplication.changeScene("profile.fxml","RestaurantApp - Profile", null); // Change scene
         } else { // Otherwise
             RestaurantApplication.changeScene("login.fxml", "RestaurantApp - Home", null);  // Display login page
