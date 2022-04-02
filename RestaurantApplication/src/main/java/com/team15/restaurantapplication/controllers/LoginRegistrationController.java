@@ -44,8 +44,8 @@ public class LoginRegistrationController {
 
 
     @FXML
-    void checkoutClicked(ActionEvent event) {
-        // CHANGE SCENE
+    void checkoutClicked(ActionEvent event) throws IOException {
+        RestaurantApplication.changeScene("checkout.fxml","RestaurantApp - Checkout"); // Change scene
     }
 
     @FXML
