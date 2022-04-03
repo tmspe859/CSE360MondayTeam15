@@ -44,7 +44,7 @@ public class MenuItemModel {
             );
             stmt.executeUpdate(sql);
             stmt.close();
-            connection.close();
+            // connection.close(); Leave this commented out, removing it closes the connection being used by database.checktables()
         } catch ( Exception e ) {
             System.err.println(e.getClass().getName() + ": " + e.getMessage());
         }
