@@ -13,8 +13,9 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
+<?import javafx.scene.text.TextFlow?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.team15.restaurantapplication.controllers.ItemPageController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.team15.restaurantapplication.controllers.ItemPageController">
    <children>
       <AnchorPane prefHeight="817.0" prefWidth="985.0" style="-fx-background-color: brown;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
@@ -59,17 +60,18 @@
                                     <Font size="24.0" />
                                  </font>
                               </Label>
-                              <Label fx:id="description" prefHeight="26.0" prefWidth="274.0" text="Description" wrapText="true" VBox.vgrow="SOMETIMES">
-                                 <font>
-                                    <Font size="14.0" />
-                                 </font>
-                                 <VBox.margin>
-                                    <Insets bottom="12.0" top="8.0" />
-                                 </VBox.margin>
-                                 <padding>
-                                    <Insets bottom="38.0" />
-                                 </padding>
-                              </Label>
+                              <TextFlow prefHeight="81.0" prefWidth="294.0">
+                                 <children>
+                                    <Label fx:id="description" alignment="TOP_LEFT" prefHeight="81.0" prefWidth="294.0" text="Description" wrapText="true">
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font>
+                                       <padding>
+                                          <Insets bottom="38.0" />
+                                       </padding>
+                                    </Label>
+                                 </children>
+                              </TextFlow>
                               <ScrollPane prefHeight="131.0" prefWidth="294.0">
                                  <content>
                                     <GridPane fx:id="ingredientsList" hgap="5.0" prefHeight="10.0" prefWidth="284.0" vgap="5.0">

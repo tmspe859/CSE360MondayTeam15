@@ -8,7 +8,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.TextFlow?>
 
-<Pane fx:id="pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#itemClicked" onMouseEntered="#onHoverIn" onMouseExited="#onHoverOut" prefHeight="199.0" prefWidth="167.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.team15.restaurantapplication.controllers.MenuItemController">
+<Pane fx:id="pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#itemClicked" onMouseEntered="#onHoverIn" onMouseExited="#onHoverOut" prefHeight="199.0" prefWidth="167.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.team15.restaurantapplication.controllers.MenuItemController">
    <children>
       <ImageView fx:id="image" fitHeight="84.0" fitWidth="137.0" layoutX="12.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true" />
       <Label fx:id="name" layoutX="8.0" layoutY="96.0" prefHeight="16.0" prefWidth="108.0" text="Item name">
@@ -24,7 +24,7 @@
       <Button fx:id="addToCartBtn" layoutX="34.0" layoutY="167.0" mnemonicParsing="false" onAction="#addToCartClicked" prefHeight="17.0" prefWidth="98.0" text="Add to Cart" />
       <TextFlow layoutX="7.0" layoutY="125.0" prefHeight="20.0" prefWidth="151.0">
          <children>
-            <Label fx:id="description" maxHeight="-Infinity" prefHeight="17.0" prefWidth="140.0" text="Label" textFill="#5e5c5c" wrapText="true">
+            <Label fx:id="description" alignment="TOP_LEFT" maxHeight="-Infinity" prefHeight="41.0" prefWidth="140.0" text="Label" textFill="#5e5c5c" wrapText="true">
                <font>
                   <Font size="10.0" />
                </font>
