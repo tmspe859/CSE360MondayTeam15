@@ -112,6 +112,7 @@ public class MenuItemController {
     @FXML
     void deleteClicked(ActionEvent event) {
         // REMOVE ITEM FROM DB
+        // REMOVE ITEM FROM SESSION MENU
         // CHANGE SCENE TO MENU/REFRESH MENU
     }
 
