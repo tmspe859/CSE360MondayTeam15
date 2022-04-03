@@ -6,16 +6,6 @@ import com.team15.restaurantapplication.classes.MenuItem;
 import java.util.ArrayList;
 import java.sql.*;
 
-/*
-    CREATE TABLE IF NOT EXISTS menuItems (
-    id INTEGER PRIMARY KEY NOT NULL,
-    name CHAR(255) NOT NULL, price CHAR(255) NOT NULL,
-    desc CHAR(255) NOT NULL, ingredients CHAR(255) NOT NULL,
-    tags CHAR(255) NOT NULL, imgPath CHAR(255) NOT NULL
-)
-
-*/
-
 public class MenuItemModel {
     public static final String tableName = "menuItems";
     public static final String idColumn = "id";
@@ -33,7 +23,7 @@ public class MenuItemModel {
             String sql = String.format(
                     "CREATE TABLE IF NOT EXISTS %s (" +
                         "%s INTEGER PRIMARY KEY NOT NULL, " +
-                        "%s CHAR(%d) NOT NULL, %s CHAR(%d) NOT NULL, " +
+                        "%s CHAR(%d) UNIQUE NOT NULL, %s CHAR(%d) NOT NULL, " +
                         "%s CHAR(%d) NOT NULL, %s CHAR(%d) NOT NULL, " +
                         "%s CHAR(%d) NOT NULL, %s CHAR(%d) NOT NULL" +
                     ")",
@@ -54,6 +44,7 @@ public class MenuItemModel {
             );
             stmt.executeUpdate(sql);
             stmt.close();
+            connection.close();
         } catch ( Exception e ) {
             System.err.println(e.getClass().getName() + ": " + e.getMessage());
         }
@@ -183,6 +174,72 @@ public class MenuItemModel {
         return strBuilder.toString();
     }
 
+    public static int updateItem(MenuItem oldItem, MenuItem newItem) {
+        return (int) CRUDHelper.update(
+            MenuItemModel.tableName,
+            new String[]{
+                MenuItemModel.nameColumn,
+                MenuItemModel.priceColumn,
+                MenuItemModel.descColumn,
+                MenuItemModel.ingredientsColumn,
+                MenuItemModel.tagsColumn,
+                MenuItemModel.imgPathColumn
+            },
+            new Object[]{
+                oldItem.getName(),
+                oldItem.getPrice(),
+                oldItem.getDesc(),
+                oldItem.getIngredients(),
+                oldItem.getTags(),
+                oldItem.getImgPath()
+            },
+            new Object[]{
+                newItem.getName(),
+                newItem.getPrice(),
+                newItem.getDesc(),
+                newItem.getIngredients(),
+                newItem.getTags(),
+                newItem.getImgPath()
+            });
+    }
+
+    public int updateItem(String searchName, String[] columns, Object[] updatedVals) {
+        return (int) CRUDHelper.update(
+            MenuItemModel.tableName, 
+            columns, 
+            updatedVals, 
+            String.format("WHERE (%s='%s')", MenuItemModel.nameColumn, searchName)
+        );
+    }
+
+    public static int deleteItem(MenuItem item) {
+        return (int) CRUDHelper.delete(
+            MenuItemModel.tableName,
+            new String[]{
+                MenuItemModel.nameColumn,
+                MenuItemModel.priceColumn,
+                MenuItemModel.descColumn,
+                MenuItemModel.ingredientsColumn,
+                MenuItemModel.tagsColumn,
+                MenuItemModel.imgPathColumn
+            }, 
+            new Object[]{
+                item.getName(),
+                item.getPrice(),
+                item.getDesc(),
+                item.getIngredients(),
+                item.getTags(),
+                item.getImgPath()
+        });
+    }
+
+    public static int deleteItem(String searchName) {
+        return (int) CRUDHelper.delete(
+            MenuItemModel.tableName,
+            String.format("WHERE (%s='%s')", MenuItemModel.tableName, searchName)
+        );
+    }
+
     public static void Test() {
 
         try {
@@ -216,5 +273,12 @@ public class MenuItemModel {
             MenuItemModel.addItem(new MenuItem(name, price, desc, ings, tags, RestaurantApplication.class.getResource("images.jpg").toExternalForm()));
         }
             
+    }
+
+    private static <T> T[] combineArrays(T[] arr1, T[] arr2) {
+        ArrayList<T> arrayList = new ArrayList<T>();
+        for (T item : arr1) arrayList.add(item);
+        for (T item : arr2) arrayList.add(item);
+        return (T[]) arrayList.toArray();
     }
 }
