@@ -9,7 +9,6 @@ public class Customer extends User {
     private ArrayList<Coupon> coupons;
     private ArrayList<Order> pastOrders;
     private Order currentOrder;
-    private String dateJoined;
     private Integer numOfOrders;
     private Integer rewardPoints;
 
@@ -42,11 +41,18 @@ public class Customer extends User {
     }
 
     public void setDeliveryInfo(DeliveryInfo deliveryInfo) { this.deliveryInfo = deliveryInfo; }
+
     public DeliveryInfo getDeliveryInfo() { return this.deliveryInfo; }
 
     public void setPaymentInfo(CardInfo cardInfo) { this.cardInfo = cardInfo; }
+
     public CardInfo getPaymentInfo() { return this.cardInfo; }
     
     public void setCurrentOrder(Order order) { this.currentOrder = order; }
+
     public Order getCurrentOrder() { return this.currentOrder; }
+
+    public Integer getNumOfOrders() {return this.numOfOrders;}
+
+    public Integer getRewardsPoints() {return this.rewardPoints;}
 }
