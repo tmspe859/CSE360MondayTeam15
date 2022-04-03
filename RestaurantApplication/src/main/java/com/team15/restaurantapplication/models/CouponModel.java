@@ -29,7 +29,6 @@ public class CouponModel {
                            " FOREIGN KEY(customerid) REFERENCES users(id)) ";
             stmt.executeUpdate(sql);
             stmt.close();
-
          } catch ( Exception e ) {
             System.err.println( e.getClass().getName() + ": " + e.getMessage() );
 

@@ -8,7 +8,6 @@ public abstract class User {
     protected String password;
     protected String email;
     protected Integer accountID;
-
     protected Boolean isManagerBoolean = false;
     
     public User() {
