@@ -2,11 +2,13 @@ package com.team15.restaurantapplication.controllers;
 
 import com.team15.restaurantapplication.RestaurantApplication;
 import com.team15.restaurantapplication.classes.Customer;
+import com.team15.restaurantapplication.classes.DeliveryInfo;
 import com.team15.restaurantapplication.classes.Order;
 import com.team15.restaurantapplication.classes.User;
 import com.team15.restaurantapplication.classes.UserSession;
 import com.team15.restaurantapplication.exceptions.emailExistsException;
 import com.team15.restaurantapplication.exceptions.usernameTakenException;
+import com.team15.restaurantapplication.models.DeliveryInfoModel;
 import com.team15.restaurantapplication.models.UserModel;
 
 import javafx.event.ActionEvent;
@@ -66,8 +68,16 @@ public class LoginRegistrationController {
         User user = UserModel.getUser(username.getText(), password.getText());
         if(user != null){
             System.out.println(user.getFirstName());
+            
             //set user session
-            UserSession.setCurrentUser(user);
+            if(!user.isManager()){
+                Customer customer = (Customer) user;
+                DeliveryInfo deliveryInfo = DeliveryInfoModel.getDeliveryInfo(user.getAccountID());
+                customer.setDeliveryInfo(deliveryInfo);
+                UserSession.setCurrentUser(customer);
+            } else {
+                UserSession.setCurrentUser(user);
+            }
 
             //switch scene
             RestaurantApplication.changeScene("home.fxml","RestaurantApp - Home", null);
