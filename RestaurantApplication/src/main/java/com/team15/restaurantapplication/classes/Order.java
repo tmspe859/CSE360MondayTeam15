@@ -29,6 +29,18 @@ public class Order {
             this.totalCost -= item.getPrice();
     }
 
+    public String getItemString() {
+        Boolean firstAddition = true;
+        StringBuilder strBuilder = new StringBuilder();
+        for (MenuItem item : items) {
+            if (!firstAddition)
+                strBuilder.append(',');
+            strBuilder.append(item.getName());
+            firstAddition = false;
+        }
+        return strBuilder.toString();
+    }
+
     public void setDeliveryInfo(DeliveryInfo deliveryInfo) { this.deliveryInfo = deliveryInfo; }
 
     public ArrayList<MenuItem> getItems() { return this.items; }

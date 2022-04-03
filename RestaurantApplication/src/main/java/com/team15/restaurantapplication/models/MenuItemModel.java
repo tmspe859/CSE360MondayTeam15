@@ -6,6 +6,16 @@ import com.team15.restaurantapplication.classes.MenuItem;
 import java.util.ArrayList;
 import java.sql.*;
 
+/*
+    CREATE TABLE IF NOT EXISTS menuItems (
+    id INTEGER PRIMARY KEY NOT NULL,
+    name CHAR(255) NOT NULL, price CHAR(255) NOT NULL,
+    desc CHAR(255) NOT NULL, ingredients CHAR(255) NOT NULL,
+    tags CHAR(255) NOT NULL, imgPath CHAR(255) NOT NULL
+)
+
+*/
+
 public class MenuItemModel {
     public static final String tableName = "menuItems";
     public static final String idColumn = "id";

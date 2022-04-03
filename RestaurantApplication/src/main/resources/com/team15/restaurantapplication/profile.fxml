@@ -88,7 +88,12 @@
                   <Font size="18.0" />
                </font>
             </Text>
-            <Button layoutX="117.0" layoutY="479.0" mnemonicParsing="false" onAction="#saveClicked" prefHeight="34.0" prefWidth="101.0" style="-fx-background-color: green;" text="Save" textFill="WHITE">
+            <Text fx:id="message" fill="WHITE" layoutX="16.0" layoutY="475.0" strokeType="OUTSIDE" strokeWidth="0.0" text="">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Text>
+            <Button layoutX="117.0" layoutY="485.0" mnemonicParsing="false" onAction="#saveClicked" prefHeight="34.0" prefWidth="101.0" style="-fx-background-color: green;" text="Save" textFill="WHITE">
                <font>
                   <Font size="18.0" />
                </font>

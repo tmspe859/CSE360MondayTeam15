@@ -29,6 +29,16 @@ public final class UserSession {
         return currentUser.isManager();
     }
 
+    public static CardInfo getCardInfo(){
+        Customer customer = (Customer) getCurrentUser();
+        return customer.getPaymentInfo();
+    }
+
+    public static DeliveryInfo getDeliveryInfo(){
+        Customer customer = (Customer) getCurrentUser();
+        return customer.getDeliveryInfo();
+    }
+
     public void cleanUserSession() {
         currentUser = null;
     }

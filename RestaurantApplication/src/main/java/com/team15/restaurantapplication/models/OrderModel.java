@@ -82,14 +82,14 @@ public class OrderModel {
 
     }
 
-    public static int createOrder(String menuItems, int totalCost, int customerId) throws emailExistsException, usernameTakenException {
+    public static int createOrder(String menuItems, double totalCost, int customerId) throws emailExistsException, usernameTakenException {
 
         //update database
         int id = (int) CRUDHelper.create(
             tableName,
             new String[]{menuItemsColumn, totalCostColumn, orderStatusColumn, customerIdColumn},
             new Object[]{menuItems, totalCost, Order.Status.open.name(), customerId},
-            new int[]{Types.VARCHAR, Types.INTEGER, Types.VARCHAR, Types.INTEGER}
+            new int[]{Types.VARCHAR, Types.DOUBLE, Types.VARCHAR, Types.INTEGER}
         );
 
         return id;

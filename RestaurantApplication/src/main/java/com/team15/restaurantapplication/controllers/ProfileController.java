@@ -10,6 +10,8 @@ import javafx.fxml.FXML;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.paint.Color;
+import javafx.scene.text.Text;
 
 import java.io.IOException;
 
@@ -73,30 +75,33 @@ public class ProfileController {
     private TextField waitTime;
 
     @FXML
+    private Text message;
+
+    @FXML
     void initialize() {
-        User user = UserSession.getCurrentUser();
-        if (!user.isManager()) {
-            Customer currentUser = UserModel.getCustomer(user.getUserName(), user.getPassword());
-            DeliveryInfo deliveryInfo = DeliveryInfoModel.getDeliveryInfo(currentUser.getAccountID());
-            firstName.setText(currentUser.getFirstName());
-            lastName.setText(currentUser.getLastName());
-            username.setText(currentUser.getUserName());
-            emailAddress.setText(currentUser.getEmail());
-            password.setText(currentUser.getPassword());
-            joinedDate.setText(currentUser.getJoinedDate());
-            numberOfOrders.setText(currentUser.getNumOfOrders().toString());
-            rewardsPoints.setText(currentUser.getRewardsPoints().toString());
-            deliveryAddress.setText(deliveryInfo.getAddress());
-            phoneNumber.setText(deliveryInfo.getPhone());
-        } else {
-            Manager currentUser = UserModel.getManager(user.getUserName(), user.getPassword());
-            firstName.setText(currentUser.getFirstName());
-            lastName.setText(currentUser.getLastName());
-            username.setText(currentUser.getUserName());
-            emailAddress.setText(currentUser.getEmail());
-            password.setText(currentUser.getPassword());
-            joinedDate.setText(currentUser.getJoinedDate());
+        User currentUser = UserSession.getCurrentUser();
+
+        firstName.setText(currentUser.getFirstName());
+        lastName.setText(currentUser.getLastName());
+        username.setText(currentUser.getUserName());
+        emailAddress.setText(currentUser.getEmail());
+        password.setText(currentUser.getPassword());
+        joinedDate.setText(currentUser.getJoinedDate());
+
+        if (!currentUser.isManager()) {
+
+            Customer customer = (Customer) currentUser;
+            DeliveryInfo deliveryInfo = customer.getDeliveryInfo();
+            numberOfOrders.setText(customer.getNumOfOrders().toString());
+            rewardsPoints.setText(customer.getRewardsPoints().toString());
+            if(deliveryInfo != null){
+
+                deliveryAddress.setText(deliveryInfo.getAddress());
+                phoneNumber.setText(deliveryInfo.getPhone());
+            }
+
         }
+
     }
 
     @FXML
@@ -124,6 +129,54 @@ public class ProfileController {
     @FXML
     void saveClicked(ActionEvent event) {
         // UPDATE ALL USER INFORMATION
+
+        boolean isValid = validateForm();
+
+        if(!isValid)
+            return;
+
+        int userID = UserSession.getCurrentUser().getAccountID();
+
+        UserModel.updateUser(
+            firstName.getText(),
+            lastName.getText(),
+            username.getText(),
+            emailAddress.getText(),
+            password.getText(),
+            userID
+        );
+
+    }
+
+    private boolean validateForm() {
+        
+        if(firstName.getText().isEmpty()){
+            firstName.setStyle("-fx-text-box-border: green;");
+            message.setText("Please enter your First Name");
+            return false;
+        }
+        if(lastName.getText().isEmpty()){
+            lastName.setStyle("-fx-text-box-border: green;");
+            message.setText("Please enter your Last Name");
+            return false;
+        }
+        if(username.getText().isEmpty()){
+            username.setStyle("-fx-text-box-border: green;");
+            message.setText("Please enter your username");
+            return false;
+        }
+        if(emailAddress.getText().isEmpty()){
+            emailAddress.setStyle("-fx-text-box-border: green;");
+            message.setText("Please enter your Email Address");
+            return false;
+        }
+        if(password.getText().isEmpty()){
+            password.setStyle("-fx-text-box-border: green;");
+            message.setText("Please enter your Password");
+            return false;
+        }
+
+        return true;
     }
 
 }

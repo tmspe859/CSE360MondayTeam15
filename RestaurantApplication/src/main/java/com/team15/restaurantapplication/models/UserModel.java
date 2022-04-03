@@ -5,6 +5,7 @@ import java.time.LocalDate;
 
 import com.team15.restaurantapplication.classes.Manager;
 import com.team15.restaurantapplication.classes.User;
+import com.team15.restaurantapplication.classes.UserSession;
 import com.team15.restaurantapplication.exceptions.emailExistsException;
 import com.team15.restaurantapplication.exceptions.usernameTakenException;
 import com.team15.restaurantapplication.classes.Customer;
@@ -167,6 +168,44 @@ public class UserModel {
             return new Customer(firstName, lastName, userName, password, email, id, LocalDate.now().toString(),
                     0, 0);
         }  
+
+    }
+
+    public static int updateUser(String firstName, String lastName, 
+            String userName, String email, String password, int userID){
+
+        String condition= String.format("WHERE (%s=%s", idColumn, userID);
+
+        //update database
+        int id = (int) CRUDHelper.update(
+            tableName,
+            new String[]{
+                firstNameColumn,
+                lastNameColumn,
+                userNameColumn,
+                emailColumn,
+                passwordColumn
+            },
+            new Object[]{
+                firstName,
+                lastName,
+                userName,
+                email,
+                password
+            },
+            condition
+        );
+
+        //update cache
+        User updateUser = UserSession.getCurrentUser();
+        updateUser.setFirstName(firstName);
+        updateUser.setLastName(lastName);
+        updateUser.setUserName(userName);
+        updateUser.setEmail(email);
+        updateUser.setPassword(password);
+        UserSession.setCurrentUser(updateUser);
+            
+        return id;
 
     }
 

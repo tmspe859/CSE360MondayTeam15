@@ -17,7 +17,7 @@ public abstract class User {
         this.userName = "";
         this.password = "";
         this.email = "";
-        this.accountID = null;
+        this.accountID = -1;
     }
 
     public User(String firstName, String lastName, String userName, String password, String email, Integer accountID) {
@@ -44,6 +44,9 @@ public abstract class User {
     public String getPassword() { return this.password; }
 
     public String getEmail() { return this.email; }
+
+    public void setEmail(String email) { this.email = email; }
+    public void setPassword(String password) { this.password = password; }
 
     public void setAccountID(Integer accountID) {
         if (this.accountID != null) return;

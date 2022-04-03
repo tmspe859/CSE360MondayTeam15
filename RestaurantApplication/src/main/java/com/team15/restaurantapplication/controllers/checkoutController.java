@@ -118,7 +118,7 @@ public class checkoutController extends Controller {
 
     @FXML
     void finalizeClicked(ActionEvent event) throws IOException {
-        RestaurantApplication.popUp("finalizeOrder.fxml","RestaurantApp - Finalize Order");
+        RestaurantApplication.popUp("finalizeOrder.fxml","RestaurantApp - Finalize Order", currentOrder);
     }
 
     @FXML
