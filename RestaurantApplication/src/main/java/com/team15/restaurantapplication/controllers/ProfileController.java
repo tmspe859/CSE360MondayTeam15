@@ -146,13 +146,15 @@ public class ProfileController {
             userID
         );
 
-        Customer customer = (Customer) UserSession.getCurrentUser();
-        String recipient = firstName.getText() + " " + lastName.getText();
-        DeliveryInfo newInfo = new DeliveryInfo(recipient, deliveryAddress.getText(), phoneNumber.getText());
-        if(customer.getDeliveryInfo() != null){
-            DeliveryInfoModel.updateDeliveryInfo(newInfo, userID);
-        } else {
-            DeliveryInfoModel.addDeliveryInfo(newInfo, userID);
+        if(!UserSession.isManager()){
+            Customer customer = (Customer) UserSession.getCurrentUser();
+            String recipient = firstName.getText() + " " + lastName.getText();
+            DeliveryInfo newInfo = new DeliveryInfo(recipient, deliveryAddress.getText(), phoneNumber.getText());
+            if(customer.getDeliveryInfo() != null){
+                DeliveryInfoModel.updateDeliveryInfo(newInfo, userID);
+            } else {
+                DeliveryInfoModel.addDeliveryInfo(newInfo, userID);
+            }
         }
         
 

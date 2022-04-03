@@ -81,7 +81,7 @@ public class MenuItemController {
         // IF IT DOESN'T, ADD THE ITEM TO THE ORDER WITH QUANTITY SET TO 1
 
         //Check if user is not a manager (returns false)\
-        if(!UserSession.getCurrentUserType()){
+        if(!UserSession.isManager()){
             Customer currentUser = (Customer) UserSession.getCurrentUser();
             currentUser.getCurrentOrder().addItem(this.item);
         }

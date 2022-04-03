@@ -132,7 +132,7 @@ public class ItemPageController extends Controller implements Initializable {
     @FXML
     void addToCartClicked(ActionEvent event) {
         //Check if user is not a manager (returns false)
-        if(!UserSession.getCurrentUserType()){
+        if(!UserSession.isManager()){
             Customer currentUser = (Customer) UserSession.getCurrentUser();
             currentUser.getCurrentOrder().addItem(this.item);
         }
@@ -141,7 +141,7 @@ public class ItemPageController extends Controller implements Initializable {
     @FXML 
     void removeClicked(ActionEvent event){
         System.out.println("Item remove");
-        if(!UserSession.getCurrentUserType()){
+        if(!UserSession.isManager()){
             Customer currentUser = (Customer) UserSession.getCurrentUser();
             currentUser.getCurrentOrder().removeItem(this.item);
         }

@@ -25,7 +25,7 @@ public final class UserSession {
         return currentUser;
     }
 
-    public static boolean getCurrentUserType(){
+    public static boolean isManager(){
         return currentUser.isManager();
     }
 
