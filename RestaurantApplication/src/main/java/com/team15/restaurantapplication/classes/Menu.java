@@ -1,48 +1,57 @@
 package com.team15.restaurantapplication.classes;
 
+import com.team15.restaurantapplication.models.MenuItemModel;
 import java.util.ArrayList;
 
 public class Menu {
+    private static Menu instance;
+
     private ArrayList<MenuItem> menuItems;
 
-    public Menu() {
-        this.menuItems = new ArrayList<MenuItem>();
+    private Menu() {
+        this.menuItems = MenuItemModel.getMenu();
+    }
+
+    public static Menu getInstance() {
+        if (Menu.instance == null) 
+            Menu.instance = new Menu();
+        return Menu.instance;
     }
 
     public Boolean addItem(MenuItem newItem) {
+        if (MenuItemModel.addItem(newItem) == -1) return false;
         return this.menuItems.add(newItem);
     }
 
-    public ArrayList<MenuItem> filterMenu(String searchTerm, Double maxPrice, ArrayList<String> ingredients, ArrayList<Boolean> tags) {
-        ArrayList<MenuItem> filteredItems = new ArrayList<MenuItem>();
-
-        for (MenuItem item : filteredItems)
-        {
-            Boolean rightPrice = item.getPrice() <= maxPrice;
-            Boolean rightName = (item.getName().toLowerCase().indexOf(searchTerm.toLowerCase()) != -1);
-            Boolean rightIngredients = Menu.ingredientsMatch(item, ingredients);
-            Boolean rightTags = Menu.tagsMatch(item, tags);
-            if (rightPrice && rightName && rightIngredients && rightTags)
-                filteredItems.add(item);
-        }  
-
-        return filteredItems;
+    public ArrayList<MenuItem> getMenu() {
+        return this.menuItems;
     }
 
-    private static Boolean ingredientsMatch(MenuItem item, ArrayList<String> searchIngredients) {
-        ArrayList<String> itemIngredients = item.getIngredients();
-        for (String ingredient : searchIngredients) {
-            if (!itemIngredients.contains(ingredient)) return false;
+    private Boolean tagArraysMatch(ArrayList<Boolean> itemTags, ArrayList<Boolean> searchTags) {
+        for (int i = 0; i < Math.min(itemTags.size(), searchTags.size()); i++) {
+            if (searchTags.get(i) && !itemTags.get(i)) return false;
         }
         return true;
     }
 
-    private static Boolean tagsMatch(MenuItem item, ArrayList<Boolean> searchTags) {
-        ArrayList<Boolean> itemTags = item.getTags();
-        for (int i = 0; i < itemTags.size(); i++) {
-            if (itemTags.get(i) != searchTags.get(i)) return false;
+    public ArrayList<MenuItem> getFilteredItems(String searchTerm, ArrayList<Boolean> searchTags) {
+        Boolean tags = false;
+        for (Boolean tag : searchTags) tags |= tag;
+        if (searchTerm.equals("") && !tags) return this.menuItems;
+        
+        ArrayList<MenuItem> results = new ArrayList<MenuItem>();
+        for (MenuItem item : this.menuItems) {
+            if(
+                !item.getName()
+                .toLowerCase()
+                .contains(
+                    searchTerm.toLowerCase()
+                )
+            ) continue;
+            if (!this.tagArraysMatch(item.getTags(), searchTags)) continue;
+            results.add(item);
         }
-        return true;
+        return results;
     }
 
 }
