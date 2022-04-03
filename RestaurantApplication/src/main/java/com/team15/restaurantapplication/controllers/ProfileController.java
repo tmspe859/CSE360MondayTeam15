@@ -71,7 +71,7 @@ public class ProfileController {
 
     @FXML
     void profileClicked(ActionEvent event) throws IOException {
-        RestaurantApplication.changeScene("profile.fxml","RestaurantApp - Profile", null); // Change scene
+        RestaurantApplication.changeSceneToProfile("profile.fxml","RestaurantApp - Profile", null);
     }
 
     @FXML
