@@ -1,6 +1,7 @@
 package com.team15.restaurantapplication.models;
 
 import java.sql.*;
+import java.time.LocalDate;
 
 import com.team15.restaurantapplication.classes.User;
 import com.team15.restaurantapplication.exceptions.emailExistsException;
@@ -17,20 +18,25 @@ public class UserModel {
     private static final String emailColumn = "email";
     private static final String passwordColumn = "password";
     private static final String isManagerColumn = "isManager";
+    private static final String dateJoinedColumn = "dateJoined";
+    private static final String numOfOrdersColumn = "numOfOrders";
+    private static final String rewardPointsColumn = "rewardPoints";
 
     public static void createTable(Connection connection){
 
         try {
-   
             Statement stmt = connection.createStatement();
             String sql = "CREATE TABLE IF NOT EXISTS users " +
-                           "(id INTEGER PRIMARY KEY AUTOINCREMENT," +
-                           " firstname      CHAR(255)    NOT NULL, " + 
-                           " lastname       CHAR(255)    NOT NULL, " + 
-                           " username       CHAR(255)   UNIQUE    NOT NULL, " + 
-                           " password       CHAR(255)    NOT NULL, " +
-                           " email          CHAR(255)   UNIQUE    NOT NULL, " +
-                           " isManager      BOOLEAN      NOT NULL )"; 
+                            "(id            INTEGER     PRIMARY KEY AUTOINCREMENT," +
+                            " firstname     CHAR(255)   NOT NULL, " +
+                            " lastname      CHAR(255)   NOT NULL, " +
+                            " username      CHAR(255)   NOT NULL UNIQUE, " +
+                            " password      CHAR(255)   NOT NULL, " +
+                            " email         CHAR(255)   NOT NULL UNIQUE, " +
+                            " isManager     BOOLEAN     NOT NULL, " +
+                            " dateJoined    DATE        NOT NULL, " +
+                            " numOfOrders   INTEGER     NOT NULL, " +
+                            " rewardPoints  INTEGER     NOT NULL)";
             stmt.executeUpdate(sql);
             stmt.close();
 
@@ -59,9 +65,9 @@ public class UserModel {
                 //user = new Manager();
             } else {
                 user = new Customer(rs.getString(firstNameColumn), rs.getString(lastNameColumn),
-                        rs.getString(userNameColumn), rs.getString(passwordColumn),
-                        rs.getString(emailColumn),
-                        rs.getInt(idColumn));
+                        rs.getString(userNameColumn), rs.getString(passwordColumn), rs.getString(emailColumn),
+                        rs.getInt(idColumn), rs.getString(dateJoinedColumn), rs.getInt(numOfOrdersColumn),
+                        rs.getInt(rewardPointsColumn));
             }
 
             rs.close();
@@ -82,21 +88,20 @@ public class UserModel {
         //update database
         int id = (int) CRUDHelper.create(
             tableName,
-            new String[]{firstNameColumn, lastNameColumn, 
-                userNameColumn, emailColumn, passwordColumn, isManagerColumn},
-            new Object[]{firstName, lastName, 
-                userName, email, password, isManager},
-            new int[]{Types.VARCHAR, Types.VARCHAR, 
-                Types.VARCHAR, Types.VARCHAR, Types.VARCHAR, Types.BOOLEAN}
+            new String[]{firstNameColumn, lastNameColumn, userNameColumn, emailColumn, passwordColumn, isManagerColumn,
+                            dateJoinedColumn, numOfOrdersColumn, rewardPointsColumn},
+            new Object[]{firstName, lastName, userName, email, password, isManager, "date()", 0, 0},
+            new int[]{Types.VARCHAR, Types.VARCHAR, Types.VARCHAR, Types.VARCHAR, Types.VARCHAR, Types.BOOLEAN,
+                            Types.DATE, Types.INTEGER, Types.INTEGER}
         );
-
         System.out.println("create user: " + id);
 
         if(id == -1){
             return null;
         } else {
             //update cache
-            return new Customer(firstName, lastName, userName, password, email, id);
+            return new Customer(firstName, lastName, userName, password, email, id, LocalDate.now().toString(),
+                    0, 0);
         }  
 
     }
