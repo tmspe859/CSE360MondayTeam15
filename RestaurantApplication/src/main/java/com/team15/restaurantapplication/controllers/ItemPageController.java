@@ -3,6 +3,7 @@ package com.team15.restaurantapplication.controllers;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Map;
 import java.util.ResourceBundle;
 
 import com.team15.restaurantapplication.RestaurantApplication;
@@ -39,6 +40,9 @@ public class ItemPageController extends Controller implements Initializable {
     private GridPane ingredientsList;
 
     @FXML
+    private GridPane finalIngredients;
+
+    @FXML
     private Label name;
 
     @FXML
@@ -65,33 +69,55 @@ public class ItemPageController extends Controller implements Initializable {
             Image img = new Image(item.getImgPath());
             image.setImage(img);
 
-            initializeIngredients(this.item.getIngredients());
+            if(ingredientsList != null){
+                initializeIngredients(this.item.getIngredients());
+            } else if(finalIngredients != null){
+                initializeFinalIngredients(this.item.getIngredients());
+            }
+            
         }
 
     }
 
     private void initializeIngredients(ArrayList<String> ingredients){
+        
+        int i = 0; 
 
-        int i = 0;
-        itemIngredients = new boolean[ingredients.size()]; 
+        for(String entry : ingredients){
 
-        for(String ingredient : ingredients){
-
-            final int j = i; 
-
-            CheckBox check = new CheckBox(ingredient);
+            CheckBox check = new CheckBox(entry);
             check.setSelected(true);
             //i.isSelected();
             check.selectedProperty().addListener(new ChangeListener<Boolean>() {
 
                 @Override
                 public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
-                    itemIngredients[j] = newValue;
+                    if(newValue == true){
+                        ItemPageController.this.item.addIngredient(entry);
+                    } else {
+                        ItemPageController.this.item.removeIngredient(entry);
+                    }
                 }
                 
             });
 
             ingredientsList.add(check, 0, i);
+
+            i++;
+        }
+
+    }
+
+    private void initializeFinalIngredients(ArrayList<String> ingredients){
+        
+        int i = 0; 
+
+        for(String entry : ingredients){
+
+            Label label = new Label(entry);
+            //i.isSelected();
+
+            finalIngredients.add(label, 0, i);
 
             i++;
         }

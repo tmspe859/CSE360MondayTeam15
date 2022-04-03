@@ -26,7 +26,11 @@ public class MenuItem {
     public String getName() { return this.name; }
     public Double getPrice() { return this.price; }
     public String getDesc() { return this.desc; }
+
     public ArrayList<String> getIngredients() { return this.ingredients; }
+    public void addIngredient(String ingredient) { this.ingredients.add(ingredient); }
+    public void removeIngredient(String ingredient) { this.ingredients.remove(ingredient); }
+
     public ArrayList<Boolean> getTags() { return this.tags; }
     public String getImgPath() { return this.imgPath; }
 

@@ -29,7 +29,7 @@
             <Insets bottom="8.0" left="2.0" right="2.0" top="8.0" />
          </padding>
          <content>
-            <GridPane fx:id="ingredientsList" hgap="5.0" prefHeight="18.0" prefWidth="122.0" vgap="5.0">
+            <GridPane fx:id="finalIngredients" hgap="5.0" prefHeight="18.0" prefWidth="122.0" vgap="5.0">
                <rowConstraints>
                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                </rowConstraints>
