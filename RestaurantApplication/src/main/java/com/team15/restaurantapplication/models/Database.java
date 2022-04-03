@@ -13,6 +13,8 @@ public class Database {
         UserModel.createTable(connection);
         OrderModel.createTable(connection);
         CouponModel.createTable(connection);
+        MenuItemModel.createTable(connection);
+        DeliveryInfoModel.createTable(connection);
     }
 
     public static Connection connect() {
