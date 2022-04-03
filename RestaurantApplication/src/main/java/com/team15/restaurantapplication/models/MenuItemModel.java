@@ -1,6 +1,7 @@
 package com.team15.restaurantapplication.models;
 
-import com.team15.restaurantapplication.classes.*;
+import com.team15.restaurantapplication.RestaurantApplication;
+import com.team15.restaurantapplication.classes.MenuItem;
 
 import java.util.ArrayList;
 import java.sql.*;
@@ -171,5 +172,40 @@ public class MenuItemModel {
             firstAddition = false;
         }
         return strBuilder.toString();
+    }
+
+    public static void Test() {
+
+        try {
+            Connection conn = Database.connect();
+            Statement stmt = conn.createStatement();
+            String sql = String.format("DELETE FROM %s;", MenuItemModel.tableName);
+            System.out.println(sql);
+            stmt.executeUpdate(sql);
+            stmt.close();
+            conn.close();
+        } catch (Exception e) {
+            System.err.println( e.getClass().getName() + ": " + e.getMessage() );
+        }
+
+        for (int i = 0; i < 16; i++) {
+            String name = String.format("Item#%d", i);
+
+            Double price = i + 0.99;
+            String desc = String.format("Description of %d", i);
+
+            ArrayList<String> ings = new ArrayList<String>();
+            ings.add(String.format("Ings %d", i));
+
+            ArrayList<Boolean> tags = new ArrayList<Boolean>();
+            int iCopy = i;
+            for (int j = 0; j < 4; j++) {
+                tags.add(0, (iCopy & 1) == 1);
+                iCopy >>= 1;
+            }
+
+            MenuItemModel.addItem(new MenuItem(name, price, desc, ings, tags, RestaurantApplication.class.getResource("images.jpg").toExternalForm()));
+        }
+            
     }
 }
