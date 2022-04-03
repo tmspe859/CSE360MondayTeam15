@@ -31,6 +31,8 @@
             </Label>
          </children>
       </TextFlow>
+      <Button fx:id="updateButton" layoutX="14.0" layoutY="167.0" mnemonicParsing="false" onAction="#updateClicked" text="Update" visible="false" />
+      <Button fx:id="deleteButton" layoutX="93.0" layoutY="167.0" mnemonicParsing="false" onAction="#deleteClicked" text="Delete" visible="false" />
    </children>
    <cursor>
       <Cursor fx:constant="CLOSED_HAND" />

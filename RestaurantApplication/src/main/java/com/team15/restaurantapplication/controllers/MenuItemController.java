@@ -5,6 +5,7 @@ import java.io.IOException;
 import com.team15.restaurantapplication.RestaurantApplication;
 import com.team15.restaurantapplication.classes.Customer;
 import com.team15.restaurantapplication.classes.MenuItem;
+import com.team15.restaurantapplication.classes.User;
 import com.team15.restaurantapplication.classes.UserSession;
 
 import javafx.event.ActionEvent;
@@ -18,7 +19,7 @@ import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
 
 public class MenuItemController {
-    
+
     @FXML
     private Pane pane;
 
@@ -30,14 +31,29 @@ public class MenuItemController {
 
     @FXML
     private Label price;
-    
+
     @FXML
     private ImageView image;
 
     @FXML
     private Button addToCartBtn;
 
+    @FXML
+    private Button deleteButton;
+
+    @FXML
+    private Button updateButton;
+
     private MenuItem item;
+
+    @FXML
+    void initialize() {
+        if (UserSession.getCurrentUser().isManager()) {
+            updateButton.setVisible(true);
+            deleteButton.setVisible(true);
+            addToCartBtn.setVisible(false);
+        }
+    }
 
     public void setData(MenuItem item) {
         this.item = item;
@@ -91,6 +107,16 @@ public class MenuItemController {
     @FXML
     void onHoverOut(MouseEvent event) {
         pane.setStyle("-fx-background-color:#FFFFFF;");
+    }
+
+    @FXML
+    void deleteClicked(ActionEvent event) {
+
+    }
+
+    @FXML
+    void updateClicked(ActionEvent event) {
+
     }
 
 }
