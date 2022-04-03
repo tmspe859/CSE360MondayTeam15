@@ -129,6 +129,9 @@
                </font>
             </Text>
             <TextArea fx:id="coupons1" layoutX="15.0" layoutY="365.0" prefHeight="176.0" prefWidth="304.0" />
+            <TextField fx:id="joinedDate" editable="false" layoutX="190.0" layoutY="46.0" prefHeight="25.0" prefWidth="132.0" />
+            <TextField fx:id="numberOfOrders" editable="false" layoutX="190.0" layoutY="73.0" prefHeight="25.0" prefWidth="132.0" />
+            <TextField fx:id="rewardsPoints" editable="false" layoutX="190.0" layoutY="100.0" prefHeight="25.0" prefWidth="132.0" />
          </children>
       </AnchorPane>
       <AnchorPane layoutX="667.0" layoutY="57.0" prefHeight="371.0" prefWidth="333.0" style="-fx-border-color: black;">
