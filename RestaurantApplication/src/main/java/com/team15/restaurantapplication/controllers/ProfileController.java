@@ -1,10 +1,9 @@
 package com.team15.restaurantapplication.controllers;
 
 import com.team15.restaurantapplication.RestaurantApplication;
-import com.team15.restaurantapplication.classes.Customer;
-import com.team15.restaurantapplication.classes.Order;
-import com.team15.restaurantapplication.classes.UserSession;
+import com.team15.restaurantapplication.classes.*;
 
+import com.team15.restaurantapplication.models.DeliveryInfoModel;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextArea;
@@ -64,6 +63,19 @@ public class ProfileController {
 
     @FXML
     private TextField waitTime;
+
+    @FXML
+    void initialize() {
+        User user = UserSession.getCurrentUser();
+        DeliveryInfo deliveryInfo = DeliveryInfoModel.getDeliveryInfo(user.getAccountID());
+        firstName.setText(user.getFirstName());
+        lastName.setText(user.getLastName());
+        username.setText(user.getUserName());
+        emailAddress.setText(user.getEmail());
+        password.setText(user.getPassword());
+        deliveryAddress.setText(deliveryInfo.getAddress());
+        phoneNumber.setText(deliveryInfo.getPhone());
+    }
 
     @FXML
     void checkoutClicked(ActionEvent event) throws IOException {
