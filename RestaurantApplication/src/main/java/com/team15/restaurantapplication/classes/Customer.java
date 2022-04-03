@@ -21,6 +21,9 @@ public class Customer extends User {
         this.pastOrders = new ArrayList<Order>();
         this.currentOrder = new Order();
         this.isManagerBoolean = false;
+        this.dateJoined = "";
+        this.numOfOrders = 0;
+        this.rewardPoints = 0;
 
     }
 
