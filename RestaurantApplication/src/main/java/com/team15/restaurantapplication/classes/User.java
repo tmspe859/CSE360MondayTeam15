@@ -8,6 +8,7 @@ public abstract class User {
     protected String password;
     protected String email;
     protected Integer accountID;
+    protected String dateJoined;
     protected Boolean isManagerBoolean = false;
     
     public User() {
@@ -54,4 +55,6 @@ public abstract class User {
     public Boolean isManager() {
         return this.isManagerBoolean;
     }
+
+    public String getJoinedDate() {return this.dateJoined;}
 }
