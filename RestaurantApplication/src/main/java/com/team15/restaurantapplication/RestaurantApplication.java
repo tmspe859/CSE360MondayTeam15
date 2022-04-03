@@ -15,6 +15,7 @@ import com.team15.restaurantapplication.classes.Customer;
 import com.team15.restaurantapplication.classes.UserSession;
 import com.team15.restaurantapplication.controllers.Controller;
 import com.team15.restaurantapplication.models.Database;
+import com.team15.restaurantapplication.models.MenuItemModel;
 
 public class RestaurantApplication extends Application {
     private static Stage primaryStage;
@@ -58,6 +59,21 @@ public class RestaurantApplication extends Application {
         popUpStage.show();
     }
 
+    public static void popUp(String fxml, String title, Object props) throws IOException {
+        Stage popUpStage = new Stage();
+        FXMLLoader root = new FXMLLoader(RestaurantApplication.class.getResource(fxml));
+        popUpStage.setResizable(false);
+        popUpStage.setTitle(title);
+        popUpStage.setScene(new Scene(root.load()));
+
+        if(props != null){
+            Controller controller = root.getController();
+            controller.setProps(props);
+        }
+
+        popUpStage.show();
+    }
+
     public static void main(String[] args) {
         Connection connection = Database.connect();
         Database.checkTables(connection);
@@ -66,7 +82,7 @@ public class RestaurantApplication extends Application {
     }
 
     public static void changeSceneToProfile(String fxml, String title, Object props) throws IOException {
-        if (UserSession.getCurrentUser().getAccountID() != null) { // If already logged in
+        if (UserSession.getCurrentUser().getAccountID() != -1) { // If already logged in
             FXMLLoader root = new FXMLLoader(RestaurantApplication.class.getResource(fxml));
             primaryStage.setResizable(false);
             primaryStage.setTitle(title);
