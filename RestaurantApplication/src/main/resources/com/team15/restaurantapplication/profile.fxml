@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
-
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1000.0" style="-fx-background-color: brown;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.team15.restaurantapplication.controllers.ProfileController">
    <children>
@@ -105,11 +105,37 @@
       </AnchorPane>
       <AnchorPane layoutX="667.0" layoutY="57.0" prefHeight="371.0" prefWidth="333.0" style="-fx-border-color: black;">
          <children>
-            <Text fill="WHITE" layoutX="88.0" layoutY="40.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Current Orders">
+            <Text fill="WHITE" layoutX="93.0" layoutY="40.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Current Order">
                <font>
                   <Font size="24.0" />
                </font>
             </Text>
+            <ScrollPane layoutX="14.0" layoutY="55.0" prefHeight="305.0" prefWidth="304.0">
+               <content>
+                  <AnchorPane fx:id="currentOrderPane" prefHeight="120.0" prefWidth="289.0">
+                     <children>
+                        <Text layoutX="14.0" layoutY="33.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Total Cost:">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Text>
+                        <TextField fx:id="totalCost" editable="false" layoutX="154.0" layoutY="13.0" prefHeight="25.0" prefWidth="101.0" />
+                        <Text layoutX="14.0" layoutY="67.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Place in queue:">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Text>
+                        <Text layoutX="14.0" layoutY="99.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Est. wait time:">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Text>
+                        <TextField fx:id="placeInQueue" editable="false" layoutX="154.0" layoutY="44.0" prefHeight="25.0" prefWidth="101.0" />
+                        <TextField fx:id="waitTime" editable="false" layoutX="154.0" layoutY="75.0" prefHeight="25.0" prefWidth="101.0" />
+                     </children>
+                  </AnchorPane>
+               </content>
+            </ScrollPane>
          </children>
       </AnchorPane>
       <AnchorPane layoutX="667.0" layoutY="427.0" prefHeight="373.0" prefWidth="333.0" style="-fx-border-color: black;">

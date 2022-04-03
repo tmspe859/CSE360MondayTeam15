@@ -8,10 +8,14 @@ import com.team15.restaurantapplication.classes.UserSession;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.AnchorPane;
 
 import java.io.IOException;
 
 public class ProfileController {
+
+    @FXML
+    private AnchorPane currentOrderPane;
 
     @FXML
     private TextField deliveryAddress;
@@ -32,7 +36,21 @@ public class ProfileController {
     private TextField phoneNumber;
 
     @FXML
+    private TextField placeInQueue;
+
+    @FXML
+    private TextField totalCost;
+
+    @FXML
     private TextField username;
+
+    @FXML
+    private TextField waitTime;
+
+    @FXML
+    public void initialize(){
+        currentOrderPane.setMinHeight(120 + (5 * 120));
+    }
 
     @FXML
     void checkoutClicked(ActionEvent event) throws IOException {

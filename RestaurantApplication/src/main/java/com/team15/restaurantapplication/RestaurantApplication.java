@@ -1,8 +1,10 @@
 package com.team15.restaurantapplication;
 
+import com.team15.restaurantapplication.controllers.ProfileController;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
@@ -62,4 +64,24 @@ public class RestaurantApplication extends Application {
         UserSession.getInstance(new Customer());
         launch(args);
     }
+
+    public static void changeSceneToProfile(String fxml, String title, Object props) throws IOException {
+        if (UserSession.getCurrentUser().getAccountID() != null) { // If already logged in
+            FXMLLoader root = new FXMLLoader(RestaurantApplication.class.getResource(fxml));
+            primaryStage.setResizable(false);
+            primaryStage.setTitle(title);
+            primaryStage.setScene(new Scene(root.load()));
+            
+            if (props != null) {
+                Controller controller = root.getController();
+                controller.setProps(props);
+            }
+
+            primaryStage.show();
+        } else { // Otherwise
+            RestaurantApplication.changeScene("login.fxml", "RestaurantApp - Home", null);  // Display login page
+        }
+
+    }
 }
+
