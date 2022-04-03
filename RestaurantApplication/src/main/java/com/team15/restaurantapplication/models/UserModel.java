@@ -64,7 +64,9 @@ public class UserModel {
             ResultSet rs = stmt.executeQuery(sql);
 
             if(rs.getBoolean(isManagerColumn)){
-                //user = new Manager();
+                user = new Manager(rs.getString(firstNameColumn), rs.getString(lastNameColumn),
+                        rs.getString(userNameColumn), rs.getString(passwordColumn), rs.getString(emailColumn),
+                        rs.getInt(idColumn), rs.getString(dateJoinedColumn));
             } else {
                 user = new Customer(rs.getString(firstNameColumn), rs.getString(lastNameColumn),
                         rs.getString(userNameColumn), rs.getString(passwordColumn), rs.getString(emailColumn),
