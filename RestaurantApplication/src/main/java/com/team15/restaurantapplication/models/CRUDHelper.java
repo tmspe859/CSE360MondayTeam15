@@ -104,8 +104,6 @@ class CRUDHelper{
         strBuilder.append(" ");
         strBuilder.append(conditional.toString());
         strBuilder.append(");");
-
-        System.out.println(strBuilder.toString());
         
         try (Connection conn = Database.connect()) {
             PreparedStatement pstmt = conn.prepareStatement(strBuilder.toString());
@@ -158,8 +156,6 @@ class CRUDHelper{
         strBuilder.append(" ");
         strBuilder.append(condition);
         strBuilder.append(";");
-
-        System.out.println(strBuilder.toString());
         
         try (Connection conn = Database.connect()) {
             PreparedStatement pstmt = conn.prepareStatement(strBuilder.toString());
@@ -186,7 +182,7 @@ class CRUDHelper{
         int number = Math.min(columns.length, searchVals.length);
         Boolean isFirst = true;
 
-        StringBuilder strBuilder = new StringBuilder("DELETE FROM " + tableName+ " ");
+        StringBuilder strBuilder = new StringBuilder("DELETE FROM " + tableName + " ");
         StringBuilder conditional = new StringBuilder("WHERE (");
 
         for (int i = 0; i < number; i++) {
@@ -224,7 +220,7 @@ class CRUDHelper{
             }
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
-            System.out.println("Could delete record in database");
+            System.out.println("Could not delete record in database");
         }
 
         return -1;
@@ -250,7 +246,7 @@ class CRUDHelper{
             }
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
-            System.out.println("Could delete record in database");
+            System.out.println("Could not delete record in database");
         }
 
         return -1;

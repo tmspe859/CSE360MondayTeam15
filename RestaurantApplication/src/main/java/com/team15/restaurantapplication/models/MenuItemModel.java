@@ -92,7 +92,7 @@ public class MenuItemModel {
         MenuItem result = null;
         try (Connection connection = Database.connect()) {
             Statement stmt = connection.createStatement();
-            String sql = "SELECT * FROM " + MenuItemModel.tableName + String.format("WHERE (%s='%s')", MenuItemModel.nameColumn, name);
+            String sql = "SELECT * FROM " + MenuItemModel.tableName + String.format(" WHERE (%s='%s')", MenuItemModel.nameColumn, name);
             ResultSet resultSet = stmt.executeQuery(sql);
 
             ArrayList<String> ingredients = getIngredientsFromString(
@@ -272,7 +272,7 @@ public class MenuItemModel {
     public static int deleteItem(String searchName) {
         return (int) CRUDHelper.delete(
             MenuItemModel.tableName,
-            String.format("WHERE (%s='%s')", MenuItemModel.tableName, searchName)
+            String.format("WHERE (%s='%s')", MenuItemModel.nameColumn, searchName)
         );
     }
 
