@@ -92,11 +92,15 @@ public class DeliveryInfoModel {
                 " WHERE (" + DeliveryInfoModel.userForeignKey + "=" + Integer.toString(userID) + ")";
             ResultSet resultSet = stmt.executeQuery(sql);
 
-            result = new DeliveryInfo(
-                resultSet.getString(DeliveryInfoModel.recipientColumn), 
-                resultSet.getString(DeliveryInfoModel.addressColumn),
-                resultSet.getString(DeliveryInfoModel.phoneColumn)
-            );
+            if (resultSet.next()) {
+                result = new DeliveryInfo(
+                        resultSet.getString(DeliveryInfoModel.recipientColumn),
+                        resultSet.getString(DeliveryInfoModel.addressColumn),
+                        resultSet.getString(DeliveryInfoModel.phoneColumn)
+                );
+            } else {
+                result = new DeliveryInfo("", "", "");
+            }
 
             resultSet.close();
             stmt.close();
