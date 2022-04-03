@@ -88,6 +88,42 @@ public class MenuItemModel {
         return menu;
     }
 
+    public static MenuItem getByName(String name) {
+        MenuItem result = null;
+        try (Connection connection = Database.connect()) {
+            Statement stmt = connection.createStatement();
+            String sql = "SELECT * FROM " + MenuItemModel.tableName + String.format("WHERE (%s='%s')", MenuItemModel.nameColumn, name);
+            ResultSet resultSet = stmt.executeQuery(sql);
+
+            ArrayList<String> ingredients = getIngredientsFromString(
+                resultSet.getString(MenuItemModel.ingredientsColumn)
+            );
+
+            ArrayList<Boolean> tags = getTagsFromString(
+                resultSet.getString(MenuItemModel.tagsColumn)
+            );
+
+            Double price = Double.parseDouble(resultSet.getString(MenuItemModel.priceColumn));
+
+            result = new MenuItem(
+                resultSet.getString(MenuItemModel.nameColumn),
+                price,
+                resultSet.getString(MenuItemModel.descColumn),
+                ingredients,
+                tags,
+                resultSet.getString(MenuItemModel.imgPathColumn)
+            );
+
+            stmt.close();
+            connection.close();
+            resultSet.close();
+        } catch ( Exception e ) {
+            System.err.println( e.getClass().getName() + ": " + e.getMessage() );
+            System.exit(0);
+        }
+        return result;
+    }
+
     public static Integer addItem(MenuItem item) {
         return MenuItemModel.addItem(
             item.getName(),
@@ -203,7 +239,7 @@ public class MenuItemModel {
             });
     }
 
-    public int updateItem(String searchName, String[] columns, Object[] updatedVals) {
+    public static int updateItem(String searchName, String[] columns, Object[] updatedVals) {
         return (int) CRUDHelper.update(
             MenuItemModel.tableName, 
             columns, 
