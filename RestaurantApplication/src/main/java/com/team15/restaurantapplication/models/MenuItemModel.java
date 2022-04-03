@@ -44,7 +44,6 @@ public class MenuItemModel {
             );
             stmt.executeUpdate(sql);
             stmt.close();
-            connection.close();
         } catch ( Exception e ) {
             System.err.println(e.getClass().getName() + ": " + e.getMessage());
         }
