@@ -32,6 +32,9 @@ class CRUDHelper{
                     break;
                 case Types.BOOLEAN:
                     queryBuilder.append((boolean) values[i]);
+                    break;
+                case Types.DATE:
+                    queryBuilder.append((String) values[i]);
             }
             if (i < number - 1) queryBuilder.append(", ");
         }
