@@ -38,6 +38,9 @@ import java.sql.*;
 public class MenuController implements Initializable {
 
     @FXML
+    private Button addItemButton;
+
+    @FXML
     private CheckBox calorieCheckbox;
 
     @FXML
@@ -75,6 +78,10 @@ public class MenuController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+
+        if (UserSession.getCurrentUser().isManager()) {
+            addItemButton.setVisible(true);
+        }
 
         /*
         menu.setMinWidth(Region.USE_COMPUTED_SIZE);
@@ -158,5 +165,8 @@ public class MenuController implements Initializable {
         this.menu.getChildren().clear();
         this.initialize(null, null);
     }
+    @FXML
+    void addItemClicked(ActionEvent event) {
 
+    }
 }
