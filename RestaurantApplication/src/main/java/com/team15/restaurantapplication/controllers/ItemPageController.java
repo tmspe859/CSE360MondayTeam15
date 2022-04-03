@@ -202,7 +202,8 @@ public class ItemPageController extends Controller implements Initializable {
 
     @FXML
     void deleteClicked(ActionEvent event) {
-
+        // REMOVE ITEM FROM DB
+        // CHANGE SCENE TO MENU/REFRESH MENU
     }
 
     @FXML
