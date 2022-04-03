@@ -4,6 +4,7 @@ import com.team15.restaurantapplication.RestaurantApplication;
 import com.team15.restaurantapplication.classes.*;
 
 import com.team15.restaurantapplication.models.DeliveryInfoModel;
+import com.team15.restaurantapplication.models.UserModel;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextArea;
@@ -13,8 +14,6 @@ import javafx.scene.layout.AnchorPane;
 import java.io.IOException;
 
 public class ProfileController {
-
-
 
     @FXML
     private TextArea coupons;
@@ -41,7 +40,13 @@ public class ProfileController {
     private TextField firstName;
 
     @FXML
+    private TextField joinedDate;
+
+    @FXML
     private TextField lastName;
+
+    @FXML
+    private TextField numberOfOrders;
 
     @FXML
     private TextField password;
@@ -56,6 +61,9 @@ public class ProfileController {
     private TextArea previousOrderList;
 
     @FXML
+    private TextField rewardsPoints;
+
+    @FXML
     private TextField totalCost;
 
     @FXML
@@ -67,36 +75,50 @@ public class ProfileController {
     @FXML
     void initialize() {
         User user = UserSession.getCurrentUser();
-        DeliveryInfo deliveryInfo = DeliveryInfoModel.getDeliveryInfo(user.getAccountID());
-        firstName.setText(user.getFirstName());
-        lastName.setText(user.getLastName());
-        username.setText(user.getUserName());
-        emailAddress.setText(user.getEmail());
-        password.setText(user.getPassword());
-        deliveryAddress.setText(deliveryInfo.getAddress());
-        phoneNumber.setText(deliveryInfo.getPhone());
+        if (!user.isManager()) {
+            Customer currentUser = UserModel.getCustomer(user.getUserName(), user.getPassword());
+            DeliveryInfo deliveryInfo = DeliveryInfoModel.getDeliveryInfo(currentUser.getAccountID());
+            firstName.setText(currentUser.getFirstName());
+            lastName.setText(currentUser.getLastName());
+            username.setText(currentUser.getUserName());
+            emailAddress.setText(currentUser.getEmail());
+            password.setText(currentUser.getPassword());
+            joinedDate.setText(currentUser.getJoinedDate());
+            numberOfOrders.setText(currentUser.getNumOfOrders().toString());
+            rewardsPoints.setText(currentUser.getRewardsPoints().toString());
+            deliveryAddress.setText(deliveryInfo.getAddress());
+            phoneNumber.setText(deliveryInfo.getPhone());
+        } else {
+            Manager currentUser = UserModel.getManager(user.getUserName(), user.getPassword());
+            firstName.setText(currentUser.getFirstName());
+            lastName.setText(currentUser.getLastName());
+            username.setText(currentUser.getUserName());
+            emailAddress.setText(currentUser.getEmail());
+            password.setText(currentUser.getPassword());
+            joinedDate.setText(currentUser.getJoinedDate());
+        }
     }
 
     @FXML
     void checkoutClicked(ActionEvent event) throws IOException {
         Customer currentUser = (Customer) UserSession.getCurrentUser();
         Order currentOrder = currentUser.getCurrentOrder();
-        RestaurantApplication.changeScene("checkout.fxml","RestaurantApp - Checkout", currentOrder); // Change scene
+        RestaurantApplication.changeScene("checkout.fxml", "RestaurantApp - Checkout", currentOrder); // Change scene
     }
 
     @FXML
     void homeClicked(ActionEvent event) throws IOException {
-        RestaurantApplication.changeScene("home.fxml","RestaurantApp - Home", null); // Change scene
+        RestaurantApplication.changeScene("home.fxml", "RestaurantApp - Home", null); // Change scene
     }
 
     @FXML
     void menuClicked(ActionEvent event) throws IOException {
-        RestaurantApplication.changeScene("menu.fxml","RestaurantApp - Menu", null); // Change scene
+        RestaurantApplication.changeScene("menu.fxml", "RestaurantApp - Menu", null); // Change scene
     }
 
     @FXML
     void profileClicked(ActionEvent event) throws IOException {
-        RestaurantApplication.changeSceneToProfile("profile.fxml","RestaurantApp - Profile", null);
+        RestaurantApplication.changeSceneToProfile("profile.fxml", "RestaurantApp - Profile", null);
     }
 
     @FXML
