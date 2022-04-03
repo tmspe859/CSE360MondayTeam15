@@ -2,6 +2,7 @@ package com.team15.restaurantapplication.controllers;
 
 import com.team15.restaurantapplication.RestaurantApplication;
 import com.team15.restaurantapplication.classes.Customer;
+import com.team15.restaurantapplication.classes.Menu;
 import com.team15.restaurantapplication.classes.MenuItem;
 import com.team15.restaurantapplication.classes.Order;
 
@@ -29,6 +30,10 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
+
+import com.team15.restaurantapplication.models.MenuItemModel;
+import com.team15.restaurantapplication.models.Database;
+import java.sql.*;
 
 public class MenuController implements Initializable {
 
@@ -70,7 +75,7 @@ public class MenuController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        
+
         /*
         menu.setMinWidth(Region.USE_COMPUTED_SIZE);
         menu.setPrefWidth(Region.USE_COMPUTED_SIZE);
@@ -81,14 +86,24 @@ public class MenuController implements Initializable {
         menu.setMaxHeight(Region.USE_PREF_SIZE);*/
 
 
+        Menu fullMenu = Menu.getInstance();
+
         new Thread(() -> {
             
             Platform.runLater(() -> {
             int column = 0;
             int row = 1;
             try {
-            
-                for(int i=0; i < 30; i++){
+                String searchString = searchText.getText();
+
+                ArrayList<Boolean> searchTags = new ArrayList<Boolean>();
+                searchTags.add(vegetarianCheckbox.isSelected());
+                searchTags.add(veganCheckbox.isSelected());
+                searchTags.add(calorieCheckbox.isSelected());
+                searchTags.add(spicyCheckbox.isSelected());
+                
+                ArrayList<MenuItem> loadedMenu = fullMenu.getFilteredItems(searchString, searchTags);
+                for (MenuItem item : loadedMenu) {
                     FXMLLoader fxmlloader = new FXMLLoader();
                     fxmlloader.setLocation(RestaurantApplication.class.getResource("menuitem.fxml"));
     
@@ -96,12 +111,7 @@ public class MenuController implements Initializable {
                     
                     MenuItemController itemController = fxmlloader.getController();
 
-                    ArrayList<String> ings = new ArrayList<>();
-                    ings.add("ingredient 1");
-                    ings.add("ingredient 2");
-
-                    itemController.setData(new MenuItem("Banana", 3.99, "Banana description",
-                            ings , null, RestaurantApplication.class.getResource("images.jpg").toExternalForm()));
+                    itemController.setData(item);
                 
                 
                     if(column == 5){
@@ -111,7 +121,6 @@ public class MenuController implements Initializable {
     
                     menu.add(menuItem, column++, row);
                     GridPane.setMargin(menuItem, new Insets(10));
-    
                 }
             } catch (IOException e) {
                 // TODO Auto-generated catch block
@@ -119,7 +128,6 @@ public class MenuController implements Initializable {
             }
             });
         }).start();
-        
         
     }
 
@@ -142,12 +150,17 @@ public class MenuController implements Initializable {
 
     @FXML
     void profileClicked(ActionEvent event) throws IOException {
-        RestaurantApplication.changeSceneToProfile("profile.fxml","RestaurantApp - Profile", null);
+        if (UserSession.getCurrentUser().getAccountID() != null) {// If already logged in
+            RestaurantApplication.changeScene("profile.fxml","RestaurantApp - Profile", null); // Change scene
+        } else { // Otherwise
+            RestaurantApplication.changeScene("login.fxml", "RestaurantApp - Home", null);  // Display login page
+        }
     }
 
     @FXML
     void refreshClicked(ActionEvent event) {
-        // RELOAD MENU WITH NON-MATCHING ITEMS FILTERED OUT
+        this.menu.getChildren().clear();
+        this.initialize(null, null);
     }
 
 }
