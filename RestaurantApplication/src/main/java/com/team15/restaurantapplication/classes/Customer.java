@@ -9,6 +9,9 @@ public class Customer extends User {
     private ArrayList<Coupon> coupons;
     private ArrayList<Order> pastOrders;
     private Order currentOrder;
+    private String dateJoined;
+    private Integer numOfOrders;
+    private Integer rewardPoints;
 
     public Customer() {
         super();
@@ -18,9 +21,11 @@ public class Customer extends User {
         this.pastOrders = new ArrayList<Order>();
         this.currentOrder = new Order();
         this.isManagerBoolean = false;
+
     }
 
-    public Customer(String firstName, String lastName, String userName, String password, String email, Integer accountID) {
+    public Customer(String firstName, String lastName, String userName, String password, String email,
+                    Integer accountID, String dateJoined, Integer numOfOrders, Integer rewardPoints) {
         super(firstName, lastName, userName, password, email, accountID);
         this.deliveryInfo = null;
         this.cardInfo = null;
@@ -28,6 +33,9 @@ public class Customer extends User {
         this.pastOrders = new ArrayList<Order>();
         this.currentOrder = new Order();
         this.isManagerBoolean = false;
+        this.dateJoined = dateJoined;
+        this.numOfOrders = numOfOrders;
+        this.rewardPoints = rewardPoints;
     }
 
     public void setDeliveryInfo(DeliveryInfo deliveryInfo) { this.deliveryInfo = deliveryInfo; }
