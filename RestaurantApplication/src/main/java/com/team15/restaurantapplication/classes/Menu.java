@@ -23,6 +23,47 @@ public class Menu {
         return this.menuItems.add(newItem);
     }
 
+    public Boolean updateItem(MenuItem oldItem, MenuItem newItem) {
+        if (MenuItemModel.updateItem(oldItem, newItem) == -1) return false;
+        int oldIndex = this.menuItems.indexOf(oldItem);
+        return (this.menuItems.set(oldIndex, newItem) == oldItem);
+    }
+
+    public Boolean updateItem(String searchName, String[] columns, Object[] updatedVals) {
+        if (MenuItemModel.updateItem(searchName, columns, updatedVals) == -1) return false;
+        for (int i = 0; i < this.menuItems.size(); i++) {
+            MenuItem item = this.menuItems.get(i);
+            if (item.getName().compareTo(searchName) == 0) {
+                MenuItem updatedItem = MenuItemModel.getByName(searchName);
+                if (updatedItem == null) return false;
+                this.menuItems.set(i, updatedItem);
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public Boolean deleteItem(MenuItem item) {
+        if (MenuItemModel.deleteItem(item) == -1) return false;
+        return this.menuItems.remove(item);
+    }
+
+    public Boolean deleteItem(String name) {
+        if (MenuItemModel.deleteItem(name) == -1) return false;
+        for (int i = 0; i < this.menuItems.size(); i++) {
+            MenuItem currItem = this.menuItems.get(i);
+            if (currItem.getName().compareTo(name) == 0) {
+                this.menuItems.remove(i);
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public void refreshListings() {
+        this.menuItems = MenuItemModel.getMenu();
+    }
+
     public ArrayList<MenuItem> getMenu() {
         return this.menuItems;
     }
