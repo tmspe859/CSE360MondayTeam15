@@ -52,6 +52,33 @@ public class ItemPageController extends Controller implements Initializable {
 
     private boolean[] itemIngredients;
 
+    @FXML
+    private Button checkoutButton;
+
+    @FXML
+    private Button deleteButton;
+
+    @FXML
+    private Button homeButton;
+
+    @FXML
+    private Button menuButton;
+
+    @FXML
+    private Button profileButton;
+
+    @FXML
+    private Button updateButton;
+
+    @FXML
+    void initialize() {
+        if (UserSession.getCurrentUser().isManager()) {
+            updateButton.setVisible(true);
+            deleteButton.setVisible(true);
+            addToCart.setVisible(false);
+        }
+    }
+
     @Override
     public void setProps(Object props){
         
@@ -172,6 +199,17 @@ public class ItemPageController extends Controller implements Initializable {
             RestaurantApplication.changeScene("login.fxml", "RestaurantApp - Home", null);  // Display login page
         }
     }
+
+    @FXML
+    void deleteClicked(ActionEvent event) {
+
+    }
+
+    @FXML
+    void updateClicked(ActionEvent event) {
+
+    }
+
 
 
 }

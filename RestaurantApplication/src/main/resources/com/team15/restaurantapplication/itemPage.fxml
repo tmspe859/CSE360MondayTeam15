@@ -51,7 +51,7 @@
             <AnchorPane layoutX="39.0" layoutY="114.0" prefHeight="535.0" prefWidth="936.0" style="-fx-background-color: white;" AnchorPane.bottomAnchor="151.0" AnchorPane.leftAnchor="32.0" AnchorPane.rightAnchor="32.0" AnchorPane.topAnchor="114.0">
                <children>
                   <ImageView fx:id="image" fitHeight="341.0" fitWidth="392.0" layoutX="43.0" layoutY="79.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="43.0" />
-                  <AnchorPane layoutX="570.0" layoutY="89.0" prefHeight="370.0" prefWidth="294.0">
+                  <AnchorPane layoutX="570.0" layoutY="89.0" prefHeight="341.0" prefWidth="294.0">
                      <children>
                         <VBox layoutX="80.0" layoutY="47.0" prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="100.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                            <children>
@@ -89,7 +89,7 @@
                               </ScrollPane>
                            </children>
                         </VBox>
-                        <HBox layoutX="33.0" layoutY="242.0" prefHeight="43.0" prefWidth="200.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="8.0" AnchorPane.rightAnchor="8.0">
+                        <HBox layoutX="33.0" layoutY="242.0" prefHeight="29.0" prefWidth="278.0" AnchorPane.bottomAnchor="38.0" AnchorPane.leftAnchor="8.0" AnchorPane.rightAnchor="8.0">
                            <children>
                               <Label fx:id="price" prefHeight="27.0" prefWidth="184.0" text="Price" HBox.hgrow="SOMETIMES">
                                  <font>
@@ -109,6 +109,12 @@
                      </children>
                   </AnchorPane>
                   <Separator layoutX="482.0" layoutY="60.0" orientation="VERTICAL" prefHeight="412.0" prefWidth="4.0" />
+                  <AnchorPane layoutX="570.0" layoutY="414.0" prefHeight="57.0" prefWidth="294.0">
+                     <children>
+                        <Button fx:id="updateButton" layoutX="70.0" layoutY="16.0" mnemonicParsing="false" onAction="#updateClicked" prefHeight="25.0" prefWidth="69.0" text="Update" visible="false" />
+                        <Button fx:id="deleteButton" layoutX="155.0" layoutY="16.0" mnemonicParsing="false" onAction="#deleteClicked" prefHeight="25.0" prefWidth="69.0" text="Delete" visible="false" />
+                     </children>
+                  </AnchorPane>
                </children>
             </AnchorPane>
          </children>
