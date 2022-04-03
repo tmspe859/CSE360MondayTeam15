@@ -3,6 +3,7 @@ package com.team15.restaurantapplication.models;
 import java.sql.*;
 import java.time.LocalDate;
 
+import com.team15.restaurantapplication.classes.Manager;
 import com.team15.restaurantapplication.classes.User;
 import com.team15.restaurantapplication.exceptions.emailExistsException;
 import com.team15.restaurantapplication.exceptions.usernameTakenException;
@@ -78,6 +79,69 @@ public class UserModel {
             System.err.println( e.getClass().getName() + ": " + e.getMessage() );
             return null;
          }
+        return user;
+
+    }
+
+    public static Manager getManager(String userName, String password){
+
+        Manager user = null;
+
+        String condition = " (" + userNameColumn + "='" + userName +
+                "' OR " + emailColumn + "='" + userName + "') " +
+                " AND " + passwordColumn + "='" + password + "'";
+
+        try(Connection connection = Database.connect()) {
+
+            Statement stmt = connection.createStatement();
+            String sql = "SELECT * FROM " + tableName + " WHERE " + condition;
+            ResultSet rs = stmt.executeQuery(sql);
+
+
+
+            //user = new Manager();
+
+
+
+            rs.close();
+            stmt.close();
+            connection.close();
+
+        } catch ( Exception e ) {
+            System.err.println( e.getClass().getName() + ": " + e.getMessage() );
+            return null;
+        }
+        return user;
+
+    }
+
+    public static Customer getCustomer(String userName, String password){
+
+        Customer user = null;
+
+        String condition = " (" + userNameColumn + "='" + userName +
+                "' OR " + emailColumn + "='" + userName + "') " +
+                " AND " + passwordColumn + "='" + password + "'";
+
+        try(Connection connection = Database.connect()) {
+
+            Statement stmt = connection.createStatement();
+            String sql = "SELECT * FROM " + tableName + " WHERE " + condition;
+            ResultSet rs = stmt.executeQuery(sql);
+
+            user = new Customer(rs.getString(firstNameColumn), rs.getString(lastNameColumn),
+                    rs.getString(userNameColumn), rs.getString(passwordColumn), rs.getString(emailColumn),
+                    rs.getInt(idColumn), rs.getString(dateJoinedColumn), rs.getInt(numOfOrdersColumn),
+                    rs.getInt(rewardPointsColumn));
+
+            rs.close();
+            stmt.close();
+            connection.close();
+
+        } catch ( Exception e ) {
+            System.err.println( e.getClass().getName() + ": " + e.getMessage() );
+            return null;
+        }
         return user;
 
     }
