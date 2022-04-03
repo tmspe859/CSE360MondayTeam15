@@ -38,7 +38,7 @@ public class DeliveryInfoModel {
             );
             stmt.executeUpdate(sql);
             stmt.close();
-            connection.close();
+
         } catch ( Exception e ) {
             System.err.println(e.getClass().getName() + ": " + e.getMessage());
         }
@@ -99,13 +99,14 @@ public class DeliveryInfoModel {
                         resultSet.getString(DeliveryInfoModel.phoneColumn)
                 );
             } else {
-                result = new DeliveryInfo("", "", "");
+                result = null;
             }
 
             resultSet.close();
             stmt.close();
             connection.close();
         } catch ( Exception e ) {
+            e.printStackTrace();
             System.err.println( e.getClass().getName() + ": " + e.getMessage() );
             System.exit(0);
         }
@@ -116,7 +117,7 @@ public class DeliveryInfoModel {
         // Definetly should be optimized in the future!
         DeliveryInfo oldInfo = DeliveryInfoModel.getDeliveryInfo(userID);
 
-        return (int) CRUDHelper.update(
+        int id = (int) CRUDHelper.update(
             DeliveryInfoModel.tableName,
             new String[]{
                 DeliveryInfoModel.recipientColumn,
@@ -137,6 +138,13 @@ public class DeliveryInfoModel {
                 userID
             }
         );
+
+        //update cache
+        Customer updateUser = (Customer) UserSession.getCurrentUser();
+        updateUser.setDeliveryInfo(updatedInfo);
+        UserSession.setCurrentUser(updateUser);
+
+        return id;
     }
 
     public static int updateDeliveryInfo(String[] columnStrings, Object[] previousInfo, Object[] newInfo) {

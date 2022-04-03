@@ -1,6 +1,7 @@
 package com.team15.restaurantapplication.controllers;
 
 import com.team15.restaurantapplication.RestaurantApplication;
+import com.team15.restaurantapplication.classes.CardInfo;
 import com.team15.restaurantapplication.classes.Customer;
 import com.team15.restaurantapplication.classes.DeliveryInfo;
 import com.team15.restaurantapplication.classes.Order;
@@ -8,6 +9,7 @@ import com.team15.restaurantapplication.classes.User;
 import com.team15.restaurantapplication.classes.UserSession;
 import com.team15.restaurantapplication.exceptions.emailExistsException;
 import com.team15.restaurantapplication.exceptions.usernameTakenException;
+import com.team15.restaurantapplication.models.CardInfoModel;
 import com.team15.restaurantapplication.models.DeliveryInfoModel;
 import com.team15.restaurantapplication.models.UserModel;
 
@@ -73,7 +75,9 @@ public class LoginRegistrationController {
             if(!user.isManager()){
                 Customer customer = (Customer) user;
                 DeliveryInfo deliveryInfo = DeliveryInfoModel.getDeliveryInfo(user.getAccountID());
+                CardInfo cardInfo = CardInfoModel.getCardInfo(user.getAccountID());
                 customer.setDeliveryInfo(deliveryInfo);
+                customer.setPaymentInfo(cardInfo);
                 UserSession.setCurrentUser(customer);
             } else {
                 UserSession.setCurrentUser(user);

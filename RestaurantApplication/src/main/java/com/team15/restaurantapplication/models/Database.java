@@ -15,6 +15,7 @@ public class Database {
         CouponModel.createTable(connection);
         MenuItemModel.createTable(connection);
         DeliveryInfoModel.createTable(connection);
+        CardInfoModel.createTable(connection);
     }
 
     public static Connection connect() {

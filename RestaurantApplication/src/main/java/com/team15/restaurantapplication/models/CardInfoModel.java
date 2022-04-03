@@ -24,12 +24,15 @@ public class CardInfoModel {
                     "%s CHAR(%d) NOT NULL, " + 
                     "%s CHAR(%d) NOT NULL, " + 
                     "%s CHAR(%d) NOT NULL, " + 
+                    "%s CHAR(%d) NOT NULL, " + 
                     "%s INTEGER NOT NULL, " +
                     "FOREIGN KEY (%s) REFERENCES users (id)" +
                     ")", 
                 CardInfoModel.tableName,
                 CardInfoModel.idColumn,
                 CardInfoModel.cardNumberColumn,
+                CardInfoModel.stringSize,
+                CardInfoModel.cardNameColumn,
                 CardInfoModel.stringSize,
                 CardInfoModel.expirationColumn,
                 CardInfoModel.stringSize,
@@ -40,8 +43,9 @@ public class CardInfoModel {
             );
             stmt.executeUpdate(sql);
             stmt.close();
-            connection.close();
+
         } catch ( Exception e ) {
+            System.err.println(e.getStackTrace());
             System.err.println(e.getClass().getName() + ": " + e.getMessage());
         }
     }
@@ -108,7 +112,7 @@ public class CardInfoModel {
                         resultSet.getString(CardInfoModel.securityCodeColumn)
                 );
             } else {
-                result = new CardInfo("", "", "", "");
+                result = null;
             }
 
             resultSet.close();
@@ -125,7 +129,7 @@ public class CardInfoModel {
         // Definetly should be optimized in the future!
         CardInfo oldInfo = CardInfoModel.getCardInfo(userID);
 
-        return (int) CRUDHelper.update(
+        int id = (int) CRUDHelper.update(
             CardInfoModel.tableName,
             new String[]{
                 CardInfoModel.cardNumberColumn,
@@ -149,6 +153,13 @@ public class CardInfoModel {
                 userID
             }
         );
+
+        //update cache
+        Customer updateUser = (Customer) UserSession.getCurrentUser();
+        updateUser.setPaymentInfo(updatedInfo);
+        UserSession.setCurrentUser(updateUser);
+
+        return id;
     }
 
     public static int updateCardInfo(String[] columnStrings, Object[] previousInfo, Object[] newInfo) {

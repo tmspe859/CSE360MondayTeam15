@@ -176,7 +176,7 @@ public class UserModel {
     public static int updateUser(String firstName, String lastName, 
             String userName, String email, String password, int userID){
 
-        String condition= String.format("WHERE (%s=%s", idColumn, userID);
+        String condition= String.format("WHERE (%s=%s)", idColumn, userID);
 
         //update database
         int id = (int) CRUDHelper.update(

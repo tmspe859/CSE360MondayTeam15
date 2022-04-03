@@ -78,6 +78,7 @@ public class RestaurantApplication extends Application {
         Connection connection = Database.connect();
         Database.checkTables(connection);
         UserSession.getInstance(new Customer());
+        //MenuItemModel.Test();
         launch(args);
     }
 

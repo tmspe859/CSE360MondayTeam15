@@ -4,11 +4,14 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import com.team15.restaurantapplication.classes.CardInfo;
+import com.team15.restaurantapplication.classes.Customer;
 import com.team15.restaurantapplication.classes.DeliveryInfo;
 import com.team15.restaurantapplication.classes.Order;
 import com.team15.restaurantapplication.classes.UserSession;
 import com.team15.restaurantapplication.exceptions.emailExistsException;
 import com.team15.restaurantapplication.exceptions.usernameTakenException;
+import com.team15.restaurantapplication.models.CardInfoModel;
+import com.team15.restaurantapplication.models.DeliveryInfoModel;
 import com.team15.restaurantapplication.models.OrderModel;
 
 import javafx.event.ActionEvent;
@@ -98,12 +101,49 @@ public class finalizeOrderController extends Controller implements Initializable
 
         //[TODO] validate payment and delivery info
 
+        if(rememberCheckbox.isSelected()){ 
+            System.out.println("Remember me"); 
+            updateCardInfo();
+            updateDeliveryInfo();
+        }
 
         //Save order data to database
         String itemString = currentOrder.getItemString();
         double totalCost = currentOrder.getTotalCost();
         int customerId = UserSession.getCurrentUser().getAccountID();
         OrderModel.createOrder(itemString, totalCost, customerId);
+    }
+
+    private void updateDeliveryInfo() {
+        if(!UserSession.isManager()){
+            Customer customer = (Customer) UserSession.getCurrentUser();
+            String recipient = deliveryName.getText();
+            DeliveryInfo newInfo = new DeliveryInfo(recipient, deliveryAddress.getText(), phoneNumber.getText());
+            if(customer.getDeliveryInfo() != null){
+                DeliveryInfoModel.updateDeliveryInfo(newInfo, customer.getAccountID());
+            } else {
+                DeliveryInfoModel.addDeliveryInfo(newInfo, customer.getAccountID());
+            }
+        }
+    }
+
+
+    private void updateCardInfo(){
+        if(!UserSession.isManager()){
+            Customer customer = (Customer) UserSession.getCurrentUser();
+
+            String number = cardNumber.getText();
+            String name = cardName.getText();
+            String expiration = cardDate.getText();
+            String code = cardCode.getText();
+
+            CardInfo newInfo = new CardInfo(number, name, expiration, code);
+            if(customer.getPaymentInfo() != null){
+                CardInfoModel.updateCardInfo(newInfo, customer.getAccountID());
+            } else {
+                CardInfoModel.addCardInfo(newInfo, customer.getAccountID());
+            }
+        }
     }
 
 }

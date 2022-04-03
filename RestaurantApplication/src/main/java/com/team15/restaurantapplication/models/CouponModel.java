@@ -33,7 +33,6 @@ public class CouponModel {
             System.err.println( e.getClass().getName() + ": " + e.getMessage() );
 
          }
-
     }
 
     private static Coupon getCoupon(String condition){
