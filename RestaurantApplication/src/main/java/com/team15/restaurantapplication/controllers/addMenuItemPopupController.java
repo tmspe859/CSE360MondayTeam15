@@ -2,10 +2,8 @@ package com.team15.restaurantapplication.controllers;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.TextField;
-import javafx.stage.Stage;
 
 public class addMenuItemPopupController {
 
@@ -37,18 +35,13 @@ public class addMenuItemPopupController {
     private CheckBox vegetarianCheckbox;
 
     @FXML
-    private Button cancelButton;
-
-    @FXML
     void addClicked(ActionEvent event) {
-        // VERIFY FOOD ITEM NAME DOESN'T ALREADY EXIST
-        // CREATE NEW DATABASE ENTRY FOR FOOD ITEM USING DATA FROM TEXTFIELDS
+
     }
 
     @FXML
     void cancelClicked(ActionEvent event) {
-        Stage stage = (Stage) cancelButton.getScene().getWindow(); // Set stage to this window
-        stage.close(); // Close the stage
+
     }
 
 }
