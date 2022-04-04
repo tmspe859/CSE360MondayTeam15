@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="80.0" prefWidth="246.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.team15.restaurantapplication.controllers.OrderController">
+   <children>
+      <Label fx:id="items" layoutX="4.0" layoutY="10.0" prefHeight="17.0" prefWidth="239.0" text="items">
+         <font>
+            <Font size="10.0" />
+         </font>
+      </Label>
+      <Label fx:id="cost" layoutX="49.0" layoutY="48.0" text="cost" />
+      <Label fx:id="date" layoutX="163.0" layoutY="48.0" text="date" />
+      <Label layoutX="131.0" layoutY="48.0" text="date: " />
+      <Label layoutX="22.0" layoutY="48.0" text="cost: " />
+   </children>
+</Pane>

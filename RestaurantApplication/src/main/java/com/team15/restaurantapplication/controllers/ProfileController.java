@@ -4,16 +4,24 @@ import com.team15.restaurantapplication.RestaurantApplication;
 import com.team15.restaurantapplication.classes.*;
 
 import com.team15.restaurantapplication.models.DeliveryInfoModel;
+import com.team15.restaurantapplication.models.OrderModel;
 import com.team15.restaurantapplication.models.UserModel;
+
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.geometry.Insets;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.GridPane;
+import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 public class ProfileController {
 
@@ -60,7 +68,7 @@ public class ProfileController {
     private TextField placeInQueue;
 
     @FXML
-    private TextArea previousOrderList;
+    private GridPane previousOrderList;
 
     @FXML
     private TextField rewardsPoints;
@@ -100,8 +108,58 @@ public class ProfileController {
                 phoneNumber.setText(deliveryInfo.getPhone());
             }
 
+            initializePreviousOrders(customer.getAccountID());
+
         }
 
+    }
+
+    private void initializePreviousOrders(int customerId){
+
+        ArrayList<Order> previousOrders = OrderModel.getOrdersByCustomer(customerId);
+        int length = previousOrders.size();
+        totalCost.setText(String.format("$%,.2f", previousOrders.get(length-1).getTotalCost()));
+        String[] items = previousOrders.get(length-1).getItemString().split(",");
+        for(String item : items){
+            currentOrderItems.appendText(item + "\n");
+        }
+
+        new Thread(() -> {
+            
+            Platform.runLater(() -> {
+            int column = 0;
+            int row = 1;
+            int i = 0;
+            try {
+                
+                for (Order order : previousOrders) {
+                    if(i==length-1){
+                        break;
+                    }
+                    FXMLLoader fxmlloader = new FXMLLoader();
+                    fxmlloader.setLocation(RestaurantApplication.class.getResource("order.fxml"));
+    
+                    Pane orderView = fxmlloader.load();
+                    
+                    OrderController itemController = fxmlloader.getController();
+
+                    itemController.setData(order);
+                
+                    if(column == 1){
+                        column = 0;
+                        row++;
+                    }
+    
+                    previousOrderList.add(orderView, column++, row);
+                    GridPane.setMargin(orderView, new Insets(10));
+                    i++;
+                }
+            } catch (IOException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
+            });
+        }).start();
     }
 
     @FXML

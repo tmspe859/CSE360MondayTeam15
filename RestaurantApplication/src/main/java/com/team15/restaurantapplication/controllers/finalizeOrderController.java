@@ -122,7 +122,7 @@ public class finalizeOrderController extends Controller implements Initializable
         }
 
         //Save order data to database
-        String itemString = currentOrder.getItemString();
+        String itemString = currentOrder.generateItemString();
         double totalCost = currentOrder.getTotalCost();
         int customerId = UserSession.getCurrentUser().getAccountID();
         OrderModel.createOrder(itemString, totalCost, customerId);

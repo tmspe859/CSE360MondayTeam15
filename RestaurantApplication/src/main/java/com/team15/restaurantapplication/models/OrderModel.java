@@ -1,6 +1,7 @@
 package com.team15.restaurantapplication.models;
 
 import java.sql.*;
+import java.util.ArrayList;
 
 import com.team15.restaurantapplication.classes.Order;
 import com.team15.restaurantapplication.exceptions.emailExistsException;
@@ -39,9 +40,9 @@ public class OrderModel {
 
     }
 
-    private static Order getOrder(String condition){
+    private static ArrayList<Order> getOrder(String condition){
 
-        Order order = null;
+        ArrayList<Order> orders = new ArrayList<>();
 
         try(Connection connection = Database.connect()) {
    
@@ -49,9 +50,15 @@ public class OrderModel {
             String sql = "SELECT * FROM " + tableName + " WHERE " + condition; 
             ResultSet rs = stmt.executeQuery(sql);
 
-            /*order = new Order(rs.getString(menuItemsColumn), rs.getInt(totalCostColumn),
-                    rs.getString(orderStatusColumn), rs.getDate(createdAtColumn),
-                    rs.getInt(idColumn));*/
+            while(rs.next()){
+                Order order = new Order(rs.getString(menuItemsColumn), rs.getDouble(totalCostColumn),
+                    rs.getString(orderStatusColumn), rs.getDate(createdAtColumn).toString(),
+                    rs.getInt(idColumn));
+
+
+                orders.add(order);
+            }
+            
 
             rs.close();
             stmt.close();
@@ -62,11 +69,11 @@ public class OrderModel {
             return null;
          }
 
-         return order;
+         return orders;
 
     }
 
-    public static Order getOrderByCustomer(int customerid){
+    public static ArrayList<Order> getOrdersByCustomer(int customerid){
 
         String condition = customerIdColumn + "=" + customerid;
 
@@ -78,7 +85,7 @@ public class OrderModel {
 
         String condition = idColumn + "=" + orderid;
 
-        return getOrder(condition);
+        return getOrder(condition).get(0);
 
     }
 
