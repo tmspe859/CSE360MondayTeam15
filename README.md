@@ -1,6 +1,6 @@
-# Manager Access information:
-username: manager
-password: password
+**Manager Access information:**
+username: manager  
+password: password  
 
 
 # CSE360MondayTeam15
