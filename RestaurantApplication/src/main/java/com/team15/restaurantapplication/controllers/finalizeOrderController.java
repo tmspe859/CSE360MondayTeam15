@@ -15,6 +15,7 @@ import com.team15.restaurantapplication.exceptions.usernameTakenException;
 import com.team15.restaurantapplication.models.CardInfoModel;
 import com.team15.restaurantapplication.models.DeliveryInfoModel;
 import com.team15.restaurantapplication.models.OrderModel;
+import com.team15.restaurantapplication.classes.OrderQueue;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -125,6 +126,9 @@ public class finalizeOrderController extends Controller implements Initializable
         double totalCost = currentOrder.getTotalCost();
         int customerId = UserSession.getCurrentUser().getAccountID();
         OrderModel.createOrder(itemString, totalCost, customerId);
+
+        OrderQueue queueInstance = OrderQueue.getInstance();
+        queueInstance.addOrder(this.currentOrder);
 
         RestaurantApplication.popUp("purchasePopup.fxml", "Checkout");
 
