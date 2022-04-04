@@ -1,8 +1,10 @@
 package com.team15.restaurantapplication.controllers;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import com.team15.restaurantapplication.RestaurantApplication;
 import com.team15.restaurantapplication.classes.CardInfo;
 import com.team15.restaurantapplication.classes.Customer;
 import com.team15.restaurantapplication.classes.DeliveryInfo;
@@ -20,6 +22,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.TextField;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 public class finalizeOrderController extends Controller implements Initializable {
@@ -54,7 +57,11 @@ public class finalizeOrderController extends Controller implements Initializable
     @FXML
     private CheckBox rememberCheckbox;
 
+    @FXML
+    private Text message;
+
     private Order currentOrder;
+
 
     @Override
     public void setProps(Object props) {
@@ -93,7 +100,7 @@ public class finalizeOrderController extends Controller implements Initializable
     }
 
     @FXML
-    void placeOrderClicked(ActionEvent event) throws emailExistsException, usernameTakenException {
+    void placeOrderClicked(ActionEvent event) throws emailExistsException, usernameTakenException, IOException {
         // READ IN TEXT FIELDS TO BE STORED IN PROPER LOCATIONS
         // MOVE ACTIVE ORDER TO ORDER HISTORY
         // STORE USER PAYMENT INFO IF APPROPRIATE
@@ -101,8 +108,14 @@ public class finalizeOrderController extends Controller implements Initializable
 
         //[TODO] validate payment and delivery info
 
+        boolean isValid = validateForm();
+
+        if(!isValid){
+            System.out.println("Not Valid EXIT");
+            return;
+        }
+
         if(rememberCheckbox.isSelected()){ 
-            System.out.println("Remember me"); 
             updateCardInfo();
             updateDeliveryInfo();
         }
@@ -112,6 +125,9 @@ public class finalizeOrderController extends Controller implements Initializable
         double totalCost = currentOrder.getTotalCost();
         int customerId = UserSession.getCurrentUser().getAccountID();
         OrderModel.createOrder(itemString, totalCost, customerId);
+
+        RestaurantApplication.popUp("purchasePopup.fxml", "Checkout");
+
     }
 
     private void updateDeliveryInfo() {
@@ -144,6 +160,47 @@ public class finalizeOrderController extends Controller implements Initializable
                 CardInfoModel.addCardInfo(newInfo, customer.getAccountID());
             }
         }
+    }
+
+    private boolean validateForm() {
+        
+        if(cardNumber.getText().isEmpty()){
+            cardNumber.setStyle("-fx-text-box-border: lightgreen;");
+            message.setText("Please enter your Card Number");
+            return false;
+        }
+        if(cardName.getText().isEmpty()){
+            cardName.setStyle("-fx-text-box-border: lightgreen;");
+            message.setText("Please enter Name on Card");
+            return false;
+        }
+        if(cardDate.getText().isEmpty()){
+            cardDate.setStyle("-fx-text-box-border: lightgreen;");
+            message.setText("Please enter card Expiration Date");
+            return false;
+        }
+        if(cardCode.getText().isEmpty()){
+            cardCode.setStyle("-fx-text-box-border: lightgreen;");
+            message.setText("Please enter card Secutiry Code");
+            return false;
+        }
+        if(deliveryName.getText().isEmpty()){
+            deliveryName.setStyle("-fx-text-box-border: lightgreen;");
+            message.setText("Please enter Recepient's Name");
+            return false;
+        }
+        if(deliveryAddress.getText().isEmpty()){
+            deliveryAddress.setStyle("-fx-text-box-border: lightgreen;");
+            message.setText("Please enter your Delivery Address");
+            return false;
+        }
+        if(phoneNumber.getText().isEmpty()){
+            phoneNumber.setStyle("-fx-text-box-border: lightgreen;");
+            message.setText("Please enter your Phone number");
+            return false;
+        }
+
+        return true;
     }
 
 }

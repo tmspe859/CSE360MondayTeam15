@@ -8,7 +8,7 @@
 <?import javafx.scene.text.Text?>
 
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" nodeOrientation="LEFT_TO_RIGHT" prefHeight="600.0" prefWidth="400.0" style="-fx-background-color: brown;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.team15.restaurantapplication.controllers.finalizeOrderController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" nodeOrientation="LEFT_TO_RIGHT" prefHeight="620.0" prefWidth="400.0" style="-fx-background-color: brown;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.team15.restaurantapplication.controllers.finalizeOrderController">
    <children>
       <Text fill="WHITE" layoutX="122.0" layoutY="40.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Finalize Order">
          <font>
@@ -72,11 +72,16 @@
             <Font size="18.0" />
          </font>
       </CheckBox>
-      <Button fx:id="placeOrderButton" layoutX="102.0" layoutY="524.0" mnemonicParsing="false" onAction="#placeOrderClicked" prefHeight="27.0" prefWidth="193.0" style="-fx-background-color: lightgreen;" text="Place Order">
+      <Text fx:id="message" fill="WHITE" layoutX="14.0" layoutY="536.0" strokeType="OUTSIDE" strokeWidth="0.0" text="" translateY="-10.0">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Text>
+      <Button fx:id="placeOrderButton" layoutX="102.0" layoutY="538.0" mnemonicParsing="false" onAction="#placeOrderClicked" prefHeight="27.0" prefWidth="193.0" style="-fx-background-color: lightgreen;" text="Place Order">
          <font>
             <Font size="14.0" />
          </font>
       </Button>
-      <Button fx:id="cancelButton" layoutX="174.0" layoutY="562.0" mnemonicParsing="false" onAction="#cancelClicked" text="Cancel" />
+      <Button fx:id="cancelButton" layoutX="174.0" layoutY="576.0" mnemonicParsing="false" onAction="#cancelClicked" text="Cancel" />
    </children>
 </AnchorPane>
