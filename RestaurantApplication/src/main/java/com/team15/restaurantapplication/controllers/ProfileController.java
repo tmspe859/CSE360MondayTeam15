@@ -118,13 +118,14 @@ public class ProfileController {
 
         ArrayList<Order> previousOrders = OrderModel.getOrdersByCustomer(customerId);
         int length = previousOrders.size();
-        totalCost.setText(String.format("$%,.2f", previousOrders.get(length-1).getTotalCost()));
-        String[] items = previousOrders.get(length-1).getItemString().split(",");
-        for(String item : items){
-            currentOrderItems.appendText(item + "\n");
+        if(length > 0){
+            totalCost.setText(String.format("$%,.2f", previousOrders.get(length-1).getTotalCost()));
+            String[] items = previousOrders.get(length-1).getItemString().split(",");
+            for(String item : items){
+                currentOrderItems.appendText(item + "\n");
+            }
+            numberOfOrders.setText(length + " ");
         }
-        numberOfOrders.setText(length + " ");
-
         new Thread(() -> {
             
             Platform.runLater(() -> {
