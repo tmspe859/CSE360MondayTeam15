@@ -1,3 +1,8 @@
+Manager Access information:
+username: manager
+password: password
+
+
 # CSE360MondayTeam15
 The team repository for CSE360 Monday section
 
