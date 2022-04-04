@@ -5,6 +5,8 @@ import com.team15.restaurantapplication.classes.Customer;
 import com.team15.restaurantapplication.classes.MenuItem;
 import com.team15.restaurantapplication.classes.Order;
 import com.team15.restaurantapplication.classes.UserSession;
+import com.team15.restaurantapplication.models.CouponModel;
+
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -33,7 +35,7 @@ public class checkoutController extends Controller {
     private Button submitCouponButton;
 
     @FXML
-    private TextField taxText;
+    private TextField discountText;
 
     @FXML
     private TextField totalText;
@@ -50,14 +52,14 @@ public class checkoutController extends Controller {
 
         if(this.currentOrder != null) {
             Double totalCost = this.currentOrder.getTotalCost();
-            Double taxCost = totalCost * 0.1;
+            Double discount = 0.0;
 
             String costString = String.format("$%,.2f", totalCost);
-            String taxString = String.format("$%,.2f (10%%)", taxCost);
-            String totalString = String.format("$%,.2f", totalCost + taxCost);
+            String discountString = "% " + String.format("%,.2f", discount);
+            String totalString = String.format("$%,.2f", totalCost);
 
             costText.setText(costString);
-            taxText.setText(taxString);
+            discountText.setText(discountString);
             totalText.setText(totalString);
 
             initializeOrders(this.currentOrder.getItems());
@@ -131,7 +133,21 @@ public class checkoutController extends Controller {
 
     @FXML
     void submitCouponClicked(ActionEvent event) {
+        String code = couponText.getText();
 
+        int id = Integer.parseInt(code.split("-")[0]);
+
+        String title = code.split("-")[1];
+
+        double amount = CouponModel.getCouponAmount(id, title);
+
+        discountText.setText("% " + amount);
+
+        double discount = (amount/100) * currentOrder.getTotalCost();
+
+        double total = this.currentOrder.getTotalCost() - discount;
+
+        totalText.setText(String.format("$%,.2f", total));
     }
 
 }

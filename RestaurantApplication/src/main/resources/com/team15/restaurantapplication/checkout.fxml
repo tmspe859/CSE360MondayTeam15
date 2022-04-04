@@ -53,7 +53,7 @@
                   <Font size="18.0" />
                </font>
             </Text>
-            <Text fill="WHITE" layoutX="51.0" layoutY="103.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Tax:" translateX="335.0">
+            <Text fill="WHITE" layoutX="51.0" layoutY="103.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Discount" translateX="335.0">
                <font>
                   <Font size="18.0" />
                </font>
@@ -64,7 +64,7 @@
                </font>
             </Text>
             <TextField fx:id="costText" editable="false" layoutX="131.0" layoutY="54.0" promptText="cost" translateX="335.0" />
-            <TextField fx:id="taxText" editable="false" layoutX="131.0" layoutY="84.0" promptText="tax" translateX="335.0" />
+            <TextField fx:id="discountText" editable="false" layoutX="131.0" layoutY="84.0" promptText="discount amount" translateX="335.0" />
             <TextField fx:id="totalText" editable="false" layoutX="131.0" layoutY="114.0" promptText="total" translateX="335.0" />
             <Text fill="WHITE" layoutX="50.0" layoutY="73.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Discounts">
                <font>

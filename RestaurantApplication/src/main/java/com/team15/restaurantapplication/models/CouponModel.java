@@ -97,5 +97,12 @@ public class CouponModel {
         
     }
 
+    public static double getCouponAmount(int id, String title){
+        String condition = idColumn + "=" + id + " AND " +
+         titleColumn + "=" + "\"" + title + "\"";
+
+        return getCoupon(condition).get(0).getPercentOff();
+    }
+
 
 }
