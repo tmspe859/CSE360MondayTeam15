@@ -80,8 +80,6 @@ public class addMenuItemPopupController {
 
         Stage stage = (Stage) cancelButton.getScene().getWindow(); // Set stage to this window
         stage.close(); // Close the stage
-
-        // Path: C:\Users\troll\OneDrive\Desktop\Java\CSE360\CSE360MondayTeam15V3\CSE360MondayTeam15-main\RestaurantApplication\src\main\resources\com\team15\restaurantapplication\images.jpg
     }
 
     @FXML
