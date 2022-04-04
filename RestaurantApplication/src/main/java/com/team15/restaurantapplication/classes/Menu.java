@@ -31,16 +31,8 @@ public class Menu {
 
     public Boolean updateItem(String searchName, String[] columns, Object[] updatedVals) {
         if (MenuItemModel.updateItem(searchName, columns, updatedVals) == -1) return false;
-        for (int i = 0; i < this.menuItems.size(); i++) {
-            MenuItem item = this.menuItems.get(i);
-            if (item.getName().compareTo(searchName) == 0) {
-                MenuItem updatedItem = MenuItemModel.getByName(searchName);
-                if (updatedItem == null) return false;
-                this.menuItems.set(i, updatedItem);
-                return true;
-            }
-        }
-        return false;
+        this.refreshListings();
+        return true;
     }
 
     public Boolean deleteItem(MenuItem item) {
