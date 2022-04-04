@@ -94,7 +94,14 @@ public class ItemPageController extends Controller implements Initializable {
             
             price.setText("$" + this.item.getPrice());
 
-            Image img = new Image(item.getImgPath());
+            Image img;
+
+            try {
+                img = new Image(item.getImgPath());
+            } catch(Exception e){
+                img = new Image(RestaurantApplication.class.getResource("placeholder.png").toExternalForm());
+            }
+            
             image.setImage(img);
 
             if(ingredientsList != null){
