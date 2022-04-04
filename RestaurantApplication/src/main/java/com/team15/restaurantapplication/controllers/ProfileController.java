@@ -140,6 +140,7 @@ public class ProfileController {
             }
 
             initializePreviousOrders(customer.getAccountID());
+            initializeCoupons(customer.getAccountID());
 
         } else {
             couponText1.setVisible(true);
@@ -152,6 +153,19 @@ public class ProfileController {
             sendButton.setVisible(true);
         }
 
+    }
+
+    private void initializeCoupons(int customerId){
+        ArrayList<Coupon> customerCoupons = CouponModel.getCouponsByCustomer(customerId);
+
+        for (Coupon coupon : customerCoupons) {
+            
+            coupons.appendText(
+                "Code: " +
+                coupon.getId() + "-" + coupon.getTitle() +
+                 "       Amount: %" + coupon.getPercentOff() + "\n");
+        
+        }
     }
 
     private void initializePreviousOrders(int customerId){

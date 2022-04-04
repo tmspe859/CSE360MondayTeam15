@@ -1,6 +1,7 @@
 package com.team15.restaurantapplication.models;
 
 import java.sql.*;
+import java.util.ArrayList;
 
 import com.team15.restaurantapplication.classes.Coupon;
 import com.team15.restaurantapplication.exceptions.emailExistsException;
@@ -35,9 +36,9 @@ public class CouponModel {
          }
     }
 
-    private static Coupon getCoupon(String condition){
+    private static ArrayList<Coupon> getCoupon(String condition){
 
-        Coupon coupon = null;
+        ArrayList<Coupon> coupons = new ArrayList<>();
 
         try(Connection connection = Database.connect()) {
    
@@ -45,8 +46,11 @@ public class CouponModel {
             String sql = "SELECT * FROM " + tableName + " WHERE " + condition; 
             ResultSet rs = stmt.executeQuery(sql);
 
-            coupon = new Coupon(rs.getString(titleColumn), rs.getDouble(percentOffColumn));
-
+            while(rs.next()){
+                Coupon coupon = new Coupon(rs.getString(titleColumn), rs.getDouble(percentOffColumn), rs.getInt(idColumn));
+                coupons.add(coupon);
+            }
+            
             rs.close();
             stmt.close();
             connection.close();
@@ -56,11 +60,11 @@ public class CouponModel {
             return null;
          }
 
-         return coupon;
+         return coupons;
 
     }
 
-    public static Coupon getCouponByCustomer(int customerid){
+    public static ArrayList<Coupon> getCouponsByCustomer(int customerid){
 
         String condition = customerIdColumn + "=" + customerid;
 
@@ -72,7 +76,7 @@ public class CouponModel {
 
         String condition = idColumn + "=" + couponId;
 
-        return getCoupon(condition);
+        return getCoupon(condition).get(0);
 
     }
 
