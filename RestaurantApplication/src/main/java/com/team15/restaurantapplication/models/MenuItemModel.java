@@ -172,7 +172,7 @@ public class MenuItemModel {
 
     private static ArrayList<String> getIngredientsFromString(String ingredientsString) {
         ArrayList<String> ingredients = new ArrayList<String>();
-        String[] splitString = ingredientsString.split(",");
+        String[] splitString = ingredientsString.split(",\s*");
         for (String ingredient : splitString)
             ingredients.add(ingredient);
         return ingredients;
