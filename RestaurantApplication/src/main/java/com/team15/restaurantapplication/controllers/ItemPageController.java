@@ -11,6 +11,7 @@ import com.team15.restaurantapplication.classes.Customer;
 import com.team15.restaurantapplication.classes.MenuItem;
 import com.team15.restaurantapplication.classes.Order;
 import com.team15.restaurantapplication.classes.UserSession;
+import com.team15.restaurantapplication.classes.Menu;
 
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -201,10 +202,15 @@ public class ItemPageController extends Controller implements Initializable {
     }
 
     @FXML
-    void deleteClicked(ActionEvent event) {
+    void deleteClicked(ActionEvent event) throws IOException {
         // REMOVE ITEM FROM DB
         // REMOVE ITEM FROM SESSION MENU
+        String itemName = this.name.getText();
+        Menu fullMenu = Menu.getInstance();
+        fullMenu.deleteItem(itemName);
+
         // CHANGE SCENE TO MENU/REFRESH MENU
+        RestaurantApplication.changeScene("menu.fxml","RestaurantApp - Menu", null); // Change scene
     }
 
     @FXML
