@@ -123,8 +123,8 @@ public class MenuItemController {
     }
 
     @FXML
-    void updateClicked(ActionEvent event) {
-
+    void updateClicked(ActionEvent event) throws IOException {
+        RestaurantApplication.popUp("editMenuItemPopup.fxml","RestaurantApp - Edit Menu Item");
     }
 
 }

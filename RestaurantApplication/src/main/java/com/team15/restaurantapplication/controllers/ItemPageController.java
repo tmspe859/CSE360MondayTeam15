@@ -214,8 +214,8 @@ public class ItemPageController extends Controller implements Initializable {
     }
 
     @FXML
-    void updateClicked(ActionEvent event) {
-
+    void updateClicked(ActionEvent event) throws IOException {
+        RestaurantApplication.popUp("editMenuItemPopup.fxml","RestaurantApp - Edit Menu Item");
     }
 
 

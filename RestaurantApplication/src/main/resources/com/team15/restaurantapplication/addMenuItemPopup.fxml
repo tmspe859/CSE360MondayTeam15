@@ -69,7 +69,7 @@
             <Font size="18.0" />
          </font>
       </Text>
-      <Button layoutX="78.0" layoutY="298.0" mnemonicParsing="false" onAction="#cancelClicked" prefWidth="81.0" text="Cancel" />
+      <Button fx:id="cancelButton" layoutX="78.0" layoutY="298.0" mnemonicParsing="false" onAction="#cancelClicked" prefWidth="81.0" text="Cancel" />
       <Button layoutX="193.0" layoutY="298.0" mnemonicParsing="false" onAction="#addClicked" prefWidth="81.0" text="Add" />
    </children>
 </AnchorPane>
