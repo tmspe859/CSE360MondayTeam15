@@ -67,7 +67,13 @@ public class MenuItemController {
             description.setText(item.getDesc());
         }
         
-        Image img = new Image(item.getImgPath());
+        Image img;
+
+        try {
+            img = new Image(item.getImgPath());
+        } catch(Exception e){
+            img = new Image(RestaurantApplication.class.getResource("placeholder.png").toExternalForm());
+        }
         
         image.setImage(img);
 
