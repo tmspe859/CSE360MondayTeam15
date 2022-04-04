@@ -13,7 +13,7 @@ public class CouponModel {
     private static final String titleColumn = "title";
     private static final String percentOffColumn = "percentoff";
     private static final String createdAtColumn = "created_at";
-    private static final String customerIdColumn = "id";
+    private static final String customerIdColumn = "customerid";
 
     public static void createTable(Connection connection){
 

@@ -3,6 +3,9 @@ package com.team15.restaurantapplication.controllers;
 import com.team15.restaurantapplication.RestaurantApplication;
 import com.team15.restaurantapplication.classes.*;
 
+import com.team15.restaurantapplication.exceptions.emailExistsException;
+import com.team15.restaurantapplication.exceptions.usernameTakenException;
+import com.team15.restaurantapplication.models.CouponModel;
 import com.team15.restaurantapplication.models.DeliveryInfoModel;
 import com.team15.restaurantapplication.models.OrderModel;
 import com.team15.restaurantapplication.models.UserModel;
@@ -12,6 +15,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
+import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
@@ -86,6 +90,33 @@ public class ProfileController {
     private Text message;
 
     @FXML
+    private TextField couponName;
+
+    @FXML
+    private Text couponText1;
+
+    @FXML
+    private Text couponText2;
+
+    @FXML
+    private Text couponText3;
+
+    @FXML
+    private Text couponText4;
+
+    @FXML
+    private TextField discount;
+
+    @FXML
+    private TextArea earnedRewards;
+
+    @FXML
+    private TextField recipentUsername;
+
+    @FXML
+    private Button sendButton;
+
+    @FXML
     void initialize() {
         User currentUser = UserSession.getCurrentUser();
 
@@ -110,6 +141,15 @@ public class ProfileController {
 
             initializePreviousOrders(customer.getAccountID());
 
+        } else {
+            couponText1.setVisible(true);
+            couponText2.setVisible(true);
+            couponText3.setVisible(true);
+            couponText4.setVisible(true);
+            recipentUsername.setVisible(true);
+            couponName.setVisible(true);
+            discount.setVisible(true);
+            sendButton.setVisible(true);
         }
 
     }
@@ -251,6 +291,15 @@ public class ProfileController {
         }
 
         return true;
+    }
+
+    @FXML
+    void sendClicked(ActionEvent event) throws emailExistsException, usernameTakenException {
+        User user = UserModel.getUser(recipentUsername.getText());
+        CouponModel.createCoupon(couponName.getText(), Double.parseDouble(discount.getText()), user.getAccountID());
+        couponName.setText("");
+        discount.setText("");
+        recipentUsername.setText("");
     }
 
 }

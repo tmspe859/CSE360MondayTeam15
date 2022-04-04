@@ -10,7 +10,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1000.0" style="-fx-background-color: brown;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.team15.restaurantapplication.controllers.ProfileController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1000.0" style="-fx-background-color: brown;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.team15.restaurantapplication.controllers.ProfileController">
    <children>
       <AnchorPane prefHeight="57.0" prefWidth="1000.0" style="-fx-background-color: #3d2b1f;">
          <children>
@@ -41,7 +41,7 @@
             </Button>
          </children>
       </AnchorPane>
-      <AnchorPane layoutY="57.0" prefHeight="743.0" prefWidth="333.0" style="-fx-border-color: black;">
+      <AnchorPane layoutY="57.0" prefHeight="542.0" prefWidth="333.0" style="-fx-border-color: black;">
          <children>
             <Text fill="WHITE" layoutX="56.0" layoutY="40.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Personal Information">
                <font>
@@ -135,7 +135,7 @@
                   <Font size="18.0" />
                </font>
             </Text>
-            <TextArea fx:id="coupons1" layoutX="15.0" layoutY="365.0" prefHeight="176.0" prefWidth="304.0" />
+            <TextArea fx:id="earnedRewards" layoutX="15.0" layoutY="365.0" prefHeight="176.0" prefWidth="304.0" />
             <TextField fx:id="joinedDate" editable="false" layoutX="190.0" layoutY="46.0" prefHeight="25.0" prefWidth="132.0" />
             <TextField fx:id="numberOfOrders" editable="false" layoutX="190.0" layoutY="73.0" prefHeight="25.0" prefWidth="132.0" />
             <TextField fx:id="rewardsPoints" editable="false" layoutX="190.0" layoutY="100.0" prefHeight="25.0" prefWidth="132.0" />
@@ -193,6 +193,34 @@
                   </GridPane>
                </content>
             </ScrollPane>
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutY="598.0" prefHeight="202.0" prefWidth="333.0" style="-fx-border-color: black;">
+         <children>
+            <Text fx:id="couponText1" fill="WHITE" layoutX="87.0" layoutY="40.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Grant Coupons" visible="false">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Text>
+            <TextField fx:id="recipentUsername" layoutX="32.0" layoutY="72.0" prefHeight="25.0" prefWidth="268.0" visible="false" />
+            <Text fx:id="couponText2" fill="WHITE" layoutX="33.0" layoutY="65.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Coupon Recipent's Username" visible="false">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Text>
+            <TextField fx:id="couponName" layoutX="32.0" layoutY="134.0" prefHeight="25.0" prefWidth="130.0" visible="false" />
+            <Text fx:id="couponText3" fill="WHITE" layoutX="33.0" layoutY="127.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Coupon Name" visible="false">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Text>
+            <TextField fx:id="discount" layoutX="171.0" layoutY="135.0" prefHeight="25.0" prefWidth="130.0" translateY="-1.0" visible="false" />
+            <Text fx:id="couponText4" fill="WHITE" layoutX="172.0" layoutY="128.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Discount %" translateY="-1.0" visible="false">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Text>
+            <Button fx:id="sendButton" layoutX="122.0" layoutY="166.0" mnemonicParsing="false" onAction="#sendClicked" prefHeight="25.0" prefWidth="86.0" text="Send" visible="false" />
          </children>
       </AnchorPane>
    </children>
