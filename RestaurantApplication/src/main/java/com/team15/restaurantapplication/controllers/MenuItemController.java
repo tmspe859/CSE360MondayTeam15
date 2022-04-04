@@ -67,14 +67,7 @@ public class MenuItemController {
             description.setText(item.getDesc());
         }
         
-        Image img;
-
-        try {
-            img = new Image(item.getImgPath());
-        } catch(Exception e){
-            img = new Image(RestaurantApplication.class.getResource("placeholder.png").toExternalForm());
-        }
-        
+        Image img = new Image(item.getImgPath());
         
         image.setImage(img);
 
@@ -131,7 +124,7 @@ public class MenuItemController {
 
     @FXML
     void updateClicked(ActionEvent event) throws IOException {
-        RestaurantApplication.popUp("editMenuItemPopup.fxml","RestaurantApp - Edit Menu Item");
+        RestaurantApplication.popUp("editMenuItemPopup.fxml","RestaurantApp - Edit Menu Item", this.item);
     }
 
 }
