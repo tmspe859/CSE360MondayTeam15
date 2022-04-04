@@ -131,7 +131,10 @@ public class finalizeOrderController extends Controller implements Initializable
         queueInstance.addOrder(this.currentOrder);
 
         RestaurantApplication.popUp("purchasePopup.fxml", "Checkout");
-
+        Customer customer = (Customer) UserSession.getCurrentUser();
+        customer.setCurrentOrder(new Order());
+        Stage stage = (Stage) placeOrderButton.getScene().getWindow(); // Set stage to this window
+        stage.close();
     }
 
     private void updateDeliveryInfo() {

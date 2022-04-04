@@ -123,6 +123,7 @@ public class ProfileController {
         for(String item : items){
             currentOrderItems.appendText(item + "\n");
         }
+        numberOfOrders.setText(length + " ");
 
         new Thread(() -> {
             

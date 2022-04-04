@@ -4,6 +4,8 @@ import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.Timer;
 
+import com.team15.restaurantapplication.RestaurantApplication;
+
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.text.Text;
@@ -28,7 +30,6 @@ public class PurchasePopupController implements Initializable {
             }, 
             2500 
         );
-
     }
 
 
