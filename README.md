@@ -1,4 +1,4 @@
-Manager Access information:
+# Manager Access information:
 username: manager
 password: password
 
