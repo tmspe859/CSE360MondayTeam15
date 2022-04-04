@@ -48,9 +48,17 @@ public class checkoutController extends Controller {
         
         this.currentOrder = (Order) props;
 
-        if(this.currentOrder != null){
-            costText.setText("$ " + this.currentOrder.getTotalCost());
-            totalText.setText("$ " + this.currentOrder.getTotalCost());
+        if(this.currentOrder != null) {
+            Double totalCost = this.currentOrder.getTotalCost();
+            Double taxCost = totalCost * 0.1;
+
+            String costString = String.format("$%,.2f", totalCost);
+            String taxString = String.format("$%,.2f (10%%)", taxCost);
+            String totalString = String.format("$%,.2f", totalCost + taxCost);
+
+            costText.setText(costString);
+            taxText.setText(taxString);
+            totalText.setText(totalString);
 
             initializeOrders(this.currentOrder.getItems());
         }
