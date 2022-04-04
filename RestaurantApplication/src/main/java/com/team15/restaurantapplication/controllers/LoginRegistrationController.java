@@ -50,10 +50,13 @@ public class LoginRegistrationController {
 
     @FXML
     void checkoutClicked(ActionEvent event) throws IOException {
+        if (!UserSession.isManager()) {
         Customer currentUser = (Customer) UserSession.getCurrentUser();
         Order currentOrder = currentUser.getCurrentOrder();
         RestaurantApplication.changeScene("checkout.fxml","RestaurantApp - Checkout", currentOrder); // Change scene
+        }
     }
+
 
     @FXML
     void forgotPasswordClicked(ActionEvent event) throws IOException {

@@ -25,9 +25,11 @@ public class HomeController {
 
     @FXML
     void checkoutClicked(ActionEvent event) throws IOException {
-        Customer currentUser = (Customer) UserSession.getCurrentUser();
-        Order currentOrder = currentUser.getCurrentOrder();
-        RestaurantApplication.changeScene("checkout.fxml","RestaurantApp - Checkout", currentOrder); // Change scene
+        if (!UserSession.isManager()) {
+            Customer currentUser = (Customer) UserSession.getCurrentUser();
+            Order currentOrder = currentUser.getCurrentOrder();
+            RestaurantApplication.changeScene("checkout.fxml","RestaurantApp - Checkout", currentOrder); // Change scene
+        }
     }
 
     @FXML
