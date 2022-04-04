@@ -174,12 +174,15 @@ public class ItemPageController extends Controller implements Initializable {
     }
 
     @FXML 
-    void removeClicked(ActionEvent event){
+    void removeClicked(ActionEvent event) throws IOException {
         System.out.println("Item remove");
         if(!UserSession.isManager()){
             Customer currentUser = (Customer) UserSession.getCurrentUser();
             currentUser.getCurrentOrder().removeItem(this.item);
         }
+        Customer currentUser = (Customer) UserSession.getCurrentUser();
+        Order currentOrder = currentUser.getCurrentOrder();
+        RestaurantApplication.changeScene("checkout.fxml","RestaurantApp - Checkout", currentOrder); // Change scene
     }
 
     @FXML
