@@ -80,7 +80,6 @@ public class CouponModel {
 
     }
 
-
     public static int createCoupon(String title, double percentOff, int customerId) throws emailExistsException, usernameTakenException {
 
         //update database

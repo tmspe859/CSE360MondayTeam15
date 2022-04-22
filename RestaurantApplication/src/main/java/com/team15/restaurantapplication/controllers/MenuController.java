@@ -167,6 +167,7 @@ public class MenuController implements Initializable {
         this.menu.getChildren().clear();
         this.initialize(null, null);
     }
+
     @FXML
     void addItemClicked(ActionEvent event) throws IOException {
         RestaurantApplication.popUp("addMenuItemPopup.fxml","RestaurantApp - Add Menu Item");

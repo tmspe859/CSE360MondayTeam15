@@ -29,7 +29,7 @@ public abstract class User {
         this.accountID = accountID;
     }
     
-    public void updateInfo() {}
+    // public void updateInfo() {}
 
     public String getFirstName() { return this.firstName; }
     public void setFirstName(String firstName) { this.firstName = firstName; }

@@ -3,7 +3,6 @@ package com.team15.restaurantapplication.classes;
 public final class UserSession {
     
     private static UserSession instance;
-
     private static User currentUser;
 
     private UserSession(User user){
